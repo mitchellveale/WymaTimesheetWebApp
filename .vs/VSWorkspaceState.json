@@ -1,8 +1,15 @@
 {
   "ExpandedNodes": [
+<<<<<<< HEAD
     "",
     "\\WymaTimesheetWebApp"
   ],
   "SelectedNode": "\\WymaTimesheetWebApp\\Index.aspx",
   "PreviewInSolutionExplorer": true
+=======
+    ""
+  ],
+  "SelectedNode": "\\WymaTimesheetWebApp.sln",
+  "PreviewInSolutionExplorer": false
+>>>>>>> e8098813cf2078beb05ed77f3d6cdb18ea0e9060
 }
