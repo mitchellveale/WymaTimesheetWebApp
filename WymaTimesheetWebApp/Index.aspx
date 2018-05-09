@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Label ID="TitleLabel" Font-Size="20px" Font-Bold="true" Text="What is your name?" runat="server" />
+            &nbsp;<asp:Label ID="TitleLabel" Font-Size="20px" Font-Bold="true" Text="What is your name?" runat="server" />
             <br/>
             <asp:TextBox ID="InputField" runat="server" />
             <asp:Button ID="MainButton" Text="Submit" OnClick="MainButton_Click" runat="server"/>
