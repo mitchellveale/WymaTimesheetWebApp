@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WymaTimesheetWebApp
 {
-    public partial class MainMenu : System.Web.UI.Page
+    public partial class Job_AssSelection : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

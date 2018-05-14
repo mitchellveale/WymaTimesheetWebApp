@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MainMenu.aspx.cs" Inherits="WymaTimesheetWebApp.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MainMenu.aspx.cs" Inherits="WymaTimesheetWebApp.MainMenu" %>
 
 <!DOCTYPE html>
 
@@ -25,7 +25,7 @@
             <div id="Main" >
                 <div id="Data"> 
                     <div id="Buttons" style=" padding: 100px; margin: inherit; position: center; width: 147px;">
-                        <button id="Button_Employee" class="btn3">Employees</button>
+                        <button id="Button_Employee" class="btn3" style=" margin-left:auto; margin-right:auto">Employees</button>
                         <br /> 
                         <br />
                         <button id="Button_Manager" class="btn3">Managers</button>
