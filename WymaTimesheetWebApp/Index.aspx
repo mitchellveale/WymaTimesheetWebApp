@@ -9,13 +9,10 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Label ID="TitleLabel" Font-Size="20px" Font-Bold="true" Text="What is your name?" runat="server" />
-            <br/>
-            <asp:TextBox ID="InputField" runat="server" />
-            <asp:Button ID="MainButton" Text="Submit" OnClick="MainButton_Click" runat="server"/>
+            <asp:Label ID="TitleLabel" Font-Size="20px" Font-Bold="true" Text="Test FDB Connection" runat="server" />
             <br />
             <br />
-            <asp:Label ID="GreetingLabel" Text="This shouldn't be visible..." Visible="false" runat="server" />
+            <asp:Button ID="MainButton" Text="Test" OnClick="MainButton_Click" runat="server"/>
         </div>
     </form>
 </body>
