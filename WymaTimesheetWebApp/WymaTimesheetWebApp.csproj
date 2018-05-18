@@ -74,6 +74,8 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="Job-AssSelection.aspx" />
+    <Content Include="ManagerViewScreen.aspx" />
+    <Content Include="ViewScreen.aspx" />
     <Content Include="WymaTimesheetWebApp.sitemap" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +112,13 @@
     <Compile Include="Job-AssSelection.aspx.designer.cs">
       <DependentUpon>Job-AssSelection.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ManagerViewScreen.aspx.cs">
+      <DependentUpon>ManagerViewScreen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerViewScreen.aspx.designer.cs">
+      <DependentUpon>ManagerViewScreen.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainMenu.aspx.cs">
       <DependentUpon>MainMenu.aspx</DependentUpon>
@@ -117,6 +126,13 @@
     </Compile>
     <Compile Include="MainMenu.aspx.designer.cs">
       <DependentUpon>MainMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewScreen.aspx.cs">
+      <DependentUpon>ViewScreen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewScreen.aspx.designer.cs">
+      <DependentUpon>ViewScreen.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

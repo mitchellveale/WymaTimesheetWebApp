@@ -10,24 +10,33 @@
 namespace WymaTimesheetWebApp {
     
     
-    public partial class DateAndTime {
+    public partial class ViewScreen {
         
         /// <summary>
-        /// DT control.
+        /// VS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm DT;
+        protected global::System.Web.UI.HtmlControls.HtmlForm VS;
         
         /// <summary>
-        /// NamePicker control.
+        /// JobsAssembliesViewTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList NamePicker;
+        protected global::System.Web.UI.WebControls.Table JobsAssembliesViewTable;
+        
+        /// <summary>
+        /// NonChargeViewTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table NonChargeViewTable;
     }
 }

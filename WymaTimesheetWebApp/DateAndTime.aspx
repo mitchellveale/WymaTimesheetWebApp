@@ -32,6 +32,9 @@
                     <div id="Form">
                         <div style="width: auto; height: auto;" >
 
+                            <label class="Text">Name:</label>
+                            <asp:DropDownList ID="NamePicker" runat="server" CssClass="Text labels" width="125px"></asp:DropDownList>
+
                             <label class="Text">Date:</label>
                             <input type="date" id="DateBox" class="Text labels" /> 
 
@@ -41,7 +44,7 @@
                             <label class="Text">Lunch Break:</label>
                             <!-- <input type="time" id="LunchTimeINP" class="Text labels" /> -->
                             <!-- Time slection code by Dave Baldwin URL: https://www.experts-exchange.com/questions/28935729/HTML-input-field-to-enter-time-with-hours-minutes-and-am-pm.html -->
-                            <select name="selMin" class="Text labels">
+                            <select name="selMin" class="Text labels" style="width: 125px;">
                                 <option selected="selected" value="">Select Time</option>
                                 <option value="00">00 mins</option>
                                 <option value="01">01 min</option>
@@ -120,12 +123,12 @@
         <div id="FooterRap">
             <div id="Footer1">
 
-                <button id="btnSubmit" class="btnsubmit" style="float:left;">Submit</button>
+                <button id="btnSubmitDT" class="btnsubmit" style="float:left;">Submit</button>
 
             </div>
             <div id="Footer2">
 
-                <button id="btnCancel" class="btncancel" style=" float:right;">Cancel</button>
+                <button id="btnCancelDT" class="btncancel" style=" float:right;">Cancel</button>
 
 
             </div>

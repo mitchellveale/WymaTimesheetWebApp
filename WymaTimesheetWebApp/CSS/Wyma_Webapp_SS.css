@@ -113,9 +113,13 @@
 }
 .table {
     border-spacing: 5px;
+    overflow-y: scroll;
+    display: block;
 }
-.th{
+.th {
     text-align: left;
+    border: 2px solid black;
+    
 }
 
 

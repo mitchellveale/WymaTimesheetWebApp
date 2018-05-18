@@ -10,24 +10,24 @@
 namespace WymaTimesheetWebApp {
     
     
-    public partial class DateAndTime {
+    public partial class ManagerViewScreen {
         
         /// <summary>
-        /// DT control.
+        /// MVS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm DT;
+        protected global::System.Web.UI.HtmlControls.HtmlForm MVS;
         
         /// <summary>
-        /// NamePicker control.
+        /// TimeSheetsTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList NamePicker;
+        protected global::System.Web.UI.WebControls.Table TimeSheetsTable;
     }
 }
