@@ -29,17 +29,23 @@ namespace WymaTimesheetWebApp
             {
                 FbCommand cmd = new FbCommand("insert into Details(id, fName, lName, Age) values (@id, @fName, @lName, @Age);");
                 cmd.CommandType = CommandType.Text;
-                cmd.Parameters.Add("@id", 5);
-                cmd.Parameters.Add("@fName", "Brayden");
-                cmd.Parameters.Add("@lName", "Charleston");
-                cmd.Parameters.Add("@Age", 18);
+                cmd.Parameters.Add("@id", 6);
+                cmd.Parameters.Add("@fName", "Testy");
+                cmd.Parameters.Add("@lName", "McTestFace");
+                cmd.Parameters.Add("@Age", 69);
 
-                using (cmd.Connection = new FbConnection(@"Server=10.1.119.94;User=SYSDBA;Password=masterkey;Database=10.1.119.94:D:\fdb\testdb.fdb;ServerType=0;"))
+                String serverIP = IPInput.Text;
+                IPInput.Visible = false;
+                IPLabel.Visible = false;
+                MainButton.Visible = false;
+
+
+                using (cmd.Connection = new FbConnection($@"Server={serverIP};User=SYSDBA;Password=masterkey;Database={serverIP}:D:\fdb\testdb.fdb;ServerType=0;Port=3050;"))
                 {
                     cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
                 }
-                    TitleLabel.Text = "Data Uploaded.";
+                    TitleLabel.Text = "Connection Successful And Data Uploaded.";
 
             }
             catch (Exception e)
