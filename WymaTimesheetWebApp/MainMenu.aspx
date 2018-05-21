@@ -25,10 +25,17 @@
             <form runat="server" id="Main" >
                 <div id="Data"> 
                     <div id="Buttons" style=" padding: 100px; margin: inherit; position: center; width: 147px;">
+<<<<<<< HEAD
                         <button runat="server" id="Button_Employee" onclick="Button_Employee_Click" class="btn3">Employees</button>
                         <br /> 
                         <br />
                         <button id="Button_Manager" onclick="Button_Manager_Click" class="btn3">Managers</button>
+=======
+                        <button runat="server" id="ButtonEmployee" class="btn3" onserverclick="ButtonEmployeeClick" >Employees</button>
+                        <br /> 
+                        <br />
+                        <button runat="server" id="ButtonManager" class="btn3" onserverclick="ButtonManagerClick" >Managers</button>
+>>>>>>> Main-Menu
                     </div>
                 </div>
             </form>

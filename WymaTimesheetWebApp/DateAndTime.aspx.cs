@@ -13,5 +13,16 @@ namespace WymaTimesheetWebApp
         {
 
         }
+
+        protected void BtnSubmitDTClick(object sender, EventArgs e)
+        {
+            Server.Transfer("Job-AssSelection.aspx", true);
+        }
+
+        protected void BtnCancelDTClick(object sender, EventArgs e)
+        {
+            Server.Transfer("MainMenu.aspx", true);
+        }
+
     }
 }

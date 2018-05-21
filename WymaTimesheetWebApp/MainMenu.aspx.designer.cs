@@ -22,12 +22,29 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.HtmlControls.HtmlForm Main;
         
         /// <summary>
+<<<<<<< HEAD
         /// Button_Employee control.
+=======
+        /// ButtonEmployee control.
+>>>>>>> Main-Menu
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+<<<<<<< HEAD
         protected global::System.Web.UI.HtmlControls.HtmlButton Button_Employee;
+=======
+        protected global::System.Web.UI.HtmlControls.HtmlButton ButtonEmployee;
+        
+        /// <summary>
+        /// ButtonManager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton ButtonManager;
+>>>>>>> Main-Menu
     }
 }

@@ -136,7 +136,7 @@
     position: relative;
     margin: auto;
     border: 2px solid transparent;
-    transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition: all 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     top: 1px;
     left: -4px;
     height: 38px;
