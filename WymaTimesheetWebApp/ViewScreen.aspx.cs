@@ -13,5 +13,10 @@ namespace WymaTimesheetWebApp
         {
 
         }
+
+        protected void btnBackVSClick(object sender, EventArgs e)
+        {
+            Server.Transfer("Job-AssSelection.aspx", true);
+        }
     }
 }

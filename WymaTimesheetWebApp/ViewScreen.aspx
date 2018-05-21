@@ -82,7 +82,7 @@
             </div>
             <div id="Footer2">
 
-                <button id="btnBackVS" class="btncancel" style=" float:right;">Back</button>
+                <button runat="server" id="btnBackVS" class="btncancel" style=" float:right;" onserverclick="btnBackVSClick">Back</button>
 
 
             </div>

@@ -78,12 +78,12 @@
         <div id="FooterRap">
             <div id="Footer1">
 
-                <button id="btnSubmitHS" class="btnsubmit" style="float:left;">Submit</button>
+                <button runat="server" id="btnSubmitHS" class="btnsubmit" style="float:left;" onserverclick="btnSubmitHSClick">Submit</button>
 
             </div>
             <div id="Footer2">
 
-                <button id="btnBackHS" class="btncancel" style=" float:right;">Back</button>
+                <button runat="server" id="btnBackHS" class="btncancel" style=" float:right;" onserverclick="btnBackHSClick">Back</button>
 
 
             </div>

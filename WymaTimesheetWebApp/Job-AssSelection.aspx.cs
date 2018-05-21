@@ -13,5 +13,15 @@ namespace WymaTimesheetWebApp
         {
 
         }
+
+        protected void btnSubmitHSClick(object sender, EventArgs e)
+        {
+            Server.Transfer("ViewScreen.aspx", true);
+        }
+
+        protected void btnBackHSClick(object sender, EventArgs e)
+        {
+            Server.Transfer("DateAndTime.aspx", true);
+        }
     }
 }

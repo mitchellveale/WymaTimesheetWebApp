@@ -16,15 +16,6 @@ namespace WymaTimesheetWebApp
         {
 
         }
-<<<<<<< HEAD
-
-        protected void Buttion_Employee_Click(object sender, EventArgs e)
-        {
-            
-            Server.Transfer("DateAndTime.aspx", true);
-        }
-     }
-=======
         protected void ButtonEmployeeClick(object sender, EventArgs e)
         {
             Server.Transfer("DateAndTime.aspx", true);
@@ -38,5 +29,4 @@ namespace WymaTimesheetWebApp
 
         }
     }
->>>>>>> Main-Menu
 }
