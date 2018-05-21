@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.VisualBasic;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,18 @@ namespace WymaTimesheetWebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+        }
+        protected void ButtonEmployeeClick(object sender, EventArgs e)
+        {
+            Server.Transfer("DateAndTime.aspx", true);
+        }
+
+        protected void ButtonManagerClick(object sender, EventArgs e)
+        {
+            string ManagerIDInput = Microsoft.VisualBasic.Interaction.InputBox("Please Input Manager ID Code.", "Manager Input");
+            
+
 
         }
     }
