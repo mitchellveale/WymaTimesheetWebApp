@@ -23,9 +23,8 @@ namespace WymaTimesheetWebApp
 
         protected void ButtonManagerClick(object sender, EventArgs e)
         {
-            string ManagerIDInput = Microsoft.VisualBasic.Interaction.InputBox("Please Input Manager ID Code.", "Manager Input");
-            
 
+            Server.Transfer("ManagerLogin.aspx", true);
 
         }
     }
