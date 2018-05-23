@@ -12,7 +12,7 @@
             <asp:Label ID="TitleLabel" Font-Size="20px" Font-Bold="true" Text="Test FDB Connection" runat="server" />
             <br />
             <br />
-            <asp:Label ID="IPLabel" runat="server" Text="Server IP: " Font-Size="20px" ></asp:Label>
+            <asp:Label ID="IPLabel" runat="server" Text="Server IP: " Font-Size="20px" />
             <asp:TextBox ID="IPInput" runat="server"></asp:TextBox>
             <br />
             <br />
