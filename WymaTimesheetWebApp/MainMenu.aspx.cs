@@ -14,7 +14,9 @@ namespace WymaTimesheetWebApp
         
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            HttpCookie ROWCookie = new HttpCookie("TotRows");
+            ROWCookie.Value = "2";
+            Response.Cookies.Add(ROWCookie);
         }
         protected void ButtonEmployeeClick(object sender, EventArgs e)
         {

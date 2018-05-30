@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Job-AssSelection.aspx.cs" Inherits="WymaTimesheetWebApp.Job_AssSelection" %>
 
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
   <title>Job/Assembly Selction</title>
@@ -27,21 +27,22 @@
                    <div id="TD_Info">
                     <p>
                         <label id="DateView" class="Text">Date: </label>
-                        <label id="DateView Data" class="Text">TEST</label>
+                        <asp:label runat="server" ID="DateViewLabel" CssClass="Text" Text="TEST"></asp:label>
                     </p>
                     <p>
                         <label id="TotalHoursView" class="Text">Total Hours Worked: </label>
-                        <label id="TotalHoursData" class="Text">TEST</label>
+                        <asp:label runat="server" ID="TotalHoursLabel" CssClass="Text" Text="TEST"></asp:label>
                     </p>
                     <p>
                         <label id="TotalHoursAppView" class="Text">Total Hours Applied: </label>
-                        <label id="TotalHoursAppData"class="Text">TEST</label>
+                        <asp:label runat="server" ID="TotalHoursAppLabel" CssClass="Text" Text="TEST"></asp:label>
                     </p>
 
                        
                    </div>
                    <div id="TableSheet">
                         <label class="Text">Select your Jobs and Assemblies</label>
+    
                         <asp:Table ID="JobsAssembliesTable" runat="server" CssClass="Text table " Width="100%">
                             <asp:TableHeaderRow CssClass="th">
                                 <asp:TableHeaderCell>Job/Assy</asp:TableHeaderCell>
@@ -54,7 +55,7 @@
                                 <asp:TableHeaderCell>Customer</asp:TableHeaderCell>
                             </asp:TableHeaderRow>
                             <asp:TableRow>
-                               <asp:TableCell ColumnSpan="8"><button id="JATableADD"  class="btn3" style="margin:25px">ADD</button></asp:TableCell>
+                               <asp:TableCell ColumnSpan="8"><button runat="server" id="JATableADD"  class="btn3" style="margin:25px"  onserverclick="BtnJATableClick">ADD</button></asp:TableCell>
                            </asp:TableRow>
                            
                         </asp:Table>
@@ -78,12 +79,12 @@
         <div id="FooterRap">
             <div id="Footer1">
 
-                <button runat="server" id="btnSubmitHS" class="btnsubmit" style="float:left;" onserverclick="btnSubmitHSClick">Submit</button>
+                <button runat="server" id="btnSubmitHS" class="btnsubmit" style="float:left;" onserverclick="BtnSubmitHSClick" >Submit</button>
 
             </div>
             <div id="Footer2">
 
-                <button runat="server" id="btnBackHS" class="btncancel" style=" float:right;" onserverclick="btnBackHSClick">Back</button>
+                <button runat="server" id="btnBackHS" class="btncancel" style=" float:right;" onserverclick="BtnBackHSClick">Back</button>
 
 
             </div>

@@ -22,6 +22,33 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.HtmlControls.HtmlForm JA;
         
         /// <summary>
+        /// DateViewLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label DateViewLabel;
+        
+        /// <summary>
+        /// TotalHoursLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TotalHoursLabel;
+        
+        /// <summary>
+        /// TotalHoursAppLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TotalHoursAppLabel;
+        
+        /// <summary>
         /// JobsAssembliesTable control.
         /// </summary>
         /// <remarks>
@@ -29,6 +56,15 @@ namespace WymaTimesheetWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table JobsAssembliesTable;
+        
+        /// <summary>
+        /// JATableADD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton JATableADD;
         
         /// <summary>
         /// NonChargeTable control.

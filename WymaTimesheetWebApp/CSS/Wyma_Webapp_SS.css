@@ -61,7 +61,7 @@
 
 /* Determines the Postion of the Main Body of Data. */
 #Main {
-    height: 327px;
+    height: auto;
     width: auto;
     padding: 25px;
     margin: auto;
@@ -69,8 +69,8 @@
 }
 
 #Data {
-    height: 290px; 
-    max-width: 900px ;
+    height: auto; 
+    max-width: 1200px ;
     width: auto;
     padding: 25px;
     margin: auto;
@@ -89,6 +89,7 @@
 
 #TableSheet {
     width: auto;
+    max-height: 300px;
     display: inline-block;
     vertical-align: top;
     padding-left: 25px;
@@ -110,11 +111,13 @@
 .table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+    
 }
 .table {
     border-spacing: 5px;
     overflow-y: scroll;
     display: block;
+    max-height: 150px;
 }
 .th {
     text-align: left;
