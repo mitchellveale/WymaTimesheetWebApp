@@ -40,9 +40,12 @@
 
                        
                    </div>
+                   <asp:ScriptManager EnablePartialRendering="true" ID="ScriptManagerForTables" runat="server"></asp:ScriptManager>
                    <div id="TableSheet">
                         <label class="Text">Select your Jobs and Assemblies</label>
-    
+                        <asp:UpdatePanel ID="JAUpdate" runat="server">
+                        <ContentTemplate>
+
                         <asp:Table ID="JobsAssembliesTable" runat="server" CssClass="Text table " Width="100%">
                             <asp:TableHeaderRow CssClass="th">
                                 <asp:TableHeaderCell>Job/Assy</asp:TableHeaderCell>
@@ -57,9 +60,16 @@
                             <asp:TableRow>
                                <asp:TableCell ColumnSpan="8"><button runat="server" id="JATableADD"  class="btn3" style="margin:25px"  onserverclick="BtnJATableClick">ADD</button></asp:TableCell>
                            </asp:TableRow>
-                           
                         </asp:Table>
+
+                        </ContentTemplate>
+                        </asp:UpdatePanel>
+                       
                         <label class="Text">Select your Non-Charge Hours</label>
+
+                        <asp:UpdatePanel ID="NCUpdate" runat="server">
+                        <ContentTemplate>
+
                         <asp:Table ID="NonChargeTable" runat="server" CssClass="Text table " Width="100%">
                             <asp:TableHeaderRow CssClass="th">
                                 <asp:TableHeaderCell>Non Charge</asp:TableHeaderCell>
@@ -72,6 +82,10 @@
                                <asp:TableCell ColumnSpan="5"><button id="NCTableADD" class="btn3" style="margin:25px">ADD</button></asp:TableCell>
                            </asp:TableRow>
                         </asp:Table>
+
+                        </ContentTemplate>
+                        </asp:UpdatePanel>
+
                    </div>     
                                
                 </div>
