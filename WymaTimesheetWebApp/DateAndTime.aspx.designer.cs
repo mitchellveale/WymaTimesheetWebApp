@@ -22,6 +22,15 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.HtmlControls.HtmlForm DT;
         
         /// <summary>
+        /// IPBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox IPBox;
+        
+        /// <summary>
         /// NamePicker control.
         /// </summary>
         /// <remarks>
@@ -31,13 +40,76 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.DropDownList NamePicker;
         
         /// <summary>
-        /// selMin control.
+        /// DateLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList selMin;
+        protected global::System.Web.UI.WebControls.Label DateLabel;
+        
+        /// <summary>
+        /// DateBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl DateBox;
+        
+        /// <summary>
+        /// StartLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label StartLabel;
+        
+        /// <summary>
+        /// TimeStartINP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl TimeStartINP;
+        
+        /// <summary>
+        /// LunchTLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LunchTLabel;
+        
+        /// <summary>
+        /// SelMin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList SelMin;
+        
+        /// <summary>
+        /// EndLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EndLabel;
+        
+        /// <summary>
+        /// TimeEndINP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl TimeEndINP;
         
         /// <summary>
         /// btnSubmitDT control.

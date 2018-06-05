@@ -32,22 +32,23 @@
                     <div id="Form">
                         <div style="width: auto; height: auto;" >
 
-                            <label class="Text">Name:</label>
+                            <label class="Text">IP:</label>
+                            <asp:TextBox ID="IPBox" runat="server" CssClass="Text labels" width="125px"></asp:TextBox>
+
+                            <asp:label runat="server" CssClass="Text" Text="Name:"/>
                             <asp:DropDownList ID="NamePicker" runat="server" CssClass="Text labels" width="125px"></asp:DropDownList>
 
-                            <label class="Text">Date:</label>
-                            <input type="date" id="DateBox" class="Text labels" /> 
+                            <asp:label runat="server" ID="DateLabel" CssClass="Text" Text="Name:"/>
+                            <input runat="server" type="date" id="DateBox" class="Text labels" /> <!-- Date/Time -->
 
-                            <label class="Text">Start Time:</label>
-                            <input type="time" id="TimeStartINP" class="Text labels" />
+                            <asp:label runat="server" ID="StartLabel" CssClass="Text" Text="Start Time:"/>
+                            <input runat="server" type="time" id="TimeStartINP" class="Text labels" /> <!-- Date/Time -->
 
-                            <label class="Text">Lunch Break:</label>
-                            <!-- <input type="time" id="LunchTimeINP" class="Text labels" /> -->
-                            <!-- Time slection code by Dave Baldwin URL: https://www.experts-exchange.com/questions/28935729/HTML-input-field-to-enter-time-with-hours-minutes-and-am-pm.html -->
-                            <asp:DropDownList ID="selMin" runat="server" CssClass="Text labels" width="125px"></asp:DropDownList>
+                            <asp:label runat="server" ID="LunchTLabel" CssClass="Text" Text="Lunch Break"/>
+                            <asp:DropDownList ID="SelMin" runat="server" CssClass="Text labels" width="125px"></asp:DropDownList> 
 
-                            <label class="Text">End Time:</label>
-                            <input type="time" id="TimeEndINP" class="Text labels" />
+                            <asp:label runat="server" ID="EndLabel" CssClass="Text" Text="End Time:"/>
+                            <input runat="server" type="time" id="TimeEndINP" class="Text labels" /> <!-- Date/Time -->
 
                             <label class="Text">Total Hours Worked:</label>
                             <label class="Text"></label></div>

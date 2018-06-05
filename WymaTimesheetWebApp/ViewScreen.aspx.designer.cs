@@ -40,6 +40,15 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.Table NonChargeViewTable;
         
         /// <summary>
+        /// btnDone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnDone;
+        
+        /// <summary>
         /// btnBackVS control.
         /// </summary>
         /// <remarks>

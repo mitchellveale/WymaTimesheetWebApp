@@ -40,7 +40,8 @@
 
                        
                    </div>
-                   <asp:ScriptManager EnablePartialRendering="true" ID="ScriptManagerForTables" runat="server"></asp:ScriptManager>
+                   
+                    <asp:ScriptManager EnablePartialRendering="true" ID="ScriptManagerForTables" runat="server"></asp:ScriptManager>
                    <div id="TableSheet">
                         <label class="Text">Select your Jobs and Assemblies</label>
                         <asp:UpdatePanel ID="JAUpdate" runat="server">
@@ -64,9 +65,10 @@
 
                         </ContentTemplate>
                         </asp:UpdatePanel>
+                        </div>
                        
                         <label class="Text">Select your Non-Charge Hours</label>
-
+                        
                         <asp:UpdatePanel ID="NCUpdate" runat="server">
                         <ContentTemplate>
 
@@ -85,11 +87,11 @@
 
                         </ContentTemplate>
                         </asp:UpdatePanel>
-
+                      
                    </div>     
                                
                 </div>
-        </div>
+     
         <div id="FooterRap">
             <div id="Footer1">
 

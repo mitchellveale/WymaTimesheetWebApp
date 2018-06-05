@@ -77,7 +77,7 @@
         <div id="FooterRap">
             <div id="Footer1">
 
-                <button id="btnDone" class="btnsubmit" style="float:left;">Done</button>
+                <button runat="server" id="btnDone" class="btnsubmit" style="float:left;" onserverclick="btnDoneVSClick">Done</button>
 
             </div>
             <div id="Footer2">
