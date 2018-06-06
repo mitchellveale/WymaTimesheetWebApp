@@ -9,6 +9,7 @@ namespace WymaTimesheetWebApp
 {
     public partial class DateAndTime : System.Web.UI.Page
     {
+        private List<string> a = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -24,14 +25,17 @@ namespace WymaTimesheetWebApp
                         SelMin.Items.Add(i + " mins");
                 }
 
+                a = Global.ReadData("10.1.113.185", "SELECT resourceName FROM Employees;");
                 for (int i = 0; i <= 1; i++)
                 {
                     if (i == 0)
                         NamePicker.Items.Add("Please Select a Name");
                     else
                     {
-                        NamePicker.Items.Add("John");
-                        NamePicker.Items.Add("Jack");
+                        foreach (string str in a)
+                        {
+                            NamePicker.Items.Add(str);
+                        }
                     }
 
                 }

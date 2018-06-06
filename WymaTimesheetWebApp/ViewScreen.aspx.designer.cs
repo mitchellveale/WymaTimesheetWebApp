@@ -31,19 +31,19 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.Table JobsAssembliesViewTable;
         
         /// <summary>
-<<<<<<< HEAD:WymaTimesheetWebApp/ViewScreen.aspx.designer.cs
+//<<<<<<< HEAD:WymaTimesheetWebApp/ViewScreen.aspx.designer.cs
         /// NonChargeViewTable control.
-=======
+//=======
         /// IPLabel control.
->>>>>>> master:WymaTimesheetWebApp/Index.aspx.designer.cs
+//>>>>>>> master:WymaTimesheetWebApp/Index.aspx.designer.cs
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD:WymaTimesheetWebApp/ViewScreen.aspx.designer.cs
+//<<<<<<< HEAD:WymaTimesheetWebApp/ViewScreen.aspx.designer.cs
         protected global::System.Web.UI.WebControls.Table NonChargeViewTable;
-=======
+//=======
         protected global::System.Web.UI.WebControls.Label IPLabel;
         
         /// <summary>
@@ -54,7 +54,7 @@ namespace WymaTimesheetWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox IPInput;
->>>>>>> master:WymaTimesheetWebApp/Index.aspx.designer.cs
+//>>>>>>> master:WymaTimesheetWebApp/Index.aspx.designer.cs
         
         /// <summary>
         /// btnDone control.
@@ -66,9 +66,9 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.HtmlControls.HtmlButton btnDone;
         
         /// <summary>
-<<<<<<< HEAD:WymaTimesheetWebApp/ViewScreen.aspx.designer.cs
+//<<<<<<< HEAD:WymaTimesheetWebApp/ViewScreen.aspx.designer.cs
         /// btnBackVS control.
-=======
+//=======
         /// ResourceName control.
         /// </summary>
         /// <remarks>
@@ -79,16 +79,16 @@ namespace WymaTimesheetWebApp {
         
         /// <summary>
         /// ResourceNamesInput control.
->>>>>>> master:WymaTimesheetWebApp/Index.aspx.designer.cs
+//>>>>>>> master:WymaTimesheetWebApp/Index.aspx.designer.cs
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-<<<<<<< HEAD:WymaTimesheetWebApp/ViewScreen.aspx.designer.cs
+//<<<<<<< HEAD:WymaTimesheetWebApp/ViewScreen.aspx.designer.cs
         protected global::System.Web.UI.HtmlControls.HtmlButton btnBackVS;
-=======
+//=======
         protected global::System.Web.UI.WebControls.TextBox ResourceNamesInput;
->>>>>>> master:WymaTimesheetWebApp/Index.aspx.designer.cs
+//>>>>>>> master:WymaTimesheetWebApp/Index.aspx.designer.cs
     }
 }
