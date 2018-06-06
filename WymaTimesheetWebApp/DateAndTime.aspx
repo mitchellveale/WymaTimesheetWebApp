@@ -38,13 +38,13 @@
                             <asp:label runat="server" CssClass="Text" Text="Name:"/>
                             <asp:DropDownList ID="NamePicker" runat="server" CssClass="Text labels" width="125px"></asp:DropDownList>
 
-                            <asp:label runat="server" ID="DateLabel" CssClass="Text" Text="Name:"/>
+                            <asp:label runat="server" ID="DateLabel" CssClass="Text" Text="Date:"/>
                             <input runat="server" type="date" id="DateBox" class="Text labels" /> <!-- Date/Time -->
 
                             <asp:label runat="server" ID="StartLabel" CssClass="Text" Text="Start Time:"/>
                             <input runat="server" type="time" id="TimeStartINP" class="Text labels" /> <!-- Date/Time -->
 
-                            <asp:label runat="server" ID="LunchTLabel" CssClass="Text" Text="Lunch Break"/>
+                            <asp:label runat="server" ID="LunchTLabel" CssClass="Text" Text="Lunch Break Length"/>
                             <asp:DropDownList ID="SelMin" runat="server" CssClass="Text labels" width="125px"></asp:DropDownList> 
 
                             <asp:label runat="server" ID="EndLabel" CssClass="Text" Text="End Time:"/>
