@@ -12,26 +12,25 @@ namespace WymaTimesheetWebApp
 
     public class Global : System.Web.HttpApplication
     {
-<<<<<<< HEAD
+
         public static List<Row> ListRows = new List<Row>();
         public static Dictionary<string, List<Row>> DictRows = new Dictionary<string, List<Row>>();
 
         //public static List<UsrData> ListUsrData = new List<UsrData>();
         public static Dictionary<string, UsrData> DictUsrData = new Dictionary<string, UsrData>();
 
+        public static string errorLog;
 
 
 
         protected void Application_Start(object sender, EventArgs e)
         {
             Global.DictUsrData.Clear();
-=======
-        public static string errorLog;
-
-        protected void Application_Start(Object sender, EventArgs e)
-        {
-            //get the data.
         }
+
+        
+        
+
 
 
         public static bool FDBNonQuery(string serverIP, string command)
@@ -84,7 +83,7 @@ namespace WymaTimesheetWebApp
             {
                 con.Close();
             }
->>>>>>> master
+
         }
 
 
@@ -184,11 +183,5 @@ namespace WymaTimesheetWebApp
         
 
     }
-<<<<<<< HEAD
-        
-    
-=======
 
-
->>>>>>> master
 }
