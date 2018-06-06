@@ -51,6 +51,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -80,28 +81,82 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Job-AssSelection.aspx" />
+    <Content Include="ManagerLogin.aspx" />
+    <Content Include="ManagerViewScreen.aspx" />
+    <Content Include="Testing.aspx" />
+    <Content Include="ViewScreen.aspx" />
+    <Content Include="WymaTimesheetWebApp.sitemap" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\Wyma_Webapp_SS.css" />
+    <Content Include="DateAndTime.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Index.aspx" />
+    <Content Include="Images\wyma-logo.svg" />
     <Content Include="Web.config" />
+    <Content Include="MainMenu.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateAndTime.aspx.cs">
+      <DependentUpon>DateAndTime.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DateAndTime.aspx.designer.cs">
+      <DependentUpon>DateAndTime.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Job-AssSelection.aspx.cs">
+      <DependentUpon>Job-AssSelection.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Job-AssSelection.aspx.designer.cs">
+      <DependentUpon>Job-AssSelection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerLogin.aspx.cs">
+      <DependentUpon>ManagerLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerLogin.aspx.designer.cs">
+      <DependentUpon>ManagerLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerViewScreen.aspx.cs">
+      <DependentUpon>ManagerViewScreen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerViewScreen.aspx.designer.cs">
+      <DependentUpon>ManagerViewScreen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+
+    <Compile Include="MainMenu.aspx.cs">
+      <DependentUpon>MainMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MainMenu.aspx.designer.cs">
+      <DependentUpon>MainMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing.aspx.cs">
+      <DependentUpon>Testing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing.aspx.designer.cs">
+      <DependentUpon>Testing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewScreen.aspx.cs">
+      <DependentUpon>ViewScreen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewScreen.aspx.designer.cs">
+      <DependentUpon>ViewScreen.aspx</DependentUpon>
+    </Compile>
+    
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+
     </Compile>
   </ItemGroup>
   <ItemGroup>

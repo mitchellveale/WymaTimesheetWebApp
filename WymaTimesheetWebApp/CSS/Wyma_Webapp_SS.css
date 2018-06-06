@@ -1,0 +1,282 @@
+﻿
+/* This controls the style of the Header and Footer.*/
+#HeaderRap {
+    margin-left: 100px;
+    margin-right: 100px;
+    text-align: center;
+}
+
+#Header 
+{
+    height: 88px;
+    width: 308px;
+    padding: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#FooterRap {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#Footer1 {
+    width: auto;
+    height: auto;
+    padding: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#Footer2 {
+    width: auto;
+    height: auto;
+    padding: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+
+
+/* Determines the postion of the Wyma logo on screen. */
+#WymaLogo 
+{
+    
+    width: auto;
+    height: auto;
+}
+
+/* Determines the postion of the Text under Wyma Logo. */
+#HeaderLabel 
+{
+    width: auto;
+    height: auto;
+}
+
+/* Determines the Postion of the Main Body of Data. */
+#Main {
+    height: auto;
+    width: auto;
+    padding: 25px;
+    margin: auto;
+    
+}
+
+#Data {
+    height: auto; 
+    max-width: 1200px ;
+    width: auto;
+    padding: 25px;
+    margin: auto;
+    border: 2px solid black;
+  
+}
+
+#TD_Info {
+    max-width: 234px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    border: 2px solid black;
+  
+}
+
+#TableSheet {
+    width: auto;
+    max-height: 300px;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 25px;
+}
+/* Sets Fonts for Pages*/
+.Text 
+{
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.labels 
+{
+    display: block;
+    Height: 21px;
+}
+
+.table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    
+}
+.table {
+    border-spacing: 5px;
+    overflow-y: scroll;
+    display: block;
+    max-height: 150px;
+}
+.th {
+    text-align: left;
+    border: 2px solid black;
+    
+}
+
+
+
+/* Custom Button made by Riccardo Zanutta link: https://codemyui.com/fancy-button-effects/ */
+.btn3, .btn3:link, .btn3:visited 
+{
+    color: #333;
+    font-size: .8em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    width: 140px;
+    height: 38px;
+    position: relative;
+    margin: auto;
+    border: 2px solid transparent;
+    transition: all 0.1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    top: 1px;
+    left: -4px;
+    height: 38px;
+}
+
+.btn3:after, .btn3:before, .btn3:link:after, .btn3:link:before, .btn3:visited:after, .btn3:visited:before 
+{
+    content: "";
+    position: absolute;
+    left: -1em;
+    top: -2px;
+    height: 36px;
+    width: 0;
+    border: 1px solid black;
+    transition: inherit;
+}
+
+.btn3:after, .btn3:link:after, .btn3:visited:after 
+{
+    left: auto;
+    right: -1em;
+}
+
+.btn3:hover, .btn3:link:hover, .btn3:visited:hover 
+{
+    border-color: black;
+    transition: border-color 0.2s 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.btn3:hover:after, .btn3:hover:before, .btn3:link:hover:after, .btn3:link:hover:before, .btn3:visited:hover:after, .btn3:visited:hover:before 
+{
+    right: -2px;
+    transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.btn3:hover:before, .btn3:link:hover:before, .btn3:visited:hover:before 
+{
+    left: -2px;
+    right: auto;
+}
+
+.btncancel, .btncancel:link, .btncancel:visited 
+{
+    color: #333;
+    font-size: .8em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    width: 140px;
+    height: 38px;
+    position: relative;
+    margin: auto;
+    border: 2px solid transparent;
+    transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    top: 1px;
+    left: -4px;
+    height: 38px;
+}
+
+.btncancel:after, .btncancel:before, .btncancel:link:after, .btncancel:before, .btncancel:visited:after, .btncancel:visited:before 
+{
+    content: "";
+    position: absolute;
+    left: -1em;
+    top: -2px;
+    height: 36px;
+    width: 0;
+    border: 1px solid red;
+    transition: inherit;
+}
+
+.btncancel:after, .btncancel:link:after, .btncancel:visited:after 
+{
+    left: auto;
+    right: -1em;
+}
+
+.btncancel:hover, .btncancel:link:hover, .btncancel:visited:hover 
+{
+    border-color: red;
+    transition: border-color 0.2s 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.btncancel:hover:after, .btncancel:hover:before, .btncancel:link:hover:after, .btncancel:link:hover:before, .btncancel:visited:hover:after, .btncancel:visited:hover:before 
+{
+    right: -2px;
+    transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.btncancel:hover:before, .btncancel:link:hover:before, .btncancel:visited:hover:before 
+{
+    left: -2px;
+    right: auto;
+}
+
+.btnsubmit, .btnsubmit:link, .btnsubmit:visited {
+    color: #333;
+    font-size: .8em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    width: 140px;
+    height: 38px;
+    position: relative;
+    margin: auto;
+    border: 2px solid transparent;
+    transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    top: 1px;
+    left: -4px;
+    height: 38px;
+}
+
+.btnsubmit:after, .btnsubmit:before, .btnsubmit:link:after, .btnsubmit:link:before, .btnsubmit:visited:after, .btnsubmit:visited:before {
+        content: "";
+        position: absolute;
+        left: -1em;
+        top: -2px;
+        height: 36px;
+        width: 0;
+        border: 1px solid green;
+        transition: inherit;
+}
+
+.btnsubmit:after, .btnsubmit:link:after, .btnsubmit:visited:after {
+    left: auto;
+    right: -1em;
+}
+
+.btnsubmit:hover, .btnsubmit:link:hover, .btnsubmit:visited:hover {
+    border-color: green;
+    transition: border-color 0.2s 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.btnsubmit:hover:after, .btnsubmit:hover:before, .btnsubmit:link:hover:after, .btnsubmit:link:hover:before, .btnsubmit:visited:hover:after, .btnsubmit:visited:hover:before {
+    right: -2px;
+    transition: all 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.btnsubmit:hover:before, .btnsubmit:link:hover:before, .btnsubmit:visited:hover:before {
+    left: -2px;
+    right: auto;
+}
