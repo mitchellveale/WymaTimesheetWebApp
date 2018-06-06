@@ -18,6 +18,12 @@
             <br />
             <asp:Button ID="MainButton" Text="Test" OnClick="MainButton_Click"  runat="server" Width="100px"/>
         </div>
+        <br />
+        <div>
+            <asp:Label ID="ResourceName" Text="Resource Names" Font-Size="20px" runat="server" />
+            <br />
+            <asp:TextBox ID="ResourceNamesInput" runat="server" Height="109px" Width="1478px"/>
+        </div>
     </form>
 </body>
 </html>
