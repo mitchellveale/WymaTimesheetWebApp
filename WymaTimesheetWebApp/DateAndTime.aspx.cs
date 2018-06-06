@@ -49,7 +49,7 @@ namespace WymaTimesheetWebApp
                 UsrData NewUsr = new UsrData(NamePicker.SelectedValue, DateBox.Value, TimeStartINP.Value, TimeEndINP.Value, SelMin.SelectedValue);
 
     
-                Global.DicUsrData.Add(NamePicker.SelectedValue, NewUsr);
+                Global.DictUsrData.Add(NamePicker.SelectedValue, NewUsr);
                 Response.Cookies["UsrName"].Value = NamePicker.SelectedValue;
                 
                 Server.Transfer("Job-AssSelection.aspx", true);

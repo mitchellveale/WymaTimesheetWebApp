@@ -13,15 +13,15 @@ namespace WymaTimesheetWebApp
         public static List<Row> ListRows = new List<Row>();
         public static Dictionary<string, List<Row>> DictRows = new Dictionary<string, List<Row>>();
 
-        public static List<UsrData> ListUsrData = new List<UsrData>();
-        public static Dictionary<string, UsrData> DicUsrData = new Dictionary<string, UsrData>();
+        //public static List<UsrData> ListUsrData = new List<UsrData>();
+        public static Dictionary<string, UsrData> DictUsrData = new Dictionary<string, UsrData>();
 
 
 
 
         protected void Application_Start(object sender, EventArgs e)
         {
-
+            Global.DictUsrData.Clear();
         }
 
 
@@ -80,10 +80,6 @@ namespace WymaTimesheetWebApp
 
         }
 
-        privat
-
-        }
-
         private string lunchtime;
         public string LunchTime
         {
@@ -95,7 +91,9 @@ namespace WymaTimesheetWebApp
             {
                 lunchtime = value;
             }
-e string endtime;
+        }
+
+        private string endtime;
         public string EndTime
         {
             get

@@ -16,7 +16,8 @@ namespace WymaTimesheetWebApp
 
         protected void btnDoneVSClick(object sender, EventArgs e)
         {
-            Global.DicUsrData.Clear();
+            Global.DictUsrData.Remove(Server.HtmlEncode(Request.Cookies["UsrName"].Value));
+            Request.Cookies["UsrName"].Value = null;
             Server.Transfer("MainMenu.aspx", true);
         }
         protected void btnBackVSClick(object sender, EventArgs e)

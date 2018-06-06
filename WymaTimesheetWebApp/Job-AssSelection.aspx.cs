@@ -14,9 +14,9 @@ namespace WymaTimesheetWebApp
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Cookies["UsrName"] != null)
-                DateViewLabel.Text = Global.DicUsrData[Server.HtmlEncode(Request.Cookies["UsrName"].Value)].Date;
+                DateViewLabel.Text = Global.DictUsrData[Server.HtmlEncode(Request.Cookies["UsrName"].Value)].Date;
             if (Request.Cookies["UsrName"] != null)
-                DateViewLabel.Text = Global.DicUsrData[Server.HtmlEncode(Request.Cookies["UsrName"].Value)].Date;
+                DateViewLabel.Text = Global.DictUsrData[Server.HtmlEncode(Request.Cookies["UsrName"].Value)].Date;
         }
 
 
@@ -31,6 +31,7 @@ namespace WymaTimesheetWebApp
 
         protected void BtnBackHSClick(object sender, EventArgs e)
         {
+            Global.DictUsrData.Remove(Server.HtmlEncode(Request.Cookies["UsrName"].Value));
             Server.Transfer("DateAndTime.aspx", true);
         }
 
