@@ -13,10 +13,15 @@ namespace WymaTimesheetWebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+
             if (Request.Cookies["UsrName"] != null)
-                DateViewLabel.Text = Global.DictUsrData[Server.HtmlEncode(Request.Cookies["UsrName"].Value)].Date;
-            if (Request.Cookies["UsrName"] != null)
-                DateViewLabel.Text = Global.DictUsrData[Server.HtmlEncode(Request.Cookies["UsrName"].Value)].Date;
+            {
+                DateViewLabel.Text = Global.DictUsrData[Request.Cookies["UsrName"].Value].Date;
+                TotalHoursLabel.Text = Global.DictUsrData[Request.Cookies["UsrName"].Value].TotalHours;
+            }
+                
+            
         }
 
 

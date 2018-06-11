@@ -32,26 +32,26 @@
                     <div id="Form">
                         <div style="width: auto; height: auto;" >
 
-                            <label class="Text">IP:</label>
-                            <asp:TextBox ID="IPBox" runat="server" CssClass="Text labels" width="125px"></asp:TextBox>
 
-                            <asp:label runat="server" CssClass="Text" Text="Name:"/>
-                            <asp:DropDownList ID="NamePicker" runat="server" CssClass="Text labels" width="125px"></asp:DropDownList>
-
-                            <asp:label runat="server" ID="DateLabel" CssClass="Text" Text="Date:"/>
-                            <input runat="server" type="date" id="DateBox" class="Text labels" /> <!-- Date/Time -->
+                            <asp:label runat="server" ID="NameLable" CssClass="Text" Text="Name: "/>
+                            <asp:DropDownList ID="NamePicker" runat="server" CssClass="Text labels" width="125px" OnSelectedIndexChanged="TextChanged" ></asp:DropDownList>
+                            
+                            <asp:label runat="server" ID="DateLabel" CssClass="Text" Text="Date:" /> <!-- Date/Time -->
+                            <asp:TextBox runat="server" TextMode="Date" ID="DateBox" CssClass="Text labels" OnTextChanged="TextChanged" ></asp:TextBox>
 
                             <asp:label runat="server" ID="StartLabel" CssClass="Text" Text="Start Time:"/>
-                            <input runat="server" type="time" id="TimeStartINP" class="Text labels" /> <!-- Date/Time -->
+                            <asp:textbox runat="server" TextMode="Time" ID="TimeStartINP" CssClass="Text labels" OnTextChanged="TextChanged" /> <!-- Date/Time -->
 
-                            <asp:label runat="server" ID="LunchTLabel" CssClass="Text" Text="Lunch Break Length"/>
-                            <asp:DropDownList ID="SelMin" runat="server" CssClass="Text labels" width="125px"></asp:DropDownList> 
+                            <asp:label runat="server" ID="LunchTLabel" CssClass="Text" Text="Lunch Break Length:"/>
+                            <asp:DropDownList ID="SelMin" runat="server" CssClass="Text labels" width="125px" OnSelectedIndexChanged="TextChanged" ></asp:DropDownList> 
 
                             <asp:label runat="server" ID="EndLabel" CssClass="Text" Text="End Time:"/>
-                            <input runat="server" type="time" id="TimeEndINP" class="Text labels" /> <!-- Date/Time -->
+                            <asp:textbox runat="server" TextMode="Time" ID="TimeEndINP" CssClass="Text labels" OnTextChanged="TextChanged" /> <!-- Date/Time -->
 
                             <label class="Text">Total Hours Worked:</label>
-                            <label class="Text"></label></div>
+                            <asp:label runat="server" CssClass="Text" ID="TotalHoursLable"/>
+
+                        </div>
 
                         
                                

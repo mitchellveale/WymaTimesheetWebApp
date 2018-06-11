@@ -128,53 +128,69 @@ namespace WymaTimesheetWebApp
                
         }
 
-        private string starttime;
+        private string startTime;
         public string StartTime
         {
             get
             {
-                return starttime;
+                return startTime;
             }
             set
             {
-                starttime = value;
+                startTime = value;
             }
 
         }
 
-        private string lunchtime;
+        private string lunchTime;
         public string LunchTime
         {
             get
             {
-                return lunchtime;
+                return lunchTime;
             }
             set
             {
-                lunchtime = value;
+                lunchTime = value;
             }
         }
 
-        private string endtime;
+        private string endTime;
         public string EndTime
         {
             get
             {
-                return endtime;
+                return endTime;
             }
             set
             {
-                endtime = value;
+                endTime = value;
             }
         }
 
-        public UsrData(string name, string date, string starttime, string endtime, string lunchtime)
+        private string totalHours;
+        public string TotalHours
+        {
+
+            get
+            {
+                return totalHours;
+            }
+            
+            set
+            {
+                totalHours = value;
+            }
+        }
+
+        public UsrData(string name, string date, string startTime, string endTime, string lunchTime, string totalHours)
         {
             this.name = name;
             this.date = date;
-            this.starttime = starttime;
-            this.endtime = endtime;
-            this.lunchtime = lunchtime;
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.lunchTime = lunchTime;
+            this.totalHours = totalHours;
 
         }
         
