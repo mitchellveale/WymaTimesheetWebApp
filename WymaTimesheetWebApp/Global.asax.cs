@@ -6,14 +6,19 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using FirebirdSql.Data.FirebirdClient;
+using QRCoder;
+using System.Drawing;
+using System.Text;
+using System.IO;
 
 namespace WymaTimesheetWebApp
 {
 
     public class Global : System.Web.HttpApplication
     {
-
+        //This would probably do better in a different class
         public static List<Row> ListRows = new List<Row>();
+
         public static Dictionary<string, List<Row>> DictRows = new Dictionary<string, List<Row>>();
 
         //public static List<UsrData> ListUsrData = new List<UsrData>();
@@ -28,17 +33,22 @@ namespace WymaTimesheetWebApp
             Global.DictUsrData.Clear();
         }
 
-        
-        
-
-
+        public static Bitmap QRCode(string EncodeValue)
+        {
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrData = qrGenerator.CreateQrCode(EncodeValue, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrData);
+            return qrCode.GetGraphic(20);
+        }
 
         public static bool FDBNonQuery(string serverIP, string command)
         {
             try
             {
-                FbCommand cmd = new FbCommand(command);
-                cmd.CommandType = CommandType.Text;
+                FbCommand cmd = new FbCommand(command)
+                {
+                    CommandType = CommandType.Text
+                };
 
                 using (cmd.Connection = new FbConnection($@"Server={serverIP};User=SYSDBA;Password=masterkey;Database={serverIP}:D:\fdb\testdb.fdb;ServerType=0;Port=3050;"))
                 {
@@ -53,8 +63,8 @@ namespace WymaTimesheetWebApp
                 return false;
             }
         }
-
-        public static List<string> ReadData(string serverIP, String command)
+        //Instead of a 'finally' use a 'using' statement.
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.119.252")
         {
             List<string> data = new List<string>();
 
@@ -86,12 +96,57 @@ namespace WymaTimesheetWebApp
 
         }
 
+        public static string ReadDataString(String command, string serverIP = "10.1.119.252")
+        {
+            string data = "";
 
+            FbConnection con = new FbConnection($@"Server={serverIP};User=SYSDBA;Password=masterkey;Database={serverIP}:D:\fdb\testdb.fdb;ServerType=0;Port=3050;");
+            try
+            {
+                con.Open();
 
+                FbCommand cmd = new FbCommand(command, con);
 
+                FbDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    data = reader[0].ToString();
+                }
+                return data;
+
+            }
+            catch (Exception e)
+            {
+                data = ("!ERROR!");
+                errorLog += (e.ToString() + ";");
+                return data;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public static bool WriteCSV(StringBuilder values, string fileName)
+        {
+            //maybe have this function also create and save the QR code too??
+            //There will have to be check to see if the file name already exists.
+            try
+            {
+                File.WriteAllText($@"C:\Users\mitch\Desktop\CSV Files\Output\{fileName}.csv", values.ToString());
+                return true;
+            }
+            catch (Exception e)
+            {
+                errorLog += $"{e.ToString()};";
+                return false;
+            }
+        }
 
     }
 
+    #region Sam's Trash
     public class Row
     {
 
@@ -183,5 +238,5 @@ namespace WymaTimesheetWebApp
         
 
     }
-
+    #endregion
 }

@@ -9,7 +9,10 @@
 <body>
     <form id="form1" runat="server">
         <div>
-                        
+            <asp:Label ID="LabelBoi" runat="server" Text="Pressa da button boi"></asp:Label>
+            <br />
+            <br />
+            <asp:Button ID="ButtonBoi" runat="server" Text="Press me hard daddy!" OnClick="ButtonBoiClick" />
         </div>
     </form>
 </body>

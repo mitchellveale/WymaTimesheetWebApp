@@ -25,7 +25,7 @@ namespace WymaTimesheetWebApp
                         SelMin.Items.Add(i + " mins");
                 }
 
-                a = Global.ReadData("10.1.113.185", "SELECT resourceName FROM Employees;");
+                a = Global.ReadDataList("SELECT resourceName FROM Employees;");
                 for (int i = 0; i <= 1; i++)
                 {
                     if (i == 0)
