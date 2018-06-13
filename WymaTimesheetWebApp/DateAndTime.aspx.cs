@@ -16,7 +16,7 @@ namespace WymaTimesheetWebApp
         {
             if (!IsPostBack)
             {
-                Response.Cookies["UsrName"].Value = null;
+                
                 //adds times to lunchbreak selection box.
                 for (int i = 0; i <= 59; i++)
                 {
@@ -94,17 +94,14 @@ namespace WymaTimesheetWebApp
             {
                 if (TotalHoursLable.Text == "" || NameLable.Text == "" || txtChanged == true)
                 {
+                    //Saves user localy to use for other things within the app such as taking data out of Usr Dictonary
+                    Response.Cookies["UsrName"].Value = null;
+                    Response.Cookies["UsrName"].Value = NamePicker.SelectedValue;
+
+                   
                     if (Global.DictUsrData.ContainsKey(NamePicker.SelectedValue))
                         Global.DictUsrData.Remove(NamePicker.SelectedValue);
 
-                    txtChanged = false;
-
-                    //Saves user localy to use for other things within the app such as taking data out of Usr Dictonary
-                    Response.Cookies["UsrName"].Value = NamePicker.SelectedValue;
-
-                    Response.Write("<script>alert('Please make sure all he data you have imputed is correct. Press submit again to confirm.');</script>");
-
-                    
                     //Changes times to 09h 00m
                     string convertTotalHours = times[0].ToString() + "h " + times[1].ToString() + "m";
 
@@ -114,13 +111,17 @@ namespace WymaTimesheetWebApp
                     //Adds new user to a Usr Dictonary 
                     Global.DictUsrData.Add(NamePicker.SelectedValue, NewUsr);
 
-                    NameLable.Text = "Name: " + NamePicker.SelectedValue;
+                    txtChanged = false;
 
                   
-                   TotalHoursLable.Text = convertTotalHours;
-                }
+                    TotalHoursLable.Text = convertTotalHours;
+
+                    Response.Write("<script>alert('Please make sure all he data you have imputed is correct. Press submit again to confirm.');</script>");
+            }
                 else
                 {
+                    if (Global.DictRows.ContainsKey(NamePicker.SelectedValue))
+                        Global.DictRows.Remove(NamePicker.SelectedValue);
 
                     //Takes Usr to next page.
                     Server.Transfer("Job-AssSelection.aspx", true);
@@ -137,6 +138,7 @@ namespace WymaTimesheetWebApp
         protected void TextChanged(object sender, EventArgs e)
         {
             txtChanged = true;
+            NameLable.Text = "Name: " + NamePicker.SelectedValue;
         }
 
         protected void BtnCancelDTClick(object sender, EventArgs e)

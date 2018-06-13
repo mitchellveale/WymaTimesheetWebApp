@@ -102,6 +102,14 @@
     font-weight: bold;
 }
 
+.gridview 
+{
+    overflow-y: scroll;
+    border-spacing: 5px;
+    display: block;
+    max-height: 150px;
+    margin-left: 1px;
+}
 .labels 
 {
     display: block;
@@ -115,9 +123,9 @@
 }
 .table {
     border-spacing: 5px;
-    overflow-y: scroll;
     display: block;
     max-height: 150px;
+    margin-left: 1px;
 }
 .th {
     text-align: left;

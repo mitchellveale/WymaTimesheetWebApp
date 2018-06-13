@@ -16,9 +16,9 @@ namespace WymaTimesheetWebApp
         {
             
         }
+
         protected void ButtonEmployeeClick(object sender, EventArgs e)
-        {
-            Global.DictUsrData.Clear();
+        { 
             Server.Transfer("DateAndTime.aspx", true);
         }
 

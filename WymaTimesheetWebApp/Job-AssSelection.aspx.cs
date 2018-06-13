@@ -9,19 +9,42 @@ namespace WymaTimesheetWebApp
 {
     public partial class Job_AssSelection : System.Web.UI.Page
     {
-        
+        public List<Row> listRows;
+        private List<Row> ListRows
+        {
+            set
+            {
+                if (Global.DictRows.ContainsKey(Request.Cookies["UsrName"].Value))
+                {
+                    Global.DictRows[Request.Cookies["UsrName"].Value] = listRows;
+                }
+
+            }
+            get
+            {
+                return listRows;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-
-            if (Request.Cookies["UsrName"] != null)
+            if (!IsPostBack)
             {
-                DateViewLabel.Text = Global.DictUsrData[Request.Cookies["UsrName"].Value].Date;
-                TotalHoursLabel.Text = Global.DictUsrData[Request.Cookies["UsrName"].Value].TotalHours;
+                //Provides Inital data for Infolist beside tables
+                if (Request.Cookies["UsrName"] != null)
+                {
+                    NameViewLabel.Text = Request.Cookies["UsrName"].Value;
+                    DateViewLabel.Text = Global.DictUsrData[Request.Cookies["UsrName"].Value].Date;
+                    TotalHoursLabel.Text = Global.DictUsrData[Request.Cookies["UsrName"].Value].TotalHours;
+                    TotalHoursAppLabel.Text = "0h 0m";
+
+                }
             }
-                
-            
+
+            TableRow NewRow = GenerateJARow();
+            JobsAssembliesTable.Rows.AddAt(JobsAssembliesTable.Rows.Count - 1, NewRow);
+
+
         }
 
 
@@ -45,16 +68,14 @@ namespace WymaTimesheetWebApp
         protected void BtnJATableClick(object sender, EventArgs e)
         {
 
+            //ListRows.Add(new Row());
            
-            
+
 
 
         }
 
-        public void CreateRow()
-        {
-            
-        }
+       
           
            
 
@@ -66,6 +87,7 @@ namespace WymaTimesheetWebApp
         //Generates a row for data to be inputed into
         private TableRow GenerateJARow()
         {
+            
             TableRow r = new TableRow();
             for (int i = 0; i < 8; i++)
             {
@@ -76,7 +98,7 @@ namespace WymaTimesheetWebApp
                 }
                 else
                 {
-                    c.Controls.Add(new DropDownList());
+                    
                 }
                 r.Cells.Add(c);
 

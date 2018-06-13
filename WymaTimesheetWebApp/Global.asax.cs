@@ -13,10 +13,9 @@ namespace WymaTimesheetWebApp
     public class Global : System.Web.HttpApplication
     {
 
-        public static List<Row> ListRows = new List<Row>();
+        
         public static Dictionary<string, List<Row>> DictRows = new Dictionary<string, List<Row>>();
 
-        //public static List<UsrData> ListUsrData = new List<UsrData>();
         public static Dictionary<string, UsrData> DictUsrData = new Dictionary<string, UsrData>();
 
         public static string errorLog;
@@ -28,11 +27,8 @@ namespace WymaTimesheetWebApp
             Global.DictUsrData.Clear();
         }
 
-        
-        
 
-
-
+        #region DBConn
         public static bool FDBNonQuery(string serverIP, string command)
         {
             try
@@ -85,7 +81,7 @@ namespace WymaTimesheetWebApp
             }
 
         }
-
+        #endregion
 
 
 
@@ -94,10 +90,13 @@ namespace WymaTimesheetWebApp
 
     public class Row
     {
-
-
+        
+        
+    
     }
-
+    
+    //Class that that takes and stores userdata
+    #region UsrData Class
     public class UsrData
     {
 
@@ -193,11 +192,11 @@ namespace WymaTimesheetWebApp
             this.totalHours = totalHours;
 
         }
-        
+       
 
-        
-        
+
+
 
     }
-
+    #endregion
 }

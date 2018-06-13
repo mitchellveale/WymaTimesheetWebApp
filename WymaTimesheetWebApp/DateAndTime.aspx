@@ -34,7 +34,7 @@
 
 
                             <asp:label runat="server" ID="NameLable" CssClass="Text" Text="Name: "/>
-                            <asp:DropDownList ID="NamePicker" runat="server" CssClass="Text labels" width="125px" OnSelectedIndexChanged="TextChanged" ></asp:DropDownList>
+                            <asp:DropDownList ID="NamePicker" runat="server" CssClass="Text labels" width="125px" AutoPostBack="true" OnSelectedIndexChanged="TextChanged" ></asp:DropDownList>
                             
                             <asp:label runat="server" ID="DateLabel" CssClass="Text" Text="Date:" /> <!-- Date/Time -->
                             <asp:TextBox runat="server" TextMode="Date" ID="DateBox" CssClass="Text labels" OnTextChanged="TextChanged" ></asp:TextBox>

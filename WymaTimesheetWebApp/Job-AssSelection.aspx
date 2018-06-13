@@ -24,7 +24,11 @@
 
          <div id="Main">
                 <div id="Data"> 
-                   <div id="TD_Info">
+                   <div id="TD_Info" style="height:100%">
+                    <p>
+                        <label id="NameView" class="Text">Name:</label>
+                        <asp:label runat="server" ID="NameViewLabel" CssClass="Text" Text="TEST"></asp:label>
+                    </p>
                     <p>
                         <label id="DateView" class="Text">Date: </label>
                         <asp:label runat="server" ID="DateViewLabel" CssClass="Text" Text="TEST"></asp:label>
@@ -41,12 +45,11 @@
                        
                    </div>
                    
-                    <asp:ScriptManager EnablePartialRendering="true" ID="ScriptManagerForTables" runat="server"></asp:ScriptManager>
+                    
                    <div id="TableSheet">
                         <label class="Text">Select your Jobs and Assemblies</label>
-                        <asp:UpdatePanel ID="JAUpdate" runat="server">
-                        <ContentTemplate>
-
+                        
+                       
                         <asp:Table ID="JobsAssembliesTable" runat="server" CssClass="Text table " Width="100%">
                             <asp:TableHeaderRow CssClass="th">
                                 <asp:TableHeaderCell>Job/Assy</asp:TableHeaderCell>
@@ -63,14 +66,13 @@
                            </asp:TableRow>
                         </asp:Table>
 
-                        </ContentTemplate>
-                        </asp:UpdatePanel>
-                        </div>
+                        
+                        
                        
                         <label class="Text">Select your Non-Charge Hours</label>
                         
-                        <asp:UpdatePanel ID="NCUpdate" runat="server">
-                        <ContentTemplate>
+                        
+                        
 
                         <asp:Table ID="NonChargeTable" runat="server" CssClass="Text table " Width="100%">
                             <asp:TableHeaderRow CssClass="th">
@@ -85,8 +87,7 @@
                            </asp:TableRow>
                         </asp:Table>
 
-                        </ContentTemplate>
-                        </asp:UpdatePanel>
+                       </div>
                       
                    </div>     
                                
