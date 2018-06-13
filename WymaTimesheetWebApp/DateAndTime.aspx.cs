@@ -28,6 +28,7 @@ namespace WymaTimesheetWebApp
                         SelMin.Items.Add(i + " mins");
                 }
 
+<<<<<<< HEAD
                 //Sets Lunch Break time by defult to 30mins 
                 SelMin.SelectedValue = "30 mins";
 
@@ -44,6 +45,10 @@ namespace WymaTimesheetWebApp
                 if (DBDataNames[0] == "!ERROR!")
                     NamePicker.Items.Add("John");
                 else
+=======
+                a = Global.ReadDataList("SELECT resourceName FROM Employees;");
+                for (int i = 0; i <= 1; i++)
+>>>>>>> master
                 {
                     foreach (string str in DBDataNames)
                     {

@@ -6,6 +6,10 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using FirebirdSql.Data.FirebirdClient;
+using QRCoder;
+using System.Drawing;
+using System.Text;
+using System.IO;
 
 namespace WymaTimesheetWebApp
 {
@@ -14,6 +18,9 @@ namespace WymaTimesheetWebApp
     {
 
         
+        //This would probably do better in a different class
+        public static List<Row> ListRows = new List<Row>();
+
         public static Dictionary<string, List<Row>> DictRows = new Dictionary<string, List<Row>>();
 
         public static Dictionary<string, UsrData> DictUsrData = new Dictionary<string, UsrData>();
@@ -27,14 +34,23 @@ namespace WymaTimesheetWebApp
             Global.DictUsrData.Clear();
         }
 
+        public static Bitmap QRCode(string EncodeValue)
+        {
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrData = qrGenerator.CreateQrCode(EncodeValue, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrData);
+            return qrCode.GetGraphic(20);
+        }
 
         #region DBConn
         public static bool FDBNonQuery(string serverIP, string command)
         {
             try
             {
-                FbCommand cmd = new FbCommand(command);
-                cmd.CommandType = CommandType.Text;
+                FbCommand cmd = new FbCommand(command)
+                {
+                    CommandType = CommandType.Text
+                };
 
                 using (cmd.Connection = new FbConnection($@"Server={serverIP};User=SYSDBA;Password=masterkey;Database={serverIP}:D:\fdb\testdb.fdb;ServerType=0;Port=3050;"))
                 {
@@ -49,8 +65,8 @@ namespace WymaTimesheetWebApp
                 return false;
             }
         }
-
-        public static List<string> ReadData(string serverIP, String command)
+        //Instead of a 'finally' use a 'using' statement.
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.119.252")
         {
             List<string> data = new List<string>();
 
