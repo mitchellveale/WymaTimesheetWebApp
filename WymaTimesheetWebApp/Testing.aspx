@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Testing.aspx.cs" Inherits="WymaTimesheetWebApp.Testing" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <!DOCTYPE html>
 
@@ -11,8 +12,19 @@
         <div>
             <asp:Label ID="LabelBoi" runat="server" Text="Pressa da button boi"></asp:Label>
             <br />
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <br/>
+            <asp:Button ID="AddButton" runat="server" Text="Add" OnClick="AddButton_Click" />
             <br />
-            <asp:Button ID="ButtonBoi" runat="server" Text="Press me hard daddy!" OnClick="ButtonBoiClick" />
+            <asp:GridView ID="GridView1" runat="server">
+            </asp:GridView>
+            <br />
+            <br/>
+            <asp:ScriptManager ID="Scriptmanager1" runat="server"/>
+            <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+            <ajaxToolkit:AutoCompleteExtender runat="server" ID="AutoCompleteExtender" TargetControlID="TextBox4" MinimumPrefixLength="1" EnableCaching="true" CompletionInterval="10" CompletionSetCount="3" ServiceMethod="GetValues"></ajaxToolkit:AutoCompleteExtender>
         </div>
     </form>
 </body>

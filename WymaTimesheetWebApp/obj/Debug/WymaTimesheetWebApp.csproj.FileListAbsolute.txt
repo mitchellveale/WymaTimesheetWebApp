@@ -61,3 +61,4 @@ C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\obj\Debu
 C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\obj\Debug\WymaTimesheetWebApp.dll
 C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\obj\Debug\WymaTimesheetWebApp.pdb
 C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\obj\Debug\WymaTimesheetWebApp.csprojResolveAssemblyReference.cache
+C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\AjaxControlToolkit.dll
