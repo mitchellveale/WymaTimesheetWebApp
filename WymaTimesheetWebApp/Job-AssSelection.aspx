@@ -50,7 +50,7 @@
                         <label class="Text">Select your Jobs and Assemblies</label>
                         
                        
-                        <asp:Table ID="JobsAssembliesTable" runat="server" CssClass="Text table " Width="100%">
+                         <asp:Table ID="JobsAssembliesTable" runat="server" CssClass="Text table " Width="100%">
                             <asp:TableHeaderRow CssClass="th">
                                 <asp:TableHeaderCell>Job/Assy</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Number</asp:TableHeaderCell>
@@ -62,10 +62,23 @@
                                 <asp:TableHeaderCell>Customer</asp:TableHeaderCell>
                             </asp:TableHeaderRow>
                             <asp:TableRow>
+                                <asp:TableHeaderCell> <asp:Label runat="server" ID="JobAssyData" CssClass="Text"></asp:Label> </asp:TableHeaderCell>
+                                <asp:TableHeaderCell> <asp:DropDownList runat="server" ID="NumberData" CssClass="Text" ></asp:DropDownList> </asp:TableHeaderCell>
+                                <asp:TableHeaderCell> <asp:DropDownList runat="server" ID="StepTaskData" CssClass="Text" ></asp:DropDownList> </asp:TableHeaderCell>
+                                <asp:TableHeaderCell> <asp:TextBox runat="server" ID="HoursData" CssClass="Text" ></asp:TextBox> </asp:TableHeaderCell>
+                                <asp:TableHeaderCell> <asp:Label runat="server" ID="WyEUrefData" CssClass="Text"></asp:Label> </asp:TableHeaderCell>
+                                <asp:TableHeaderCell> <asp:Label runat="server" ID="EUStepData" CssClass="Text"></asp:Label> </asp:TableHeaderCell>
+                                <asp:TableHeaderCell> <asp:Label runat="server" ID="EUCustData" CssClass="Text"></asp:Label> </asp:TableHeaderCell>
+                                <asp:TableHeaderCell> <asp:Label runat="server" ID="CustData" CssClass="Text"></asp:Label> </asp:TableHeaderCell>
+
+                            </asp:TableRow>
+                            <asp:TableRow>
                                <asp:TableCell ColumnSpan="8"><button runat="server" id="JATableADD"  class="btn3" style="margin:25px"  onserverclick="BtnJATableClick">ADD</button></asp:TableCell>
                            </asp:TableRow>
+
                         </asp:Table>
 
+                        <asp:GridView ID="DataJAView" runat="server" CssClass="Text gridview" ></asp:GridView>  
                         
                         
                        
