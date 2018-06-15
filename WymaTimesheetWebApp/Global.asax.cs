@@ -17,9 +17,9 @@ namespace WymaTimesheetWebApp
     public class Global : System.Web.HttpApplication
     {
 
+
         
-        //This would probably do better in a different class
-        public static List<Row> ListRows = new List<Row>();
+
 
         public static Dictionary<string, List<Row>> DictRows = new Dictionary<string, List<Row>>();
 
@@ -34,6 +34,8 @@ namespace WymaTimesheetWebApp
             Global.DictUsrData.Clear();
         }
 
+
+
         public static Bitmap QRCode(string EncodeValue)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
@@ -41,6 +43,7 @@ namespace WymaTimesheetWebApp
             QRCode qrCode = new QRCode(qrData);
             return qrCode.GetGraphic(20);
         }
+
 
         #region DBConn
         public static bool FDBNonQuery(string serverIP, string command)
@@ -100,10 +103,58 @@ namespace WymaTimesheetWebApp
         #endregion
 
 
+        public static string ReadDataString(String command, string serverIP = "10.1.119.252")
+        {
+            string data = "";
 
+            FbConnection con = new FbConnection($@"Server={serverIP};User=SYSDBA;Password=masterkey;Database={serverIP}:D:\fdb\testdb.fdb;ServerType=0;Port=3050;");
+            try
+            {
+                con.Open();
+
+                FbCommand cmd = new FbCommand(command, con);
+
+                FbDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    data = reader[0].ToString();
+                }
+                return data;
+
+
+            }
+            catch (Exception e)
+            {
+                data = ("!ERROR!");
+                errorLog += (e.ToString() + ";");
+                return data;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public static bool WriteCSV(StringBuilder values, string fileName)
+        {
+            //maybe have this function also create and save the QR code too??
+            //There will have to be check to see if the file name already exists.
+            try
+            {
+                File.WriteAllText($@"C:\Users\mitch\Desktop\CSV Files\Output\{fileName}.csv", values.ToString());
+                return true;
+            }
+            catch (Exception e)
+            {
+                errorLog += $"{e.ToString()};";
+                return false;
+            }
+        }
 
     }
 
+    #region Sam's Trash
     public class Row
     {
         
@@ -112,7 +163,6 @@ namespace WymaTimesheetWebApp
     }
     
     //Class that that takes and stores userdata
-    #region UsrData Class
     public class UsrData
     {
 
@@ -208,11 +258,7 @@ namespace WymaTimesheetWebApp
             this.totalHours = totalHours;
 
         }
-       
-
-
-
-
+      
     }
     #endregion
 }

@@ -63,9 +63,9 @@
                             </asp:TableHeaderRow>
                             <asp:TableRow>
                                 <asp:TableHeaderCell> <asp:Label runat="server" ID="JobAssyData" CssClass="Text"></asp:Label> </asp:TableHeaderCell>
-                                <asp:TableHeaderCell> <asp:DropDownList runat="server" ID="NumberData" CssClass="Text" ></asp:DropDownList> </asp:TableHeaderCell>
+                                <asp:TableHeaderCell> <asp:DropDownList runat="server" ID="JobNumberData" CssClass="Text" ></asp:DropDownList> </asp:TableHeaderCell>
                                 <asp:TableHeaderCell> <asp:DropDownList runat="server" ID="StepTaskData" CssClass="Text" ></asp:DropDownList> </asp:TableHeaderCell>
-                                <asp:TableHeaderCell> <asp:TextBox runat="server" ID="HoursData" CssClass="Text" ></asp:TextBox> </asp:TableHeaderCell>
+                                <asp:TableHeaderCell> <asp:DropDownList runat="server" ID="HoursHSelection" CssClass="Text"></asp:DropDownList><label>:</label><asp:DropDownList runat="server" ID="HoursMSelection" CssClass="Text"></asp:DropDownList> </asp:TableHeaderCell>
                                 <asp:TableHeaderCell> <asp:Label runat="server" ID="WyEUrefData" CssClass="Text"></asp:Label> </asp:TableHeaderCell>
                                 <asp:TableHeaderCell> <asp:Label runat="server" ID="EUStepData" CssClass="Text"></asp:Label> </asp:TableHeaderCell>
                                 <asp:TableHeaderCell> <asp:Label runat="server" ID="EUCustData" CssClass="Text"></asp:Label> </asp:TableHeaderCell>
@@ -73,7 +73,8 @@
 
                             </asp:TableRow>
                             <asp:TableRow>
-                               <asp:TableCell ColumnSpan="8"><button runat="server" id="JATableADD"  class="btn3" style="margin:25px"  onserverclick="BtnJATableClick">ADD</button></asp:TableCell>
+                               <asp:TableCell ColumnSpan="8"><button runat="server" id="Button1"  class="btn3" style="margin:25px"  onserverclick="BtnJATableADDClick">ADD</button><button runat="server" id="JATableRemove"  class="btn3" style="margin:25px"  onserverclick="BtnJATableRemoveClick">Remove</button></asp:TableCell>
+                               
                            </asp:TableRow>
 
                         </asp:Table>
@@ -96,7 +97,7 @@
                                 <asp:TableHeaderCell>Non Charge Comment</asp:TableHeaderCell>
                             </asp:TableHeaderRow>
                            <asp:TableRow>
-                               <asp:TableCell ColumnSpan="5"><button id="NCTableADD" class="btn3" style="margin:25px">ADD</button></asp:TableCell>
+                               <asp:TableCell ColumnSpan="5"><button id="NCTableADD" class="btn3" style="margin:25px">ADD</button><button id="NCTableRemove" class="btn3" style="margin:25px">Remove</button></asp:TableCell>
                            </asp:TableRow>
                         </asp:Table>
 

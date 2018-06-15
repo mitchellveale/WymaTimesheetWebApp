@@ -89,7 +89,7 @@
 
 #TableSheet {
     width: auto;
-    max-height: 300px;
+    height: auto;
     display: inline-block;
     vertical-align: top;
     padding-left: 25px;
@@ -104,11 +104,10 @@
 
 .gridview 
 {
+    width: auto;
     overflow-y: scroll;
-    border-spacing: 5px;
-    display: block;
-    max-height: 150px;
-    margin-left: 1px;
+    display: Block;
+    max-height: 100px;
 }
 .labels 
 {

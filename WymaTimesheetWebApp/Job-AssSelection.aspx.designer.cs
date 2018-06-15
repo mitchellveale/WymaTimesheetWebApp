@@ -76,13 +76,13 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.Label JobAssyData;
         
         /// <summary>
-        /// NumberData control.
+        /// JobNumberData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList NumberData;
+        protected global::System.Web.UI.WebControls.DropDownList JobNumberData;
         
         /// <summary>
         /// StepTaskData control.
@@ -94,13 +94,22 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.DropDownList StepTaskData;
         
         /// <summary>
-        /// HoursData control.
+        /// HoursHSelection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox HoursData;
+        protected global::System.Web.UI.WebControls.DropDownList HoursHSelection;
+        
+        /// <summary>
+        /// HoursMSelection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList HoursMSelection;
         
         /// <summary>
         /// WyEUrefData control.
@@ -139,13 +148,22 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.Label CustData;
         
         /// <summary>
-        /// JATableADD control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton JATableADD;
+        protected global::System.Web.UI.HtmlControls.HtmlButton Button1;
+        
+        /// <summary>
+        /// JATableRemove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton JATableRemove;
         
         /// <summary>
         /// DataJAView control.

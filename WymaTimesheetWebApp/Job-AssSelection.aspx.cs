@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -38,11 +39,46 @@ namespace WymaTimesheetWebApp
                     TotalHoursLabel.Text = Global.DictUsrData[Request.Cookies["UsrName"].Value].TotalHours;
                     TotalHoursAppLabel.Text = "0h 0m";
 
+                    for (int i = 0; i <= 24; i++)
+                    {
+                        if (i >=0 && i <= 9)
+                        {
+                            HoursHSelection.Items.Add("0" + Convert.ToString(i));
+                        }
+                        else
+                            HoursHSelection.Items.Add(Convert.ToString(i));
+
+                    }
+                        
+                    for (int i = 0; i <= 59; i++)
+                    {
+                        if (i >= 0 && i <= 9)
+                        {
+                            HoursMSelection.Items.Add("0" + Convert.ToString(i));
+                        }
+                        else
+                            HoursMSelection.Items.Add(Convert.ToString(i));
+
+                    }
+                        
+
                 }
+
+                DataTable JAtable = new DataTable();
+                JAtable.Columns.Add("Job/Assy");
+                JAtable.Columns.Add("Number");
+                JAtable.Columns.Add("Step/Task");
+                JAtable.Columns.Add("Hours:Min");
+                JAtable.Columns.Add("WyEU REF");
+                JAtable.Columns.Add("EU Step/Task");
+                JAtable.Columns.Add("EU Cust");
+                JAtable.Columns.Add("Customer");
+                DataJAView.DataSource = JAtable;
+                DataJAView.DataBind();
+                Session["tab"] = JAtable;
             }
 
-            TableRow NewRow = GenerateJARow();
-            JobsAssembliesTable.Rows.AddAt(JobsAssembliesTable.Rows.Count - 1, NewRow);
+            
 
 
         }
@@ -65,47 +101,34 @@ namespace WymaTimesheetWebApp
 
 
 
-        protected void BtnJATableClick(object sender, EventArgs e)
+        protected void BtnJATableADDClick(object sender, EventArgs e)
         {
+            DataTable JAtable = Session["tab"] as DataTable;
+            DataRow dr = JAtable.NewRow();
+            dr["Job/Assy"] = JobAssyData.Text;
+            dr["Number"] = JobNumberData.SelectedValue;
+            dr["Step/Task"] = StepTaskData.SelectedValue;
+            dr["Hours:Min"] = HoursHSelection.Text + ":" + HoursMSelection.Text;
+            dr["WyEU REF"] = WyEUrefData.Text;
+            dr["EU Step/Task"] = EUStepData.Text;
+            dr["EU Cust"] = EUCustData.Text;
+            dr["Customer"] = CustData.Text;
+            JAtable.Rows.Add(dr);
+            DataJAView.DataSource = JAtable;
+            DataJAView.DataBind();
+            Session["tab"] = JAtable;
 
-            //ListRows.Add(new Row());
-           
 
 
 
+        }
+
+        protected void BtnJATableRemoveClick(object sender, EventArgs e)
+        {
+            DataTable JATable = Session["tab"] as DataTable;
+            JATable.Rows[JATable.Rows.Count].Delete();
         }
 
        
-          
-           
-
-        
-
-        
-
-
-        //Generates a row for data to be inputed into
-        private TableRow GenerateJARow()
-        {
-            
-            TableRow r = new TableRow();
-            for (int i = 0; i < 8; i++)
-            {
-                TableCell c = new TableCell();
-                if (i == 3)
-                {
-                    c.Controls.Add(new TextBox());
-                }
-                else
-                {
-                    
-                }
-                r.Cells.Add(c);
-
-
-            }
-            r.Attributes.Add("Visable", "false");
-            return r;
-        }
     }
 }

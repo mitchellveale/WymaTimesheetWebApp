@@ -28,7 +28,6 @@ namespace WymaTimesheetWebApp
                         SelMin.Items.Add(i + " mins");
                 }
 
-<<<<<<< HEAD
                 //Sets Lunch Break time by defult to 30mins 
                 SelMin.SelectedValue = "30 mins";
 
@@ -37,7 +36,7 @@ namespace WymaTimesheetWebApp
 
 
                 //Takes data from database and places a list of the names in this varible. 
-                DBDataNames = Global.ReadData("10.1.119.252", "SELECT resourceName FROM Employees;");
+                DBDataNames = Global.ReadDataList("SELECT resourceName FROM Employees;");
 
                 //Adds names to Name Selection Box.
                 NamePicker.Items.Add("Please Select a Name");
@@ -45,26 +44,12 @@ namespace WymaTimesheetWebApp
                 if (DBDataNames[0] == "!ERROR!")
                     NamePicker.Items.Add("John");
                 else
-=======
-                a = Global.ReadDataList("SELECT resourceName FROM Employees;");
-                for (int i = 0; i <= 1; i++)
->>>>>>> master
                 {
                     foreach (string str in DBDataNames)
                     {
                         NamePicker.Items.Add(str);
                     }
                 }
-               
-               
-                    
-                
-                                
-                
-                
-                    
-
-                
 
             }
             
@@ -143,7 +128,8 @@ namespace WymaTimesheetWebApp
         protected void TextChanged(object sender, EventArgs e)
         {
             txtChanged = true;
-            NameLable.Text = "Name: " + NamePicker.SelectedValue;
+            string Name = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{NamePicker.SelectedValue}';");
+            NameLable.Text = $"Name: {Name}";
         }
 
         protected void BtnCancelDTClick(object sender, EventArgs e)
