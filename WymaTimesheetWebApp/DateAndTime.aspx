@@ -62,7 +62,7 @@
         <div id="FooterRap">
             <div id="Footer1">
 
-                <button runat="server" id="btnSubmitDT" class="btnsubmit" style="float:left;" onserverclick="BtnSubmitDTClick">Submit</button>
+                <button runat="server" id="btnSubmitDT" class="btnsubmit" style="float:left;" onserverclick="BtnSubmitDTClick">Continue</button>
 
             </div>
             <div id="Footer2">

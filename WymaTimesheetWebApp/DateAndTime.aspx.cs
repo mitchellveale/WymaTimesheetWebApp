@@ -85,8 +85,8 @@ namespace WymaTimesheetWebApp
                 if (TotalHoursLable.Text == "" || NameLable.Text == "" || txtChanged == true)
                 {
                     //Saves user localy to use for other things within the app such as taking data out of Usr Dictonary
-                    Response.Cookies["UsrName"].Value = null;
-                    Response.Cookies["UsrName"].Value = NamePicker.SelectedValue;
+                    Session["UsrName"] = null;
+                    Session["UsrName"] = NamePicker.SelectedValue;
 
                    
                     if (Global.DictUsrData.ContainsKey(NamePicker.SelectedValue))
@@ -106,7 +106,7 @@ namespace WymaTimesheetWebApp
                   
                     TotalHoursLable.Text = convertTotalHours;
 
-                    Response.Write("<script>alert('Please make sure all he data you have imputed is correct. Press submit again to confirm.');</script>");
+                    Response.Write("<script>alert('Please make sure all he data you have imputed is correct. Press continue again to confirm.');</script>");
             }
                 else
                 {
@@ -128,8 +128,14 @@ namespace WymaTimesheetWebApp
         protected void TextChanged(object sender, EventArgs e)
         {
             txtChanged = true;
-            string Name = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{NamePicker.SelectedValue}';");
-            NameLable.Text = $"Name: {Name}";
+            
+            //string Name = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{NamePicker.SelectedValue}';");
+            //if (Name == "!ERROR!")
+            //{
+                NameLable.Text = "Name: John";
+            //}
+            //else
+                //NameLable.Text = $"Name: {Name}";
         }
 
         protected void BtnCancelDTClick(object sender, EventArgs e)

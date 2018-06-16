@@ -15,9 +15,9 @@ namespace WymaTimesheetWebApp
         {
             set
             {
-                if (Global.DictRows.ContainsKey(Request.Cookies["UsrName"].Value))
+                if (Global.DictRows.ContainsKey(Session["UsrName"].ToString()))
                 {
-                    Global.DictRows[Request.Cookies["UsrName"].Value] = listRows;
+                    Global.DictRows[Session["UsrName"].ToString()] = listRows;
                 }
 
             }
@@ -32,50 +32,59 @@ namespace WymaTimesheetWebApp
             if (!IsPostBack)
             {
                 //Provides Inital data for Infolist beside tables
-                if (Request.Cookies["UsrName"] != null)
-                {
-                    NameViewLabel.Text = Request.Cookies["UsrName"].Value;
-                    DateViewLabel.Text = Global.DictUsrData[Request.Cookies["UsrName"].Value].Date;
-                    TotalHoursLabel.Text = Global.DictUsrData[Request.Cookies["UsrName"].Value].TotalHours;
-                    TotalHoursAppLabel.Text = "0h 0m";
 
-                    for (int i = 0; i <= 24; i++)
+                string Name = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{Session["UsrName"].ToString()}';");
+                NameViewLabel.Text = Session["UsrName"].ToString();
+                DateViewLabel.Text = Global.DictUsrData[Session["UsrName"].ToString()].Date;
+                TotalHoursLabel.Text = Global.DictUsrData[Session["UsrName"].ToString()].TotalHours;
+                TotalHoursAppLabel.Text = "0h 0m";
+
+                    for (int i = 0; i <= 10; i++)
                     {
                         if (i >=0 && i <= 9)
                         {
-                            HoursHSelection.Items.Add("0" + Convert.ToString(i));
+                            CHHoursHSelection.Items.Add("0" + Convert.ToString(i));
+                            NCHoursHSelection.Items.Add("0" + Convert.ToString(i));
                         }
                         else
-                            HoursHSelection.Items.Add(Convert.ToString(i));
-
-                    }
-                        
-                    for (int i = 0; i <= 59; i++)
-                    {
-                        if (i >= 0 && i <= 9)
                         {
-                            HoursMSelection.Items.Add("0" + Convert.ToString(i));
+                            CHHoursHSelection.Items.Add(Convert.ToString(i));
+                            NCHoursHSelection.Items.Add(Convert.ToString(i));
                         }
-                        else
-                            HoursMSelection.Items.Add(Convert.ToString(i));
+                            
 
                     }
                         
+                    for (int i = 0; i <= 3; i++)
+                    {
+                        CHHoursMSelection.Items.Add(Convert.ToString(i * 15));
+                        NCHoursMSelection.Items.Add(Convert.ToString(i * 15));
+                    }
+                        
+               
 
-                }
+                DataTable CHTable = new DataTable();
+                CHTable.Columns.Add("Job/Assy");
+                CHTable.Columns.Add("Number");
+                CHTable.Columns.Add("Step/Task");
+                CHTable.Columns.Add("Hours:Mins");
+                CHTable.Columns.Add("WyEU REF");
+                CHTable.Columns.Add("EU Step/Task");
+                CHTable.Columns.Add("EU Cust");
+                CHTable.Columns.Add("Customer");
+                DataCHView.DataSource = CHTable;
+                DataCHView.DataBind();
+                Session["CHtab"] = CHTable;
 
-                DataTable JAtable = new DataTable();
-                JAtable.Columns.Add("Job/Assy");
-                JAtable.Columns.Add("Number");
-                JAtable.Columns.Add("Step/Task");
-                JAtable.Columns.Add("Hours:Min");
-                JAtable.Columns.Add("WyEU REF");
-                JAtable.Columns.Add("EU Step/Task");
-                JAtable.Columns.Add("EU Cust");
-                JAtable.Columns.Add("Customer");
-                DataJAView.DataSource = JAtable;
-                DataJAView.DataBind();
-                Session["tab"] = JAtable;
+                DataTable NCTable = new DataTable();
+                NCTable.Columns.Add("NC Code");
+                NCTable.Columns.Add("Hours:Mins");
+                NCTable.Columns.Add("Non-Charge Comment");
+                DataNCView.DataSource = NCTable;
+                DataNCView.DataBind();
+                Session["NCtab"] = NCTable;
+
+
             }
 
             
@@ -95,40 +104,86 @@ namespace WymaTimesheetWebApp
 
         protected void BtnBackHSClick(object sender, EventArgs e)
         {
-            Global.DictUsrData.Remove(Server.HtmlEncode(Request.Cookies["UsrName"].Value));
+            Global.DictUsrData.Remove(Session["UsrName"].ToString());
             Server.Transfer("DateAndTime.aspx", true);
         }
 
 
 
-        protected void BtnJATableADDClick(object sender, EventArgs e)
+        protected void BtnCHTableADDClick(object sender, EventArgs e)
         {
-            DataTable JAtable = Session["tab"] as DataTable;
-            DataRow dr = JAtable.NewRow();
-            dr["Job/Assy"] = JobAssyData.Text;
-            dr["Number"] = JobNumberData.SelectedValue;
-            dr["Step/Task"] = StepTaskData.SelectedValue;
-            dr["Hours:Min"] = HoursHSelection.Text + ":" + HoursMSelection.Text;
-            dr["WyEU REF"] = WyEUrefData.Text;
-            dr["EU Step/Task"] = EUStepData.Text;
-            dr["EU Cust"] = EUCustData.Text;
-            dr["Customer"] = CustData.Text;
-            JAtable.Rows.Add(dr);
-            DataJAView.DataSource = JAtable;
-            DataJAView.DataBind();
-            Session["tab"] = JAtable;
+            if (JobNumberData.SelectedValue == "" || StepTaskData.SelectedValue == "" || CHHoursHSelection.SelectedValue == "00")
+                Response.Write("<script>alert('Some fields do not have data please make sure that all fields are filled before adding a row.');</script>");
+            else
+            {
+                DataTable CHTable = Session["CHtab"] as DataTable;
+                DataRow dr = CHTable.NewRow();
+                dr["Job/Assy"] = JobAssyData.Text;
+                dr["Number"] = JobNumberData.SelectedValue;
+                dr["Step/Task"] = StepTaskData.SelectedValue;
+                dr["Hours:Mins"] = CHHoursHSelection.SelectedValue + ":" + CHHoursMSelection.SelectedValue;
+                dr["WyEU REF"] = WyEUrefData.Text;
+                dr["EU Step/Task"] = EUStepData.Text;
+                dr["EU Cust"] = EUCustData.Text;
+                dr["Customer"] = CustData.Text;
+                CHTable.Rows.Add(dr);
+                DataCHView.DataSource = CHTable;
+                DataCHView.DataBind();
+                Session["CHtab"] = CHTable;
+            }
+           
 
 
 
 
         }
 
-        protected void BtnJATableRemoveClick(object sender, EventArgs e)
+        protected void BtnCHTableRemoveClick(object sender, EventArgs e)
         {
-            DataTable JATable = Session["tab"] as DataTable;
-            JATable.Rows[JATable.Rows.Count].Delete();
+            DataTable JATable = Session["CHtab"] as DataTable;
+            if (JATable.Rows.Count != 0)
+            {
+                JATable.Rows[JATable.Rows.Count - 1].Delete();
+                DataCHView.DataSource = JATable;
+                DataCHView.DataBind();
+                Session["CHtab"] = JATable;
+            }
+            
+               
+
         }
 
-       
+        protected void NCTableAddClick(object sender, EventArgs e)
+        {
+            if (NCCodeData.SelectedValue == "" || NCHoursHSelection.SelectedValue == "00" || NCCommentBox.Text == "")
+                Response.Write("<script>alert('Some fields do not have data please make sure that all fields are filled before adding a row.');</script>");
+            else
+            {
+                DataTable NCTable = Session["NCtab"] as DataTable;
+                DataRow dr = NCTable.NewRow();
+                dr["NC Code"] = NCCodeData.SelectedValue;
+                dr["Hours:Mins"] = NCHoursHSelection.SelectedValue + ":" + NCHoursMSelection.SelectedValue;
+                dr["Non-Charge Comment"] = NCCommentBox.Text;
+                NCTable.Rows.Add(dr);
+                DataNCView.DataSource = NCTable;
+                DataNCView.DataBind();
+                Session["NCtab"] = NCTable;
+            }
+        }
+
+        protected void NCTableRemoveClick(object sender, EventArgs e)
+        {
+            DataTable NCTable = Session["NCtab"] as DataTable;
+            if (NCTable.Rows.Count != 0)
+            {
+                NCTable.Rows[NCTable.Rows.Count - 1].Delete();
+                DataNCView.DataSource = NCTable;
+                DataNCView.DataBind();
+                Session["NCtab"] = NCTable;
+            }
+        }
+
+
+
     }
 }
