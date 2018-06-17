@@ -129,13 +129,13 @@ namespace WymaTimesheetWebApp
         {
             txtChanged = true;
             
-            //string Name = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{NamePicker.SelectedValue}';");
-            //if (Name == "!ERROR!")
-            //{
+            string Name = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{NamePicker.SelectedValue}';");
+            if (Name == "!ERROR!")
+            {
                 NameLable.Text = "Name: John";
-            //}
-            //else
-                //NameLable.Text = $"Name: {Name}";
+            }
+            else
+                NameLable.Text = $"Name: {Name}";
         }
 
         protected void BtnCancelDTClick(object sender, EventArgs e)

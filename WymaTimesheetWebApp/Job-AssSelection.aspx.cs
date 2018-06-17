@@ -27,6 +27,8 @@ namespace WymaTimesheetWebApp
             }
         }
 
+        private List<string> Ordernumbers;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -34,11 +36,26 @@ namespace WymaTimesheetWebApp
                 //Provides Inital data for Infolist beside tables
 
                 string Name = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{Session["UsrName"].ToString()}';");
+                Ordernumbers = Global.ReadDataList("SELECT ORDERNUMBER FROM ORDERS;");
+
                 NameViewLabel.Text = Session["UsrName"].ToString();
                 DateViewLabel.Text = Global.DictUsrData[Session["UsrName"].ToString()].Date;
                 TotalHoursLabel.Text = Global.DictUsrData[Session["UsrName"].ToString()].TotalHours;
                 TotalHoursAppLabel.Text = "0h 0m";
 
+                JobNumberData.Items.Add("Please Select an Order Number");
+                foreach (string str in Ordernumbers)
+                {
+                    if (JobNumberData.Items.FindByText(str) == null)
+                    {
+                        JobNumberData.Items.Add(str);
+                    }
+
+                }
+
+                StepTaskData.Items.Add("Please Select a Step or Task");
+
+                
                     for (int i = 0; i <= 10; i++)
                     {
                         if (i >=0 && i <= 9)
@@ -112,7 +129,7 @@ namespace WymaTimesheetWebApp
 
         protected void BtnCHTableADDClick(object sender, EventArgs e)
         {
-            if (JobNumberData.SelectedValue == "" || StepTaskData.SelectedValue == "" || CHHoursHSelection.SelectedValue == "00")
+            if (JobNumberData.SelectedValue == "Please Select an Order Number" || StepTaskData.SelectedValue == "Please Select a Step or Task" || CHHoursHSelection.SelectedValue == "00")
                 Response.Write("<script>alert('Some fields do not have data please make sure that all fields are filled before adding a row.');</script>");
             else
             {
@@ -183,7 +200,22 @@ namespace WymaTimesheetWebApp
             }
         }
 
+        protected void OrderNumberUpdate(object sender, EventArgs e)
+        {
+            List<string> OrderStepsTasks;
+            StepTaskData.Items.Clear();
+            StepTaskData.Items.Add("Please Select a Step or Task");
+            StepTaskData.Enabled = true;
 
+            OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
+
+            foreach (string str in OrderStepsTasks)
+            {        
+                    StepTaskData.Items.Add(str);
+               
+            }
+
+        }
 
     }
 }

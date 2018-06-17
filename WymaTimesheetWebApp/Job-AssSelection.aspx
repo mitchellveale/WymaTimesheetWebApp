@@ -54,12 +54,12 @@
 
                             <div class="ezydisplay">
                                 <label id="Number" class="Text">Number: </label>
-                                <asp:DropDownList runat="server" ID="JobNumberData" CssClass="Text Dropdown" ></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="JobNumberData" CssClass="Text Dropdown" AutoPostBack="true" OnSelectedIndexChanged="OrderNumberUpdate" ></asp:DropDownList>
                             </div>
 
                             <div class="ezydisplay" >
                                 <label id="Step/Task" class="Text">Step/Task:</label>
-                                <asp:DropDownList runat="server" ID="StepTaskData" CssClass="Text Dropdown" ></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="StepTaskData" CssClass="Text Dropdown" Enabled="False" ></asp:DropDownList>
                             </div>
                             <div class="ezydisplay">
                                 <label id="CHHours:Mins" class="Text">Hours & Mins:</label>

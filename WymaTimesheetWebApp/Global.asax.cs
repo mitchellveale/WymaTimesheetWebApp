@@ -68,8 +68,8 @@ namespace WymaTimesheetWebApp
                 return false;
             }
         }
-        //Instead of a 'finally' use a 'using' statement.
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.119.252")
+        //Instead of a 'finally' use a 'using' statement. "10.1.119.15" "122.61.177.78"
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.119.15")
         {
             List<string> data = new List<string>();
 
@@ -103,7 +103,7 @@ namespace WymaTimesheetWebApp
         #endregion
 
 
-        public static string ReadDataString(String command, string serverIP = "10.1.119.252")
+        public static string ReadDataString(String command, string serverIP = "10.1.119.15")
         {
             string data = "";
 

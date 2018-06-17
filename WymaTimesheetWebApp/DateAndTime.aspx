@@ -37,16 +37,16 @@
                             <asp:DropDownList ID="NamePicker" runat="server" CssClass="Text labels" width="125px" AutoPostBack="true" OnSelectedIndexChanged="TextChanged" ></asp:DropDownList>
                             
                             <asp:label runat="server" ID="DateLabel" CssClass="Text" Text="Date:" /> <!-- Date/Time -->
-                            <asp:TextBox runat="server" TextMode="Date" ID="DateBox" CssClass="Text labels" OnTextChanged="TextChanged" ></asp:TextBox>
+                            <asp:TextBox runat="server" TextMode="Date" ID="DateBox" CssClass="Text labels"  OnTextChanged="TextChanged" ></asp:TextBox>
 
                             <asp:label runat="server" ID="StartLabel" CssClass="Text" Text="Start Time:"/>
-                            <asp:textbox runat="server" TextMode="Time" ID="TimeStartINP" CssClass="Text labels" OnTextChanged="TextChanged" /> <!-- Date/Time -->
+                            <asp:textbox runat="server" TextMode="Time" ID="TimeStartINP" CssClass="Text labels"  OnTextChanged="TextChanged" /> <!-- Date/Time -->
 
                             <asp:label runat="server" ID="LunchTLabel" CssClass="Text" Text="Lunch Break Length:"/>
-                            <asp:DropDownList ID="SelMin" runat="server" CssClass="Text labels" width="125px" OnSelectedIndexChanged="TextChanged" ></asp:DropDownList> 
+                            <asp:DropDownList ID="SelMin" runat="server" CssClass="Text labels" width="125px"   OnSelectedIndexChanged="TextChanged" ></asp:DropDownList> 
 
                             <asp:label runat="server" ID="EndLabel" CssClass="Text" Text="End Time:"/>
-                            <asp:textbox runat="server" TextMode="Time" ID="TimeEndINP" CssClass="Text labels" OnTextChanged="TextChanged" /> <!-- Date/Time -->
+                            <asp:textbox runat="server" TextMode="Time" ID="TimeEndINP" CssClass="Text labels"   OnTextChanged="TextChanged" /> <!-- Date/Time -->
 
                             <label class="Text">Total Hours Worked:</label>
                             <asp:label runat="server" CssClass="Text" ID="TotalHoursLable"/>
