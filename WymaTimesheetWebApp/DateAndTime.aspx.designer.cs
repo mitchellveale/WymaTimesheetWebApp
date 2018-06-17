@@ -22,13 +22,13 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.HtmlControls.HtmlForm DT;
         
         /// <summary>
-        /// IPBox control.
+        /// NameLable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox IPBox;
+        protected global::System.Web.UI.WebControls.Label NameLable;
         
         /// <summary>
         /// NamePicker control.
@@ -55,7 +55,7 @@ namespace WymaTimesheetWebApp {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl DateBox;
+        protected global::System.Web.UI.WebControls.TextBox DateBox;
         
         /// <summary>
         /// StartLabel control.
@@ -73,7 +73,7 @@ namespace WymaTimesheetWebApp {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl TimeStartINP;
+        protected global::System.Web.UI.WebControls.TextBox TimeStartINP;
         
         /// <summary>
         /// LunchTLabel control.
@@ -109,7 +109,16 @@ namespace WymaTimesheetWebApp {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl TimeEndINP;
+        protected global::System.Web.UI.WebControls.TextBox TimeEndINP;
+        
+        /// <summary>
+        /// TotalHoursLable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TotalHoursLable;
         
         /// <summary>
         /// btnSubmitDT control.

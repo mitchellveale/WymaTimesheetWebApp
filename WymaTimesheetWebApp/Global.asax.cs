@@ -16,12 +16,13 @@ namespace WymaTimesheetWebApp
 
     public class Global : System.Web.HttpApplication
     {
-        //This would probably do better in a different class
-        public static List<Row> ListRows = new List<Row>();
+
+
+        
+
 
         public static Dictionary<string, List<Row>> DictRows = new Dictionary<string, List<Row>>();
 
-        //public static List<UsrData> ListUsrData = new List<UsrData>();
         public static Dictionary<string, UsrData> DictUsrData = new Dictionary<string, UsrData>();
 
         public static string errorLog;
@@ -33,6 +34,8 @@ namespace WymaTimesheetWebApp
             Global.DictUsrData.Clear();
         }
 
+
+
         public static Bitmap QRCode(string EncodeValue)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
@@ -41,6 +44,8 @@ namespace WymaTimesheetWebApp
             return qrCode.GetGraphic(20);
         }
 
+
+        #region DBConn
         public static bool FDBNonQuery(string serverIP, string command)
         {
             try
@@ -63,8 +68,8 @@ namespace WymaTimesheetWebApp
                 return false;
             }
         }
-        //Instead of a 'finally' use a 'using' statement.
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.119.252")
+        //Instead of a 'finally' use a 'using' statement. "10.1.119.15" "122.61.177.78"
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.119.15")
         {
             List<string> data = new List<string>();
 
@@ -95,8 +100,10 @@ namespace WymaTimesheetWebApp
             }
 
         }
+        #endregion
 
-        public static string ReadDataString(String command, string serverIP = "10.1.119.252")
+
+        public static string ReadDataString(String command, string serverIP = "10.1.119.15")
         {
             string data = "";
 
@@ -113,6 +120,7 @@ namespace WymaTimesheetWebApp
                     data = reader[0].ToString();
                 }
                 return data;
+
 
             }
             catch (Exception e)
@@ -149,10 +157,12 @@ namespace WymaTimesheetWebApp
     #region Sam's Trash
     public class Row
     {
-
-
+        
+        
+    
     }
-
+    
+    //Class that that takes and stores userdata
     public class UsrData
     {
 
@@ -183,60 +193,72 @@ namespace WymaTimesheetWebApp
                
         }
 
-        private string starttime;
+        private string startTime;
         public string StartTime
         {
             get
             {
-                return starttime;
+                return startTime;
             }
             set
             {
-                starttime = value;
+                startTime = value;
             }
 
         }
 
-        private string lunchtime;
+        private string lunchTime;
         public string LunchTime
         {
             get
             {
-                return lunchtime;
+                return lunchTime;
             }
             set
             {
-                lunchtime = value;
+                lunchTime = value;
             }
         }
 
-        private string endtime;
+        private string endTime;
         public string EndTime
         {
             get
             {
-                return endtime;
+                return endTime;
             }
             set
             {
-                endtime = value;
+                endTime = value;
             }
         }
 
-        public UsrData(string name, string date, string starttime, string endtime, string lunchtime)
+        private string totalHours;
+        public string TotalHours
+        {
+
+            get
+            {
+                return totalHours;
+            }
+            
+            set
+            {
+                totalHours = value;
+            }
+        }
+
+        public UsrData(string name, string date, string startTime, string endTime, string lunchTime, string totalHours)
         {
             this.name = name;
             this.date = date;
-            this.starttime = starttime;
-            this.endtime = endtime;
-            this.lunchtime = lunchtime;
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.lunchTime = lunchTime;
+            this.totalHours = totalHours;
 
         }
-        
-
-        
-        
-
+      
     }
     #endregion
 }

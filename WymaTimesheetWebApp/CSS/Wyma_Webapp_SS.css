@@ -69,8 +69,8 @@
 }
 
 #Data {
-    height: auto; 
-    max-width: 1200px ;
+    height: inherit; 
+    max-width: 1300px ;
     width: auto;
     padding: 25px;
     margin: auto;
@@ -78,21 +78,44 @@
   
 }
 
+#TopData
+{
+    height:auto;
+}
 #TD_Info {
     max-width: 234px;
-    height: 100%;
+    height: inherit;
     display: inline-block;
-    vertical-align: top;
-    border: 2px solid black;
-  
+    border-right: 2px solid black;
+    margin: 25px 25px 25px 0px;
 }
 
-#TableSheet {
-    width: auto;
-    max-height: 300px;
+#CHSelection, #NCSelection {
+    height: 100%;
     display: inline-block;
+    margin-left: 25px;
+    margin-right: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    width: auto;
+}
+
+#TableSheet 
+{
+    width: auto;
+    height: 100%;
     vertical-align: top;
     padding-left: 25px;
+}
+
+#OtherData 
+{
+    width: auto;
+    height: auto;
+    margin: 25px;
+    padding: 25px;
+    display: inline-block;
+ 
 }
 /* Sets Fonts for Pages*/
 .Text 
@@ -102,10 +125,39 @@
     font-weight: bold;
 }
 
+.gridview {
+    margin: 25px 300px 25px 300px;
+    padding: 25px;
+    width: inherit;
+    max-height: 100px;
+    text-align: center;
+}
 .labels 
 {
     display: block;
     Height: 21px;
+}
+
+.Dropdown 
+{
+    width: 140px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.border 
+{
+    border: 2px solid black;
+}
+
+.ezydisplay 
+{
+    display: inline-block;
+}
+
+.scroll 
+{
+    overflow-y: scroll;
 }
 
 .table, th, td {
@@ -115,15 +167,22 @@
 }
 .table {
     border-spacing: 5px;
-    overflow-y: scroll;
     display: block;
     max-height: 150px;
+    margin-left: 1px;
+   
 }
 .th {
     text-align: left;
     border: 2px solid black;
     
 }
+
+.commentbox {
+    height: 100px;
+    width: auto;
+}
+
 
 
 

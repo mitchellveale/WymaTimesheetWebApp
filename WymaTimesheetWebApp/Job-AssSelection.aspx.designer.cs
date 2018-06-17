@@ -22,6 +22,15 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.HtmlControls.HtmlForm JA;
         
         /// <summary>
+        /// NameViewLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NameViewLabel;
+        
+        /// <summary>
         /// DateViewLabel control.
         /// </summary>
         /// <remarks>
@@ -49,58 +58,157 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.Label TotalHoursAppLabel;
         
         /// <summary>
-        /// ScriptManagerForTables control.
+        /// JobNumberData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManagerForTables;
+        protected global::System.Web.UI.WebControls.DropDownList JobNumberData;
         
         /// <summary>
-        /// JAUpdate control.
+        /// StepTaskData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel JAUpdate;
+        protected global::System.Web.UI.WebControls.DropDownList StepTaskData;
         
         /// <summary>
-        /// JobsAssembliesTable control.
+        /// CHHoursHSelection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table JobsAssembliesTable;
+        protected global::System.Web.UI.WebControls.DropDownList CHHoursHSelection;
         
         /// <summary>
-        /// JATableADD control.
+        /// CHHoursMSelection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton JATableADD;
+        protected global::System.Web.UI.WebControls.DropDownList CHHoursMSelection;
         
         /// <summary>
-        /// NCUpdate control.
+        /// JobAssyData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel NCUpdate;
+        protected global::System.Web.UI.WebControls.Label JobAssyData;
         
         /// <summary>
-        /// NonChargeTable control.
+        /// WyEUrefData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table NonChargeTable;
+        protected global::System.Web.UI.WebControls.Label WyEUrefData;
+        
+        /// <summary>
+        /// EUStepData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EUStepData;
+        
+        /// <summary>
+        /// EUCustData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EUCustData;
+        
+        /// <summary>
+        /// CustData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label CustData;
+        
+        /// <summary>
+        /// JATableAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton JATableAdd;
+        
+        /// <summary>
+        /// JATableRemove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton JATableRemove;
+        
+        /// <summary>
+        /// DataCHView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView DataCHView;
+        
+        /// <summary>
+        /// NCCodeData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList NCCodeData;
+        
+        /// <summary>
+        /// NCHoursHSelection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList NCHoursHSelection;
+        
+        /// <summary>
+        /// NCHoursMSelection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList NCHoursMSelection;
+        
+        /// <summary>
+        /// NCCommentBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox NCCommentBox;
+        
+        /// <summary>
+        /// DataNCView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView DataNCView;
         
         /// <summary>
         /// btnSubmitHS control.
