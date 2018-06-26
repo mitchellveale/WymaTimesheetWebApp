@@ -25,6 +25,7 @@
          <div id="Main">
                 <div id="Data"> 
                    <div id="TopData" class="border" >
+                       <div style="text-align:center; margin-bottom:25px;">
                        <div id="TD_Info" >
                         <p>
                             <label id="NameView" class="Text">Name:</label>
@@ -47,7 +48,7 @@
                         </p>
 
                        </div>
-
+                       </div>
                        <div id="CHSelection">
                            <p style="text-align:center"> <label class="Text" >Select your Jobs and Assemblies</label> </p>
                            <div>
@@ -95,7 +96,7 @@
                    <div id="BottomData2" class="scroll gridview">
                        <div style="display:table; width:100%; height:auto" >
                             <div style="display: table-cell; vertical-align:middle; width:100%; height:100%">
-                                <asp:GridView ID="DataCHView" runat="server" CssClass="Text" ></asp:GridView>
+                                <asp:GridView ID="DataCHView" runat="server" CssClass="Text" HeaderStyle-BorderWidth="2px" ></asp:GridView>
                             </div>
                        </div>
                    </div>     

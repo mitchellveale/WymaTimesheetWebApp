@@ -87,12 +87,13 @@
     height: inherit;
     display: inline-block;
     border-right: 2px solid black;
+    border-left: 2px solid black;
     margin: 25px 25px 25px 0px;
 }
 
 #CHSelection, #NCSelection {
     height: 100%;
-    display: inline-block;
+    text-align:center;
     margin-left: 25px;
     margin-right: 25px;
     padding-left: 25px;

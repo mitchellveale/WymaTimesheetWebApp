@@ -17,11 +17,8 @@ namespace WymaTimesheetWebApp
     public class Global : System.Web.HttpApplication
     {
 
-
-        
-
-
-        public static Dictionary<string, List<Row>> DictRows = new Dictionary<string, List<Row>>();
+        public static Dictionary<string, DataTable> CHDATA  = new Dictionary<string, DataTable>();
+        public static Dictionary<string, DataTable> NCDATA = new Dictionary<string, DataTable>();
 
         public static Dictionary<string, UsrData> DictUsrData = new Dictionary<string, UsrData>();
 
@@ -68,8 +65,8 @@ namespace WymaTimesheetWebApp
                 return false;
             }
         }
-        //Instead of a 'finally' use a 'using' statement. "10.1.119.15" "122.61.177.78"
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.119.15")
+        //Instead of a 'finally' use a 'using' statement. "10.1.118.109" "122.61.177.78"
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.118.109")
         {
             List<string> data = new List<string>();
 
@@ -103,7 +100,7 @@ namespace WymaTimesheetWebApp
         #endregion
 
 
-        public static string ReadDataString(String command, string serverIP = "10.1.119.15")
+        public static string ReadDataString(String command, string serverIP = "10.1.118.109")
         {
             string data = "";
 
