@@ -24,52 +24,36 @@
 
          <div id="Main">
                 <div id="Data"> 
+                   <div style="text-align:center">
                    <div id="TD_Info">
                     <p>
-                        <label id="EmployeeName" class="Text">Employee Name: </label>
-                        <label id="EmployeeNameData" class="Text">TEST</label>
+                        <label id="EmployeeName" class="Text">Employee Name</label>
                     </p>
+                        <asp:label runat="server" ID="EmployeeNameData" CssClass="Text" Text="TEST"></asp:label>
+                    
                     <p>
-                        <label id="TimeWorked" class="Text">Time Worked Between: </label>
-                        <label id="TimeWorkedData" class="Text">TEST</label>
+                        <label id="TimeWorked" class="Text">Time Worked Between</label>
                     </p>
+                        <asp:label runat="server" ID="TimeWorkedData" CssClass="Text" Text="TEST"></asp:label>
+                   
                     <p>
                         <label id="BreakTime" class="Text">Break Time: </label>
-                        <label id="BreakTimeData"class="Text">TEST</label>
+                        <asp:label runat="server" ID="BreakTimeData" CssClass="Text" Text="TEST"></asp:label>
                     </p>
-                        <p>
+                    <p>
                         <label id="TotalTimeWorked" class="Text">Total Time Worked: </label>
-                        <label id="TotalTimeWorkedData"class="Text">TEST</label>
+                        <asp:label runat="server" ID="TotalTimeWorkedData" CssClass="Text" Text="TEST"></asp:label>
                     </p>
-
+                   </div>
                        
                    </div>
                    <div id="TableSheet">
-                        <label class="Text">Jobs and Assemblies</label>
-                        <asp:Table ID="JobsAssembliesViewTable" runat="server" CssClass="Text table " Width="100%">
-                            <asp:TableHeaderRow CssClass="th">
-                                <asp:TableHeaderCell>Job/Assy</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Number</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Step/Task</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Hours</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>WyEU REF</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>EU Step/Task</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>EU Cust</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Customer</asp:TableHeaderCell>
-                            </asp:TableHeaderRow>
-                            
-                           
-                        </asp:Table>
-                        <label class="Text">Non-Charge Hours</label>
-                        <asp:Table ID="NonChargeViewTable" runat="server" CssClass="Text table " Width="100%">
-                            <asp:TableHeaderRow CssClass="th">
-                                <asp:TableHeaderCell>Non Charge</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>NC Code</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Not Appliciple</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Hours</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Non Charge Comment</asp:TableHeaderCell>
-                            </asp:TableHeaderRow>
-                        </asp:Table>
+                        <label class="Text">Jobs and Assemblies:</label>
+                        <asp:GridView runat="server" ID="JobsAssembliesViewGrid" CssClass="gridview Text" HeaderStyle-BorderWidth="2px"></asp:GridView>
+
+                       <label class="Text">Non-Charge Hours:</label>
+                       <asp:GridView runat="server" ID="NonChargeViewGrid" CssClass="gridview Text" HeaderStyle-BorderWidth="2px"></asp:GridView>
+                        
                    </div>     
                                
                 </div>

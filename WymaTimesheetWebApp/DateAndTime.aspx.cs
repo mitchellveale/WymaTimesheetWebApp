@@ -106,12 +106,15 @@ namespace WymaTimesheetWebApp
                   
                     TotalHoursLable.Text = convertTotalHours;
 
-                    Response.Write("<script>alert('Please make sure all he data you have imputed is correct. Press continue again to confirm.');</script>");
+                    Response.Write("<script>alert('Please make sure all the data you have inputed is correct. Press continue again to confirm.');</script>");
             }
                 else
                 {
-                    if (Global.DictRows.ContainsKey(NamePicker.SelectedValue))
-                        Global.DictRows.Remove(NamePicker.SelectedValue);
+                    if (Global.CHDATA.ContainsKey(NamePicker.SelectedValue))
+                        Global.CHDATA.Remove(NamePicker.SelectedValue);
+
+                    if (Global.NCDATA.ContainsKey(NamePicker.SelectedValue))
+                        Global.NCDATA.Remove(NamePicker.SelectedValue);
 
                     //Takes Usr to next page.
                     Server.Transfer("Job-AssSelection.aspx", true);
