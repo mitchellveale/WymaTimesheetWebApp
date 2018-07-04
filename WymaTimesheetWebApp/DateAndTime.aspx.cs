@@ -58,14 +58,22 @@ namespace WymaTimesheetWebApp
 
         protected void BtnSubmitDTClick(object sender, EventArgs e)
         {
-            //Changes the two set hours to work between and selected lunch break time and converts it to usable data.
-            string totalHours = (Convert.ToDateTime(TimeEndINP.Text).Subtract(Convert.ToDateTime(TimeStartINP.Text).AddMinutes(((int.Parse(SelMin.SelectedValue.Substring(0, 2))))))).ToString();
-
-            //Time looks like this 09:00:00
-            string[] timeSplitter = totalHours.Split(':');
             int[] times = new int[2];
-            times[0] = int.Parse(timeSplitter[0]);
-            times[1] = int.Parse(timeSplitter[1]);
+            try
+            {
+                //Changes the two set hours to work between and selected lunch break time and converts it to usable data.
+                string totalHours = (Convert.ToDateTime(TimeEndINP.Text).Subtract(Convert.ToDateTime(TimeStartINP.Text).AddMinutes(((int.Parse(SelMin.SelectedValue.Substring(0, 2))))))).ToString();
+
+                //Time looks like this 09:00:00
+                string[] timeSplitter = totalHours.Split(':');
+                times[0] = int.Parse(timeSplitter[0]);
+                times[1] = int.Parse(timeSplitter[1]); 
+            }
+            catch
+            {
+                Response.Write("<script>alert('Please Select Valid Start and End Times.');</script>");
+                return;
+            }
 
             //Checks weather all forms are filled before continuing. This is to make sure not only that the user does not miss anything but to stop errors from occuring with the data.
             if (DateBox.Text == "" || TimeStartINP.Text == "" || TimeEndINP.Text == "" || SelMin.SelectedValue == "Please Select a Time" || NamePicker.SelectedValue == "Please Select a Name")
@@ -150,4 +158,5 @@ namespace WymaTimesheetWebApp
 
         
     }
+
 }

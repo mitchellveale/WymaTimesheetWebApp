@@ -24,7 +24,7 @@ namespace WymaTimesheetWebApp
                 string Name = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{Session["UsrName"].ToString()}';");
                 Ordernumbers = Global.ReadDataList("SELECT DISTINCT ORDERNUMBER FROM ORDERS;");
 
-                NameViewLabel.Text = Session["UsrName"].ToString();
+                NameViewLabel.Text = Name;
                 DateViewLabel.Text = Global.DictUsrData[Session["UsrName"].ToString()].Date;
                 TotalHoursLabel.Text = Global.DictUsrData[Session["UsrName"].ToString()].TotalHours;
                 TotalHoursAppLabel.Text = "0h 0m";
@@ -35,6 +35,10 @@ namespace WymaTimesheetWebApp
                 { 
                    JobNumberData.Items.Add(str);
                 }
+
+                
+                NCCodeData.Items.Add("Please Select an Order Number");
+                NCCodeData.Items.Add("TEST");
 
             
                 StepTaskData.Items.Add("Please Select a Step or Task");
@@ -137,7 +141,7 @@ namespace WymaTimesheetWebApp
 
         protected void BtnCHTableADDClick(object sender, EventArgs e)
         {
-            bool containsvalue = false;
+            bool containsValue = false;
             DataTable CHTable = Session["CHtab"] as DataTable;
 
             //checks weather a step or task has already been inputed into the data table.
@@ -145,14 +149,14 @@ namespace WymaTimesheetWebApp
             {
                 if (dr["Step/Task"].ToString() == StepTaskData.SelectedValue && dr["Number"].ToString() == JobNumberData.SelectedValue)
                 {
-                    containsvalue = true;
+                    containsValue = true;
                 }
 
             }
             //Checks weather forms are filled in before allowing user to input data.
-            if (JobNumberData.SelectedValue == "Please Select an Order Number" || StepTaskData.SelectedValue == "Please Select a Step or Task" || CHHoursHSelection.SelectedValue == "00")
+            if (JobNumberData.SelectedValue == "Please Select an Order Number" || StepTaskData.SelectedValue == "Please Select a Step or Task" || CHHoursHSelection.SelectedValue == "00" && CHHoursMSelection.SelectedValue == "00")
                 Response.Write("<script>alert('Some fields do not have data please make sure that all fields are filled before adding a row.');</script>");
-            else if (containsvalue == true)
+            else if (containsValue == true)
                 Response.Write("<script>alert('You have already inputed this Step or Task for this Order Number please remove and try again.');</script>");
             else
             {
@@ -223,12 +227,25 @@ namespace WymaTimesheetWebApp
 
         }
 
-        protected void NCTableAddClick(object sender, EventArgs e)
+        protected void BtnNCTableADDClick(object sender, EventArgs e)
         {
-            if (NCCodeData.SelectedValue == "" || NCHoursHSelection.SelectedValue == "00" || NCCommentBox.Text == "")
+            if (NCCodeData.SelectedValue == "" || NCHoursMSelection.SelectedValue == "00" && NCHoursHSelection.SelectedValue == "00" || NCCommentBox.Text == "")
                 Response.Write("<script>alert('Some fields do not have data please make sure that all fields are filled before adding a row.');</script>");
             else
             {
+                //Updates the amount of hours applied(Addition)
+                string[] Tothours = TotalHoursAppLabel.Text.Split(' ');
+
+                string[] HoursNum = Tothours[0].Split('h');
+                string[] MinNum = Tothours[1].Split('m');
+
+                int Hours = (int.Parse(HoursNum[0]) + int.Parse(NCHoursHSelection.Text));
+                int Mins = (int.Parse(MinNum[0]) + int.Parse(NCHoursMSelection.Text));
+
+
+                TotalHoursAppLabel.Text = $"{Hours.ToString()}h {Mins.ToString()}m";
+
+                //Adds selected data to Non-Charge table
                 DataTable NCTable = Session["NCtab"] as DataTable;
                 DataRow dr = NCTable.NewRow();
                 dr["NC Code"] = NCCodeData.SelectedValue;
@@ -238,24 +255,43 @@ namespace WymaTimesheetWebApp
                 DataNCView.DataSource = NCTable;
                 DataNCView.DataBind();
                 Session["NCtab"] = NCTable;
+
+
             }
         }
 
-        protected void NCTableRemoveClick(object sender, EventArgs e)
+        protected void BtnNCTableRemoveClick(object sender, EventArgs e)
         {
             DataTable NCTable = Session["NCtab"] as DataTable;
             if (NCTable.Rows.Count != 0)
             {
+                //Updates the amount of hours applied(Subtraction)
+                string[] Tothours = TotalHoursAppLabel.Text.Split(' ');
+
+                string[] HoursNum = Tothours[0].Split('h');
+                string[] MinNum = Tothours[1].Split('m');
+
+                string[] HourMinRemove = NCTable.Rows[NCTable.Rows.Count - 1]["Hours:Mins"].ToString().Split(':');
+                int Hours = (int.Parse(HoursNum[0]) - int.Parse(HourMinRemove[0]));
+                int Mins = (int.Parse(MinNum[0]) - int.Parse(HourMinRemove[1]));
+
+
+                TotalHoursAppLabel.Text = $"{Hours.ToString()}h {Mins.ToString()}m";
+
+                //Removes final row from Non-Charge Table
                 NCTable.Rows[NCTable.Rows.Count - 1].Delete();
                 DataNCView.DataSource = NCTable;
                 DataNCView.DataBind();
                 Session["NCtab"] = NCTable;
+
+
+               
             }
         }
 
         protected void OrderNumberUpdate(object sender, EventArgs e)
         {
-            
+            //Gets the list of Steps and/or tasks for selected Order number when selected.
             List<string> OrderStepsTasks;
             StepTaskData.Items.Clear();
             StepTaskData.Items.Add("Please Select a Step or Task");

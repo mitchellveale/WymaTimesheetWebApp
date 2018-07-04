@@ -49,10 +49,10 @@
                    </div>
                    <div id="TableSheet">
                         <label class="Text">Jobs and Assemblies:</label>
-                        <asp:GridView runat="server" ID="JobsAssembliesViewGrid" CssClass="gridview Text" HeaderStyle-BorderWidth="2px"></asp:GridView>
+                        <asp:GridView runat="server" ID="JobsAssembliesViewGrid" CssClass="Text" HeaderStyle-BorderWidth="2px"></asp:GridView>
 
                        <label class="Text">Non-Charge Hours:</label>
-                       <asp:GridView runat="server" ID="NonChargeViewGrid" CssClass="gridview Text" HeaderStyle-BorderWidth="2px"></asp:GridView>
+                       <asp:GridView runat="server" ID="NonChargeViewGrid" CssClass="Text" HeaderStyle-BorderWidth="2px"></asp:GridView>
                         
                    </div>     
                                

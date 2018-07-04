@@ -139,22 +139,22 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.Label CustData;
         
         /// <summary>
-        /// JATableAdd control.
+        /// CHTableAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton JATableAdd;
+        protected global::System.Web.UI.HtmlControls.HtmlButton CHTableAdd;
         
         /// <summary>
-        /// JATableRemove control.
+        /// CHTableRemove control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton JATableRemove;
+        protected global::System.Web.UI.HtmlControls.HtmlButton CHTableRemove;
         
         /// <summary>
         /// DataCHView control.
@@ -200,6 +200,24 @@ namespace WymaTimesheetWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox NCCommentBox;
+        
+        /// <summary>
+        /// NCTableADD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton NCTableADD;
+        
+        /// <summary>
+        /// NCTableRemove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton NCTableRemove;
         
         /// <summary>
         /// DataNCView control.

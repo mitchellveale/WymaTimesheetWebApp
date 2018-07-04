@@ -29,6 +29,7 @@ namespace WymaTimesheetWebApp
         protected void Application_Start(object sender, EventArgs e)
         {
             Global.DictUsrData.Clear();
+           
         }
 
 
@@ -66,7 +67,7 @@ namespace WymaTimesheetWebApp
             }
         }
         //Instead of a 'finally' use a 'using' statement. "10.1.118.109" "122.61.177.78"
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.118.109")
+        public static List<string> ReadDataList(String command, string serverIP = "122.61.177.78")
         {
             List<string> data = new List<string>();
 
@@ -100,7 +101,7 @@ namespace WymaTimesheetWebApp
         #endregion
 
 
-        public static string ReadDataString(String command, string serverIP = "10.1.118.109")
+        public static string ReadDataString(String command, string serverIP = "122.61.177.78")
         {
             string data = "";
 
@@ -152,13 +153,6 @@ namespace WymaTimesheetWebApp
     }
 
     #region Sam's Trash
-    public class Row
-    {
-        
-        
-    
-    }
-    
     //Class that that takes and stores userdata
     public class UsrData
     {

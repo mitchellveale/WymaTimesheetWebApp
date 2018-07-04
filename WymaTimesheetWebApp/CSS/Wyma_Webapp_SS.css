@@ -92,6 +92,7 @@
 }
 
 #CHSelection, #NCSelection {
+    
     height: 100%;
     text-align:center;
     margin-left: 25px;
@@ -101,8 +102,18 @@
     width: auto;
 }
 
-#TableSheet 
-{
+#CHSelection {
+    max-height: 186px;
+} 
+
+#NCSelection{
+    max-height: 294px;
+}
+    
+    
+    
+    
+#TableSheet {
     width: auto;
     height: 100%;
     vertical-align: top;

@@ -44,12 +44,15 @@ namespace WymaTimesheetWebApp
 
         protected void btnDoneVSClick(object sender, EventArgs e)
         {
-            Global.DictUsrData.Remove(Server.HtmlEncode(Request.Cookies["UsrName"].Value));
-            Request.Cookies["UsrName"].Value = null;
+            Global.DictUsrData.Remove(Session["UsrName"].ToString());
+            Global.CHDATA.Remove(Session["UsrName"].ToString());
+            Global.NCDATA.Remove(Session["UsrName"].ToString());
             Server.Transfer("MainMenu.aspx", true);
         }
         protected void btnBackVSClick(object sender, EventArgs e)
         {
+            Global.CHDATA.Remove(Session["UsrName"].ToString());
+            Global.NCDATA.Remove(Session["UsrName"].ToString());
             Server.Transfer("Job-AssSelection.aspx", true);
         }
     }

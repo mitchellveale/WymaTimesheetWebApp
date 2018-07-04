@@ -85,7 +85,7 @@
                             <asp:Label runat="server" ID="CustData" CssClass="Text"></asp:Label>
                            </div>
                            <div style="text-align:center">
-                               <button runat="server" id="JATableAdd"  class="btn3" style="margin:25px"  onserverclick="BtnCHTableADDClick">ADD</button><button runat="server" id="JATableRemove"  class="btn3" style="margin:25px"  onserverclick="BtnCHTableRemoveClick">Remove</button>
+                               <button runat="server" id="CHTableAdd"  class="btn3" style="margin:25px"  onserverclick="BtnCHTableADDClick">ADD</button><button runat="server" id="CHTableRemove"  class="btn3" style="margin:25px"  onserverclick="BtnCHTableRemoveClick">Remove</button>
                            </div>
                        
                        </div>
@@ -129,7 +129,7 @@
                            </div>
                        
                            <div style="text-align:center">
-                               <button id="NCTableADD" class="btn3" style="margin:25px" onserverclick="NCTableAddClick">ADD</button><button id="NCTableRemove" class="btn3" style="margin:25px" onserverclick="NCTableRemoveClick">Remove</button>
+                               <button runat="server" id="NCTableADD" class="btn3" style="margin:25px" onserverclick="BtnNCTableADDClick">ADD</button><button runat="server" id="NCTableRemove" class="btn3" style="margin:25px" onserverclick="BtnNCTableRemoveClick">Remove</button>
                            </div>
                        
                        </div>
