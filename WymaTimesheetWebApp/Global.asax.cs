@@ -44,10 +44,38 @@ namespace WymaTimesheetWebApp
             QRCode qrCode = new QRCode(qrData);
             return qrCode.GetGraphic(20);
         }
+        public static float TimeToFloat(string Time)
+        {
+            int Hours = 0;
+            int Mins = 0;
+            float fTime = 0f;
+            string[] time = Time.Split(' ');
 
+            int.TryParse(Regex.Replace(time[0], "[^0-9]+", string.Empty), out Hours);
+            int.TryParse(Regex.Replace(time[1], "[^0-9]+", string.Empty), out Mins);
 
-        #region DBConn
-        public static bool FDBNonQuery(string serverIP, string command)
+            fTime += Hours;
+            fTime += ((float)Mins / 60);
+
+            return fTime;
+        }
+
+        public static string TimeToString(float Time)
+        {
+            //5.50 (float) to 5h:30m
+            string Hours = "";
+
+            Hours += Math.Floor(Time).ToString() + "h ";
+            if (Time % 1 == 0)
+                Hours += "00m";
+            else
+                Hours += ((Time % 1) * 60).ToString() + "m";
+            return Hours;
+
+        }
+
+    #region DBConn
+    public static bool FDBNonQuery(string serverIP, string command)
         {
             try
             {
@@ -69,11 +97,7 @@ namespace WymaTimesheetWebApp
                 return false;
             }
         }
-<<<<<<< HEAD
-        //Instead of a 'finally' use a 'using' statement. "10.1.118.109" "122.61.155.99"
-=======
-        //Instead of a 'finally' use a 'using' statement. "10.1.118.109" "122.61.177.78"
->>>>>>> 024357bc13e26f08fd106aa7634778008f1bd03d
+
         public static List<string> ReadDataList(String command, string serverIP = "10.1.118.132")
         {
             List<string> data = new List<string>();
@@ -105,15 +129,7 @@ namespace WymaTimesheetWebApp
             }
 
         }
-<<<<<<< HEAD
-        
 
-
-=======
-
-
-
->>>>>>> 024357bc13e26f08fd106aa7634778008f1bd03d
         public static string ReadDataString(String command, string serverIP = "10.1.118.132")
         {
             string data = "";
@@ -147,8 +163,7 @@ namespace WymaTimesheetWebApp
 
         }
         #endregion
-<<<<<<< HEAD
-=======
+
  
     }
     #region DataFile
@@ -160,7 +175,6 @@ namespace WymaTimesheetWebApp
             public string EmployeeCode;
             public string Date;
         }
->>>>>>> 024357bc13e26f08fd106aa7634778008f1bd03d
 
         private struct DataEntry
         {
@@ -242,39 +256,9 @@ namespace WymaTimesheetWebApp
             }
         }
 
-<<<<<<< HEAD
-        public static float TimeToFloat(string Time)
-        {
-            int Hours = 0;
-            int Mins = 0;
-            float fTime = 0f;
-            string[] time = Time.Split(' ');
 
-            int.TryParse(Regex.Replace(time[0], "[^0-9]+", string.Empty), out Hours);
-            int.TryParse(Regex.Replace(time[1], "[^0-9]+", string.Empty), out Mins);
+        
 
-            fTime += Hours;
-            fTime += ((float)Mins / 60);
-
-            return fTime;
-        }
-
-        public static string TimeToString(float Time)
-        {
-            //5.50 (float) to 5h:30m
-            string Hours = "";
-            
-            Hours += Math.Floor(Time).ToString() + "h ";
-            if (Time % 1 == 0)
-                Hours += "00m";
-            else
-                Hours += ((Time % 1) * 60).ToString() + "m";
-            return Hours;
-
-        }
-
-    }
-=======
         public DataTable ToDataTable()
         {
             DataTable dt = new DataTable();
@@ -302,7 +286,7 @@ namespace WymaTimesheetWebApp
             }
             return dt;
         }
->>>>>>> 024357bc13e26f08fd106aa7634778008f1bd03d
+
 
         public void Export()
         {

@@ -19,23 +19,14 @@ namespace WymaTimesheetWebApp
                 DataFile dataFile = new DataFile();
                 string userName = Session["UsrName"].ToString();
                 //Gets data to show on View Screen and loads it onto the page.
-<<<<<<< HEAD
-                EmployeeNameData.Text = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME ='{Session["UsrName"].ToString()}';");
-                TimeWorkedData.Text = Global.DictUsrData[Session["UsrName"].ToString()].StartTime + " - " + Global.DictUsrData[Session["UsrName"].ToString()].EndTime;
-                BreakTimeData.Text = Global.DictUsrData[Session["UsrName"].ToString()].LunchTime;
-                TotalTimeWorkedData.Text = Global.TimeToString(Global.DictUsrData[Session["UsrName"].ToString()].TotalHours);
-                //
-=======
+
                 EmployeeNameData.Text = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME ='{userName}';");
                 TimeWorkedData.Text = Global.DictUsrData[userName].StartTime + " - " + Global.DictUsrData[userName].EndTime;
                 BreakTimeData.Text = Global.DictUsrData[userName].LunchTime;
-                TotalTimeWorkedData.Text = Global.DictUsrData[userName].TotalHours;
+                TotalTimeWorkedData.Text = Global.TimeToString(Global.DictUsrData[userName].TotalHours);
 
                 //FIXME: Find where sam is storing the date that the user entered
                 dataFile.CreateHeader(userName, Global.DictUsrData[userName].Date);
-
->>>>>>> 024357bc13e26f08fd106aa7634778008f1bd03d
-
                 //Takes Edited Data and Pastes in tables on screen
                 DataTable CHTable = Session["CHtab"] as DataTable;
                 DataTable NCTable = Session["NCtab"] as DataTable;
