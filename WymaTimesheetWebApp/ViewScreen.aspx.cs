@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text;
+using System.IO;
 
 namespace WymaTimesheetWebApp
 {
@@ -14,24 +16,51 @@ namespace WymaTimesheetWebApp
         {
             if(!IsPostBack)
             {
+                DataFile dataFile = new DataFile();
+                string userName = Session["UsrName"].ToString();
                 //Gets data to show on View Screen and loads it onto the page.
-                EmployeeNameData.Text = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME ='{Session["UsrName"].ToString()}';");
-                TimeWorkedData.Text = Global.DictUsrData[Session["UsrName"].ToString()].StartTime + " - " + Global.DictUsrData[Session["UsrName"].ToString()].EndTime;
-                BreakTimeData.Text = Global.DictUsrData[Session["UsrName"].ToString()].LunchTime;
-                TotalTimeWorkedData.Text = Global.DictUsrData[Session["UsrName"].ToString()].TotalHours;
-                //
+                EmployeeNameData.Text = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME ='{userName}';");
+                TimeWorkedData.Text = Global.DictUsrData[userName].StartTime + " - " + Global.DictUsrData[userName].EndTime;
+                BreakTimeData.Text = Global.DictUsrData[userName].LunchTime;
+                TotalTimeWorkedData.Text = Global.DictUsrData[userName].TotalHours;
+
+                //FIXME: Find where sam is storing the date that the user entered
+                dataFile.CreateHeader(userName, Global.DictUsrData[userName].Date);
+
 
                 //Takes Edited Data and Pastes in tables on screen
                 DataTable CHTable = Session["CHtab"] as DataTable;
                 DataTable NCTable = Session["NCtab"] as DataTable;
 
+                foreach (DataRow row in CHTable.Rows)
+                {
+                    JobType jobType = (JobType)Enum.Parse(typeof(JobType), row["Job/Assy"].ToString());
+                    string orderNumber = row["Number"].ToString();
+                    string task = row["Step/Task"].ToString();
+
+                    //Calculate 'time' in a float format
+                    string[] strSplit = row["Hours:Mins"].ToString().Split(':');
+                   
+                    float time = 0f;
+                    //I'm parsing as an int because doing it as a float would mean potentially having to
+                    //deal with the value being +/- phi
+                    time += int.Parse(strSplit[0]);
+                    time += (float)(int.Parse(strSplit[1])) / 60;
+
+                    string customer = row["Customer"].ToString();
+
+                    dataFile.AddData(jobType, orderNumber, task, time, customer);
+                }
+
                 JobsAssembliesViewGrid.DataSource = CHTable;
                 JobsAssembliesViewGrid.DataBind();
+
+
 
                 NonChargeViewGrid.DataSource = NCTable;
                 NonChargeViewGrid.DataBind();
                 //
-
+                Global.UserData.Add(userName, dataFile);
             }
             
 
@@ -42,8 +71,17 @@ namespace WymaTimesheetWebApp
             
         }
 
+ 
+        
+
         protected void btnDoneVSClick(object sender, EventArgs e)
         {
+            //Write data file and delete it from Global's dictionary
+            string userName = Session["UsrName"].ToString();
+            Global.UserData[userName].Write();
+            Global.UserData[userName].Export();
+            Global.UserData.Remove(userName);
+
             Global.DictUsrData.Remove(Session["UsrName"].ToString());
             Global.CHDATA.Remove(Session["UsrName"].ToString());
             Global.NCDATA.Remove(Session["UsrName"].ToString());

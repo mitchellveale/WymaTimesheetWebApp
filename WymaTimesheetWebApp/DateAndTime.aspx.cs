@@ -40,6 +40,13 @@ namespace WymaTimesheetWebApp
 
                 //Adds names to Name Selection Box.
                 NamePicker.Items.Add("Please Select a Name");
+                //  ###########  ###  ###       ###  ######     ######  ############
+                //  ###########  ###   ###     ###   ### ###   ### ###  ############
+                //  ###          ###     ### ###     ###  ### ###  ###  ###
+                //  #######      ###       ###       ###    ###    ###  #######
+                //  ###          ###     ### ###     ###           ###  ###
+                //  ###          ###   ###     ###   ###           ###  ############
+                //  ###          ###  ###       ###  ###           ###  ############
                 //If there is an error connecting to database the only namw will be john this is for testing purposes. Bellow here is where names are added.
                 if (DBDataNames[0] == "!ERROR!")
                     NamePicker.Items.Add("John");
