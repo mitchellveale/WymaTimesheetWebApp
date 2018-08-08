@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 
 namespace WymaTimesheetWebApp
 {
+    public enum JobType { Assembly, Job, NonCharge };
 
     public class Global : System.Web.HttpApplication
     {
@@ -23,6 +24,7 @@ namespace WymaTimesheetWebApp
 
         public static Dictionary<string, UsrData> DictUsrData = new Dictionary<string, UsrData>();
 
+        public static Dictionary<string, DataFile> UserData = new Dictionary<string, DataFile>();
         public static string errorLog;
 
 
@@ -67,7 +69,11 @@ namespace WymaTimesheetWebApp
                 return false;
             }
         }
+<<<<<<< HEAD
         //Instead of a 'finally' use a 'using' statement. "10.1.118.109" "122.61.155.99"
+=======
+        //Instead of a 'finally' use a 'using' statement. "10.1.118.109" "122.61.177.78"
+>>>>>>> 024357bc13e26f08fd106aa7634778008f1bd03d
         public static List<string> ReadDataList(String command, string serverIP = "10.1.118.132")
         {
             List<string> data = new List<string>();
@@ -99,9 +105,15 @@ namespace WymaTimesheetWebApp
             }
 
         }
+<<<<<<< HEAD
         
 
 
+=======
+
+
+
+>>>>>>> 024357bc13e26f08fd106aa7634778008f1bd03d
         public static string ReadDataString(String command, string serverIP = "10.1.118.132")
         {
             string data = "";
@@ -135,23 +147,102 @@ namespace WymaTimesheetWebApp
 
         }
         #endregion
-
-        public static bool WriteCSV(StringBuilder values, string fileName)
+<<<<<<< HEAD
+=======
+ 
+    }
+    #region DataFile
+    public class DataFile
+    {
+        private struct Header
         {
-            //maybe have this function also create and save the QR code too??
-            //There will have to be check to see if the file name already exists.
-            try
+            public bool Accepted;
+            public string EmployeeCode;
+            public string Date;
+        }
+>>>>>>> 024357bc13e26f08fd106aa7634778008f1bd03d
+
+        private struct DataEntry
+        {
+            public JobType JobType;
+            public string OrderNum;
+            public string Task;
+            public float Time;
+            public string Customer;
+        }
+
+        private Header header;
+        private List<DataEntry> Data;
+
+        public DataFile()
+        {
+            header = new Header();
+            Data = new List<DataEntry>();
+        }
+
+        //FIXME: EmployeeCode is being passed in from the data in the session however it has a space at the start of the string
+        //and this could break some stuff
+        public void CreateHeader(string EmployeeCode, string Date)
+        {
+            header.Accepted = false;
+            header.EmployeeCode = EmployeeCode;
+            header.Date = Date;
+        }
+
+        public void AddData(JobType JobType, string OrderNum, string Task, float Time, string Customer)
+        {
+            DataEntry newEntry = new DataEntry
             {
-                File.WriteAllText($@"C:\Users\mitch\Desktop\CSV Files\Output\{fileName}.csv", values.ToString());
-                return true;
+                JobType = JobType,
+                OrderNum = OrderNum,
+                Task = Task,
+                Time = Time,
+                Customer = Customer
+            };
+            Data.Add(newEntry);
+        }
+
+        public void Write()
+        {
+            StringBuilder builder = new StringBuilder();
+            int accepted = header.Accepted ? 1 : 0;
+            string headerInput = string.Format($"{accepted.ToString()},{header.EmployeeCode},{header.Date};");
+            builder.AppendFormat(headerInput);
+            string dataInput;
+            foreach (DataEntry de in Data)
+            {
+                int jobTypeInt = (int)de.JobType;
+                dataInput = string.Format($"{jobTypeInt.ToString()},{de.OrderNum},{de.Task},{de.Time.ToString()},{de.Customer};");
+                builder.AppendFormat(dataInput);
             }
-            catch (Exception e)
+            string filePath = $@"D:\Output Data\{header.EmployeeCode} {header.Date}.Wyma";
+            File.WriteAllText( filePath, builder.ToString());
+            //We *MAY* want a simple encryption algorithm to make the file unreadable to anybody that may accidentally encounter it.
+        }
+
+        public void Read(string FileName)
+        {
+            string rawInput = File.ReadAllText($@"D:\Output Data\{FileName}.Wyma");
+            List<string> rows = rawInput.Split(';').ToList<string>();
+
+            //Adding header data
+            string[] headerData = rows[0].Split(',');
+            header.Accepted = int.Parse(headerData[0]) != 0;
+            header.Date = headerData[1];
+            header.EmployeeCode = headerData[2];
+            rows.RemoveAt(0);
+            //Add TimeSheet Data
+            foreach (string str in rows)
             {
-                errorLog += $"{e.ToString()};";
-                return false;
+                string[] rowData = str.Split(',');
+                JobType jobType = (JobType) int.Parse(rowData[0]);
+                float time = float.Parse(rowData[3]);
+
+                AddData(jobType, rowData[1], rowData[2], time, rowData[4]);
             }
         }
 
+<<<<<<< HEAD
         public static float TimeToFloat(string Time)
         {
             int Hours = 0;
@@ -183,7 +274,56 @@ namespace WymaTimesheetWebApp
         }
 
     }
+=======
+        public DataTable ToDataTable()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Job/Assy");
+            dt.Columns.Add("Number");
+            dt.Columns.Add("Step/Task");
+            dt.Columns.Add("Hours:Mins");
+            dt.Columns.Add("WyEU REF");
+            dt.Columns.Add("EU Step/Task");
+            dt.Columns.Add("EU Cust");
+            dt.Columns.Add("Customer");
 
+            foreach (DataEntry de in Data)
+            {
+                DataRow dr = dt.NewRow();
+                dr["Job/Assy"] = de.JobType.ToString();
+                dr["Number"] = de.OrderNum;
+                dr["Step/Task"] = de.Task;
+                dr["Hours:Mins"] = Math.Floor(de.Time).ToString() + "h " + ((de.Time % 1) * 60).ToString() + "m";
+                dr["WyEU REF"] = "";
+                dr["EU Step/Task"] = "";
+                dr["EU Cust"] = "";
+                dr["Customer"] = de.Customer;
+                dt.Rows.Add(dr);
+            }
+            return dt;
+        }
+>>>>>>> 024357bc13e26f08fd106aa7634778008f1bd03d
+
+        public void Export()
+        {
+            StringBuilder builder = new StringBuilder();
+            //this first "Date" needs to be the end of the week date
+            string initialLine = string.Format($"InProgress,,Employee,{header.EmployeeCode},FALSE,{header.Date},Waiting Approval,,,Made by a super amazing WebApp,{header.Date}");
+            builder.AppendLine(initialLine);
+            foreach (DataEntry de in Data)
+            {
+                string str = string.Format($"{header.Date},{de.JobType.ToString()},{de.OrderNum},,{header.EmployeeCode},STD,{de.Task},FALSE,,,{de.Time.ToString()},0,,Chargeable,,-,TRUE,TRUE,FALSE,InProgress");
+                builder.AppendLine(str);
+            }
+            Random random = new Random();
+            int QRCode = random.Next(100000, 999999);
+            int date = int.Parse(Regex.Replace(header.Date, "[^0-9]+", string.Empty));
+            //deal with naming the file here
+            string fileName = $"{header.EmployeeCode} {date.ToString()}{QRCode.ToString()}";
+            File.WriteAllText($@"D:\Output Data\CSV\{fileName}.csv", builder.ToString());
+        }
+    }
+    #endregion
     #region Sam's Trash
     //Class that that takes and stores userdata
     public class UsrData
