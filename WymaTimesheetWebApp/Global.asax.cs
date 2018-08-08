@@ -10,6 +10,7 @@ using QRCoder;
 using System.Drawing;
 using System.Text;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace WymaTimesheetWebApp
 {
@@ -66,8 +67,8 @@ namespace WymaTimesheetWebApp
                 return false;
             }
         }
-        //Instead of a 'finally' use a 'using' statement. "10.1.118.109" "122.61.177.78"
-        public static List<string> ReadDataList(String command, string serverIP = "122.61.177.78")
+        //Instead of a 'finally' use a 'using' statement. "10.1.118.109" "122.61.155.99"
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.118.132")
         {
             List<string> data = new List<string>();
 
@@ -98,10 +99,10 @@ namespace WymaTimesheetWebApp
             }
 
         }
-        #endregion
+        
 
 
-        public static string ReadDataString(String command, string serverIP = "122.61.177.78")
+        public static string ReadDataString(String command, string serverIP = "10.1.118.132")
         {
             string data = "";
 
@@ -133,6 +134,7 @@ namespace WymaTimesheetWebApp
             }
 
         }
+        #endregion
 
         public static bool WriteCSV(StringBuilder values, string fileName)
         {
@@ -148,6 +150,36 @@ namespace WymaTimesheetWebApp
                 errorLog += $"{e.ToString()};";
                 return false;
             }
+        }
+
+        public static float TimeToFloat(string Time)
+        {
+            int Hours = 0;
+            int Mins = 0;
+            float fTime = 0f;
+            string[] time = Time.Split(' ');
+
+            int.TryParse(Regex.Replace(time[0], "[^0-9]+", string.Empty), out Hours);
+            int.TryParse(Regex.Replace(time[1], "[^0-9]+", string.Empty), out Mins);
+
+            fTime += Hours;
+            fTime += ((float)Mins / 60);
+
+            return fTime;
+        }
+
+        public static string TimeToString(float Time)
+        {
+            //5.50 (float) to 5h:30m
+            string Hours = "";
+            
+            Hours += Math.Floor(Time).ToString() + "h ";
+            if (Time % 1 == 0)
+                Hours += "00m";
+            else
+                Hours += ((Time % 1) * 60).ToString() + "m";
+            return Hours;
+
         }
 
     }
@@ -224,8 +256,8 @@ namespace WymaTimesheetWebApp
             }
         }
 
-        private string totalHours;
-        public string TotalHours
+        private float totalHours;
+        public float TotalHours
         {
 
             get
@@ -239,7 +271,7 @@ namespace WymaTimesheetWebApp
             }
         }
 
-        public UsrData(string name, string date, string startTime, string endTime, string lunchTime, string totalHours)
+        public UsrData(string name, string date, string startTime, string endTime, string lunchTime, float totalHours)
         {
             this.name = name;
             this.date = date;

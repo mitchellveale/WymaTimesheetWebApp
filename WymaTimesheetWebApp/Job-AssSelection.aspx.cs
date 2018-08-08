@@ -19,14 +19,17 @@ namespace WymaTimesheetWebApp
             //will only run when the first instance of a page is loaded
             if (!IsPostBack)
             {
-                //Provides Inital data for Infolist beside forms 
+                string userName = Session["UsrName"].ToString();
+                //Provides Inital data for Infolist beside forms
 
                 string Name = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{Session["UsrName"].ToString()}';");
                 Ordernumbers = Global.ReadDataList("SELECT DISTINCT ORDERNUMBER FROM ORDERS;");
 
                 NameViewLabel.Text = Name;
-                DateViewLabel.Text = Global.DictUsrData[Session["UsrName"].ToString()].Date;
-                TotalHoursLabel.Text = Global.DictUsrData[Session["UsrName"].ToString()].TotalHours;
+                DateViewLabel.Text = Global.DictUsrData[userName].Date;
+
+                TotalHoursLabel.Text = Global.TimeToString(Global.DictUsrData[userName].TotalHours);
+
                 TotalHoursAppLabel.Text = "0h 0m";
 
                 //Sets inital data in forms for users to select from. 
@@ -86,6 +89,7 @@ namespace WymaTimesheetWebApp
                 CHTable.Columns.Add("EU Step/Task");
                 CHTable.Columns.Add("EU Cust");
                 CHTable.Columns.Add("Customer");
+                CHTable.Columns.Add(new DataColumn("Remove Row", typeof(bool)));
                 DataCHView.DataSource = CHTable;
                 DataCHView.DataBind();
                 Session["CHtab"] = CHTable;
@@ -94,6 +98,7 @@ namespace WymaTimesheetWebApp
                 NCTable.Columns.Add("NC Code");
                 NCTable.Columns.Add("Hours:Mins");
                 NCTable.Columns.Add("Non-Charge Comment");
+                NCTable.Columns.Add("Remove Row");
                 DataNCView.DataSource = NCTable;
                 DataNCView.DataBind();
                 Session["NCtab"] = NCTable;
@@ -105,8 +110,6 @@ namespace WymaTimesheetWebApp
 
 
         }
-
-
 
 
 
@@ -162,6 +165,7 @@ namespace WymaTimesheetWebApp
             {
                 //Adds data to tables and allows it to be viewed.
                 
+
                 DataRow dr = CHTable.NewRow();
                 dr["Job/Assy"] = JobAssyData.Text;
                 dr["Number"] = JobNumberData.SelectedValue;
@@ -177,16 +181,11 @@ namespace WymaTimesheetWebApp
                 Session["CHtab"] = CHTable;
 
                 //Updates the amount of hours applied(Addition)
-                string[] Tothours = TotalHoursAppLabel.Text.Split(' ');
 
-                string[] HoursNum = Tothours[0].Split('h');
-                string[] MinNum = Tothours[1].Split('m');
+                float Tothours = Global.TimeToFloat(TotalHoursAppLabel.Text);
+                float Addedhours = Global.TimeToFloat(CHHoursHSelection.Text + " " + CHHoursMSelection.Text);
 
-                int Hours = (int.Parse(HoursNum[0]) + int.Parse(CHHoursHSelection.Text));
-                int Mins = (int.Parse(MinNum[0]) + int.Parse(CHHoursMSelection.Text));
-
-                
-                TotalHoursAppLabel.Text = $"{Hours.ToString()}h {Mins.ToString()}m"; 
+                TotalHoursAppLabel.Text = Global.TimeToString(Tothours + Addedhours); 
             }
            
 
@@ -202,17 +201,10 @@ namespace WymaTimesheetWebApp
             if (CHTable.Rows.Count != 0)
             {
                 //Updates the amount of hours applied (Subtraction)
-                string[] Tothours = TotalHoursAppLabel.Text.Split(' ');
+                float Tothours = Global.TimeToFloat(TotalHoursAppLabel.Text);
+                float Removedhours = Global.TimeToFloat(CHTable.Rows[CHTable.Rows.Count - 1]["Hours:Mins"].ToString().Replace(':', ' '));
 
-                string[] HoursNum = Tothours[0].Split('h');
-                string[] MinNum = Tothours[1].Split('m');
-
-                string[] HourMinRemove = CHTable.Rows[CHTable.Rows.Count - 1]["Hours:Mins"].ToString().Split(':');
-                int Hours = (int.Parse(HoursNum[0]) - int.Parse(HourMinRemove[0]));
-                int Mins = (int.Parse(MinNum[0]) - int.Parse(HourMinRemove[1]));
-
-
-                TotalHoursAppLabel.Text = $"{Hours.ToString()}h {Mins.ToString()}m";
+                TotalHoursAppLabel.Text = Global.TimeToString(Tothours - Removedhours);
 
                 //Deletes a row from table
                 CHTable.Rows[CHTable.Rows.Count - 1].Delete();
@@ -234,16 +226,11 @@ namespace WymaTimesheetWebApp
             else
             {
                 //Updates the amount of hours applied(Addition)
-                string[] Tothours = TotalHoursAppLabel.Text.Split(' ');
+                float Tothours = Global.TimeToFloat(TotalHoursAppLabel.Text);
+                float Addedhours = Global.TimeToFloat(NCHoursHSelection.Text + " " + NCHoursMSelection.Text);
 
-                string[] HoursNum = Tothours[0].Split('h');
-                string[] MinNum = Tothours[1].Split('m');
+                TotalHoursAppLabel.Text = Global.TimeToString(Tothours + Addedhours);
 
-                int Hours = (int.Parse(HoursNum[0]) + int.Parse(NCHoursHSelection.Text));
-                int Mins = (int.Parse(MinNum[0]) + int.Parse(NCHoursMSelection.Text));
-
-
-                TotalHoursAppLabel.Text = $"{Hours.ToString()}h {Mins.ToString()}m";
 
                 //Adds selected data to Non-Charge table
                 DataTable NCTable = Session["NCtab"] as DataTable;
@@ -266,17 +253,11 @@ namespace WymaTimesheetWebApp
             if (NCTable.Rows.Count != 0)
             {
                 //Updates the amount of hours applied(Subtraction)
-                string[] Tothours = TotalHoursAppLabel.Text.Split(' ');
+                float Tothours = Global.TimeToFloat(TotalHoursAppLabel.Text);
+                float Removedhours = Global.TimeToFloat(NCTable.Rows[NCTable.Rows.Count - 1]["Hours:Mins"].ToString().Replace(':', ' '));
 
-                string[] HoursNum = Tothours[0].Split('h');
-                string[] MinNum = Tothours[1].Split('m');
+                TotalHoursAppLabel.Text = Global.TimeToString(Tothours - Removedhours);
 
-                string[] HourMinRemove = NCTable.Rows[NCTable.Rows.Count - 1]["Hours:Mins"].ToString().Split(':');
-                int Hours = (int.Parse(HoursNum[0]) - int.Parse(HourMinRemove[0]));
-                int Mins = (int.Parse(MinNum[0]) - int.Parse(HourMinRemove[1]));
-
-
-                TotalHoursAppLabel.Text = $"{Hours.ToString()}h {Mins.ToString()}m";
 
                 //Removes final row from Non-Charge Table
                 NCTable.Rows[NCTable.Rows.Count - 1].Delete();

@@ -27,6 +27,10 @@ namespace WymaTimesheetWebApp
                     else
                         SelMin.Items.Add(i + " mins");
                 }
+                //Sets Start time to 7am and end time to 3:30
+                TimeStartINP.Text = "07:00";
+                TimeEndINP.Text = "15:30";
+
 
                 //Sets Lunch Break time by defult to 30mins 
                 SelMin.SelectedValue = "30 mins";
@@ -58,6 +62,7 @@ namespace WymaTimesheetWebApp
 
         protected void BtnSubmitDTClick(object sender, EventArgs e)
         {
+            float TotalNumHours = 0f;
             int[] times = new int[2];
             try
             {
@@ -67,7 +72,10 @@ namespace WymaTimesheetWebApp
                 //Time looks like this 09:00:00
                 string[] timeSplitter = totalHours.Split(':');
                 times[0] = int.Parse(timeSplitter[0]);
-                times[1] = int.Parse(timeSplitter[1]); 
+                times[1] = int.Parse(timeSplitter[1]);
+               
+                TotalNumHours += times[0];
+                TotalNumHours += (times[1] / 60);
             }
             catch
             {
@@ -104,17 +112,16 @@ namespace WymaTimesheetWebApp
                     string convertTotalHours = times[0].ToString() + "h " + times[1].ToString() + "m";
 
                     //Creates a NewUsr using the data provided. This will be used later in the program and when making the "" file
-                    UsrData NewUsr = new UsrData(NamePicker.SelectedValue, DateBox.Text, TimeStartINP.Text, TimeEndINP.Text, SelMin.SelectedValue, convertTotalHours);
+                    UsrData NewUsr = new UsrData(NamePicker.SelectedValue, DateBox.Text, TimeStartINP.Text, TimeEndINP.Text, SelMin.SelectedValue, TotalNumHours);
 
                     //Adds new user to a Usr Dictonary 
                     Global.DictUsrData.Add(NamePicker.SelectedValue, NewUsr);
 
                     txtChanged = false;
 
-                  
                     TotalHoursLable.Text = convertTotalHours;
 
-                    Response.Write("<script>alert('Please make sure all the data you have inputed is correct. Press continue again to confirm.');</script>");
+                    Response.Write($"<script>alert('Please make sure all the data you have inputed is correct. Press continue again to confirm.');</script>");
             }
                 else
                 {

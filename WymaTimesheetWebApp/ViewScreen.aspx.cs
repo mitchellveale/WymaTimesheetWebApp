@@ -18,7 +18,7 @@ namespace WymaTimesheetWebApp
                 EmployeeNameData.Text = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME ='{Session["UsrName"].ToString()}';");
                 TimeWorkedData.Text = Global.DictUsrData[Session["UsrName"].ToString()].StartTime + " - " + Global.DictUsrData[Session["UsrName"].ToString()].EndTime;
                 BreakTimeData.Text = Global.DictUsrData[Session["UsrName"].ToString()].LunchTime;
-                TotalTimeWorkedData.Text = Global.DictUsrData[Session["UsrName"].ToString()].TotalHours;
+                TotalTimeWorkedData.Text = Global.TimeToString(Global.DictUsrData[Session["UsrName"].ToString()].TotalHours);
                 //
 
                 //Takes Edited Data and Pastes in tables on screen

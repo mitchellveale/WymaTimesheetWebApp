@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/Wyma_Webapp_SS.css" />
 </head>
 <body>
-    <<form id="VS" runat="server">
+    <form id="VS" runat="server">
     <div id="Outerrap">
         <!-- This Header contains the wyma logo -->
         <div id="HeaderRap">
