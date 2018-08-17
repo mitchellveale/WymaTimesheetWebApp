@@ -96,7 +96,24 @@
                    <div id="BottomData2" class="scroll gridview">
                        <div style="display:table; width:100%; height:auto" >
                             <div style="display: table-cell; vertical-align:middle; width:100%; height:100%">
-                                <asp:GridView ID="DataCHView" runat="server" CssClass="Text" HeaderStyle-BorderWidth="2px" ></asp:GridView>
+                                <asp:GridView ID="DataCHView" OnRowCommand="DataCHView_RowCommand" runat="server" CssClass="Text" HeaderStyle-BorderWidth="2px">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Remove Row">
+                                            <ItemTemplate>
+                                                <asp:Button ID="CHRemoveBtn" Text="Remove" runat="server"  CommandName="RemoveRow" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+
+
+
+
+
+
+
+
+
+                                </asp:GridView>
                             </div>
                        </div>
                    </div>     

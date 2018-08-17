@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 namespace WymaTimesheetWebApp
 {
     public partial class Job_AssSelection : System.Web.UI.Page
-    { 
+    {
         // List of Ordernumbers to allow order numbers to be stored from Database
         private List<string> Ordernumbers;
 
@@ -35,21 +35,21 @@ namespace WymaTimesheetWebApp
                 //Sets inital data in forms for users to select from. 
                 JobNumberData.Items.Add("Please Select an Order Number");
                 foreach (string str in Ordernumbers)
-                { 
-                   JobNumberData.Items.Add(str);
+                {
+                    JobNumberData.Items.Add(str);
                 }
 
-                
+
                 NCCodeData.Items.Add("Please Select an Order Number");
                 NCCodeData.Items.Add("TEST");
 
-            
+
                 StepTaskData.Items.Add("Please Select a Step or Task");
 
-                
+
                 for (int i = 0; i <= 10; i++)
                 {
-                    if (i >=0 && i <= 9)
+                    if (i >= 0 && i <= 9)
                     {
                         CHHoursHSelection.Items.Add("0" + Convert.ToString(i));
                         NCHoursHSelection.Items.Add("0" + Convert.ToString(i));
@@ -59,26 +59,26 @@ namespace WymaTimesheetWebApp
                         CHHoursHSelection.Items.Add(Convert.ToString(i));
                         NCHoursHSelection.Items.Add(Convert.ToString(i));
                     }
-                            
+
 
                 }
-                        
+
                 for (int i = 0; i <= 3; i++)
-                {   
+                {
                     if (i == 0)
                     {
                         CHHoursMSelection.Items.Add("00");
                         NCHoursMSelection.Items.Add("00");
-                    }  
+                    }
                     else
                     {
                         CHHoursMSelection.Items.Add(Convert.ToString(i * 15));
                         NCHoursMSelection.Items.Add(Convert.ToString(i * 15));
                     }
-                   
+
                 }
-                        
-               
+
+
                 //Creates DataTables for data to be inputed into. This is for both Jobs and Assemblies and for Non-Charge Activities aswell.
                 DataTable CHTable = new DataTable();
                 CHTable.Columns.Add("Job/Assy");
@@ -89,9 +89,9 @@ namespace WymaTimesheetWebApp
                 CHTable.Columns.Add("EU Step/Task");
                 CHTable.Columns.Add("EU Cust");
                 CHTable.Columns.Add("Customer");
-                CHTable.Columns.Add(new DataColumn("Remove Row", typeof(bool)));
                 DataCHView.DataSource = CHTable;
                 DataCHView.DataBind();
+
                 Session["CHtab"] = CHTable;
 
                 DataTable NCTable = new DataTable();
@@ -106,17 +106,18 @@ namespace WymaTimesheetWebApp
 
             }
 
-            
+
 
 
         }
 
+  
 
 
 
         protected void BtnSubmitHSClick(object sender, EventArgs e)
         {
-            
+
 
             if (TotalHoursLabel.Text != TotalHoursAppLabel.Text)
             {
@@ -131,7 +132,7 @@ namespace WymaTimesheetWebApp
                 Global.NCDATA.Add(Session["UsrName"].ToString(), NCTable);
                 Server.Transfer("ViewScreen.aspx", true);
             }
-                
+
         }
 
         protected void BtnBackHSClick(object sender, EventArgs e)
@@ -144,6 +145,7 @@ namespace WymaTimesheetWebApp
 
         protected void BtnCHTableADDClick(object sender, EventArgs e)
         {
+
             bool containsValue = false;
             DataTable CHTable = Session["CHtab"] as DataTable;
 
@@ -163,8 +165,10 @@ namespace WymaTimesheetWebApp
                 Response.Write("<script>alert('You have already inputed this Step or Task for this Order Number please remove and try again.');</script>");
             else
             {
+
+
+
                 //Adds data to tables and allows it to be viewed.
-                
 
                 DataRow dr = CHTable.NewRow();
                 dr["Job/Assy"] = JobAssyData.Text;
@@ -175,6 +179,7 @@ namespace WymaTimesheetWebApp
                 dr["EU Step/Task"] = EUStepData.Text;
                 dr["EU Cust"] = EUCustData.Text;
                 dr["Customer"] = CustData.Text;
+
                 CHTable.Rows.Add(dr);
                 DataCHView.DataSource = CHTable;
                 DataCHView.DataBind();
@@ -185,39 +190,10 @@ namespace WymaTimesheetWebApp
                 float Tothours = Global.TimeToFloat(TotalHoursAppLabel.Text);
                 float Addedhours = Global.TimeToFloat(CHHoursHSelection.Text + " " + CHHoursMSelection.Text);
 
-                TotalHoursAppLabel.Text = Global.TimeToString(Tothours + Addedhours); 
+                TotalHoursAppLabel.Text = Global.TimeToString(Tothours + Addedhours);
             }
-           
-
-
-
-
         }
 
-        protected void BtnCHTableRemoveClick(object sender, EventArgs e)
-        {
-            //Removes a row from the table.
-            DataTable CHTable = Session["CHtab"] as DataTable;
-            if (CHTable.Rows.Count != 0)
-            {
-                //Updates the amount of hours applied (Subtraction)
-                float Tothours = Global.TimeToFloat(TotalHoursAppLabel.Text);
-                float Removedhours = Global.TimeToFloat(CHTable.Rows[CHTable.Rows.Count - 1]["Hours:Mins"].ToString().Replace(':', ' '));
-
-                TotalHoursAppLabel.Text = Global.TimeToString(Tothours - Removedhours);
-
-                //Deletes a row from table
-                CHTable.Rows[CHTable.Rows.Count - 1].Delete();
-                DataCHView.DataSource = CHTable;
-                DataCHView.DataBind();
-                Session["CHtab"] = CHTable;
-
-                
-            }
-            
-               
-
-        }
 
         protected void BtnNCTableADDClick(object sender, EventArgs e)
         {
@@ -266,7 +242,7 @@ namespace WymaTimesheetWebApp
                 Session["NCtab"] = NCTable;
 
 
-               
+
             }
         }
 
@@ -281,14 +257,34 @@ namespace WymaTimesheetWebApp
             OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
 
             foreach (string str in OrderStepsTasks)
-            {        
-                    StepTaskData.Items.Add(str);
-               
+            {
+                StepTaskData.Items.Add(str);
+
             }
 
             JobAssyData.Text = Global.ReadDataString($"SELECT TYPE FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
             CustData.Text = Global.ReadDataString($"SELECT CUSTOMER FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
         }
 
+
+        protected void DataCHView_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            DataTable CHTable = Session["CHtab"] as DataTable;
+            if (e.CommandName == "RemoveRow")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                float Tothours = Global.TimeToFloat(TotalHoursAppLabel.Text);
+                float Removedhours = Global.TimeToFloat(CHTable.Rows[index]["Hours:Mins"].ToString().Replace(':', ' '));
+
+                TotalHoursAppLabel.Text = Global.TimeToString(Tothours - Removedhours);
+
+                //Deletes a row from table
+                CHTable.Rows[index].Delete();
+                DataCHView.DataSource = CHTable;
+                DataCHView.DataBind();
+                Session["CHtab"] = CHTable;
+            }
+            
+        }
     }
 }

@@ -98,7 +98,7 @@ namespace WymaTimesheetWebApp
             }
         }
 
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.118.132")
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.123.207")
         {
             List<string> data = new List<string>();
 
@@ -130,7 +130,7 @@ namespace WymaTimesheetWebApp
 
         }
 
-        public static string ReadDataString(String command, string serverIP = "10.1.118.132")
+        public static string ReadDataString(String command, string serverIP = "10.1.123.207")
         {
             string data = "";
 
