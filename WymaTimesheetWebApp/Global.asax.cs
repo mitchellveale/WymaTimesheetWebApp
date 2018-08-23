@@ -98,7 +98,11 @@ namespace WymaTimesheetWebApp
             }
         }
 
+<<<<<<< HEAD
         public static List<string> ReadDataList(String command, string serverIP = "10.1.115.61")
+=======
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.123.207")
+>>>>>>> 874ffd9124a02eee07dbde897ac3628d263d4de4
         {
             List<string> data = new List<string>();
 
@@ -130,7 +134,11 @@ namespace WymaTimesheetWebApp
 
         }
 
+<<<<<<< HEAD
         public static string ReadDataString(String command, string serverIP = "10.1.115.61")
+=======
+        public static string ReadDataString(String command, string serverIP = "10.1.123.207")
+>>>>>>> 874ffd9124a02eee07dbde897ac3628d263d4de4
         {
             string data = "";
 
