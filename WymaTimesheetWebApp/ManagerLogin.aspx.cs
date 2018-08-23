@@ -16,7 +16,8 @@ namespace WymaTimesheetWebApp
 
         protected void BtnSubmitMLClick(object sender, EventArgs e)
         {
-
+            if (ManagerInput.Value.ToString() == "42069")
+                Server.Transfer("ManagerViewScreen.aspx", true);
         }
 
         protected void BtnBackMLClick(object sender, EventArgs e)

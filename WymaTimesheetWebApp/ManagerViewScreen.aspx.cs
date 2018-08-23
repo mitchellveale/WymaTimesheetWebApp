@@ -9,6 +9,10 @@ namespace WymaTimesheetWebApp
 {
     public partial class ManagerViewScreen : System.Web.UI.Page
     {
+        //To do list:
+
+        //show unaccepted datafiles for all employees with that they can accept
+        //have a button by each one that the allows the manager to view it.
         protected void Page_Load(object sender, EventArgs e)
         {
 

@@ -98,7 +98,7 @@ namespace WymaTimesheetWebApp
             }
         }
 
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.118.132")
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.115.61")
         {
             List<string> data = new List<string>();
 
@@ -130,7 +130,7 @@ namespace WymaTimesheetWebApp
 
         }
 
-        public static string ReadDataString(String command, string serverIP = "10.1.118.132")
+        public static string ReadDataString(String command, string serverIP = "10.1.115.61")
         {
             string data = "";
 
@@ -169,14 +169,14 @@ namespace WymaTimesheetWebApp
     #region DataFile
     public class DataFile
     {
-        private struct Header
+        public struct Header
         {
             public bool Accepted;
             public string EmployeeCode;
             public string Date;
         }
 
-        private struct DataEntry
+        public struct DataEntry
         {
             public JobType JobType;
             public string OrderNum;
@@ -186,12 +186,19 @@ namespace WymaTimesheetWebApp
         }
 
         private Header header;
-        private List<DataEntry> Data;
+        private List<DataEntry> data;
+        public List<DataEntry> Data
+        {
+            get
+            {
+                return data;
+            }
+        }
 
         public DataFile()
         {
             header = new Header();
-            Data = new List<DataEntry>();
+            data = new List<DataEntry>();
         }
 
         //FIXME: EmployeeCode is being passed in from the data in the session however it has a space at the start of the string
@@ -202,7 +209,7 @@ namespace WymaTimesheetWebApp
             header.EmployeeCode = EmployeeCode;
             header.Date = Date;
         }
-
+        //this isnt so much "add data" as it is initialize data
         public void AddData(JobType JobType, string OrderNum, string Task, float Time, string Customer)
         {
             DataEntry newEntry = new DataEntry
@@ -213,7 +220,7 @@ namespace WymaTimesheetWebApp
                 Time = Time,
                 Customer = Customer
             };
-            Data.Add(newEntry);
+            data.Add(newEntry);
         }
 
         public void Write()
@@ -223,7 +230,7 @@ namespace WymaTimesheetWebApp
             string headerInput = string.Format($"{accepted.ToString()},{header.EmployeeCode},{header.Date};");
             builder.AppendFormat(headerInput);
             string dataInput;
-            foreach (DataEntry de in Data)
+            foreach (DataEntry de in data)
             {
                 int jobTypeInt = (int)de.JobType;
                 dataInput = string.Format($"{jobTypeInt.ToString()},{de.OrderNum},{de.Task},{de.Time.ToString()},{de.Customer};");
@@ -259,7 +266,7 @@ namespace WymaTimesheetWebApp
 
         
 
-        public DataTable ToDataTable()
+        public static implicit operator DataTable(DataFile df)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("Job/Assy");
@@ -271,7 +278,7 @@ namespace WymaTimesheetWebApp
             dt.Columns.Add("EU Cust");
             dt.Columns.Add("Customer");
 
-            foreach (DataEntry de in Data)
+            foreach (DataEntry de in df.data)
             {
                 DataRow dr = dt.NewRow();
                 dr["Job/Assy"] = de.JobType.ToString();
@@ -294,7 +301,7 @@ namespace WymaTimesheetWebApp
             //this first "Date" needs to be the end of the week date
             string initialLine = string.Format($"InProgress,,Employee,{header.EmployeeCode},FALSE,{header.Date},Waiting Approval,,,Made by a super amazing WebApp,{header.Date}");
             builder.AppendLine(initialLine);
-            foreach (DataEntry de in Data)
+            foreach (DataEntry de in data)
             {
                 string str = string.Format($"{header.Date},{de.JobType.ToString()},{de.OrderNum},,{header.EmployeeCode},STD,{de.Task},FALSE,,,{de.Time.ToString()},0,,Chargeable,,-,TRUE,TRUE,FALSE,InProgress");
                 builder.AppendLine(str);
