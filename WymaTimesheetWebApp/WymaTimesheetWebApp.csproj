@@ -94,6 +94,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="Job-AssSelection.aspx" />
+    <Content Include="js\sig-pad.js" />
     <Content Include="ManagerLogin.aspx" />
     <Content Include="ManagerViewScreen.aspx" />
     <Content Include="Testing.aspx" />

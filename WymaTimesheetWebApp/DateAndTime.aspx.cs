@@ -10,7 +10,6 @@ namespace WymaTimesheetWebApp
     public partial class DateAndTime : System.Web.UI.Page
     {
         private List<string> DBDataNames;
-        bool txtChanged = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -100,47 +99,38 @@ namespace WymaTimesheetWebApp
                 //Alerts the user that their times are invalid
                 Response.Write("<script>alert('Your time at work is not valid. Please review and try again.');</script>");
                 NameLable.Text = "Name: ";
-                TotalHoursLable.Text = "";
             }
 
             else
             {
-                if (TotalHoursLable.Text == "" || NameLable.Text == "" || txtChanged == true)
-                {
-                    //Saves user localy to use for other things within the app such as taking data out of Usr Dictonary
-                    Session["UsrName"] = null;
-                    Session["UsrName"] = NamePicker.SelectedValue;
+                
+
+                //Saves user localy to use for other things within the app such as taking data out of Usr Dictonary
+                Session["UsrName"] = null;
+                Session["UsrName"] = NamePicker.SelectedValue;
 
                    
-                    if (Global.DictUsrData.ContainsKey(NamePicker.SelectedValue))
-                        Global.DictUsrData.Remove(NamePicker.SelectedValue);
+                if (Global.DictUsrData.ContainsKey(NamePicker.SelectedValue))
+                    Global.DictUsrData.Remove(NamePicker.SelectedValue);
 
-                    //Changes times to 09h 00m
-                    string convertTotalHours = times[0].ToString() + "h " + times[1].ToString() + "m";
+                //Changes times to 09h 00m
+                string convertTotalHours = times[0].ToString() + "h " + times[1].ToString() + "m";
 
-                    //Creates a NewUsr using the data provided. This will be used later in the program and when making the "" file
-                    UsrData NewUsr = new UsrData(NamePicker.SelectedValue, DateBox.Text, TimeStartINP.Text, TimeEndINP.Text, SelMin.SelectedValue, TotalNumHours);
+                //Creates a NewUsr using the data provided. This will be used later in the program and when making the "" file
+                UsrData NewUsr = new UsrData(NamePicker.SelectedValue, DateBox.Text, TimeStartINP.Text, TimeEndINP.Text, SelMin.SelectedValue, TotalNumHours);
 
-                    //Adds new user to a Usr Dictonary 
-                    Global.DictUsrData.Add(NamePicker.SelectedValue, NewUsr);
+                //Adds new user to a Usr Dictonary 
+                Global.DictUsrData.Add(NamePicker.SelectedValue, NewUsr);
+            
+                if (Global.CHDATA.ContainsKey(NamePicker.SelectedValue))
+                    Global.CHDATA.Remove(NamePicker.SelectedValue);
 
-                    txtChanged = false;
+                if (Global.NCDATA.ContainsKey(NamePicker.SelectedValue))
+                    Global.NCDATA.Remove(NamePicker.SelectedValue);
 
-                    TotalHoursLable.Text = convertTotalHours;
-
-                    Response.Write($"<script>alert('Please make sure all the data you have inputed is correct. Press continue again to confirm.');</script>");
-            }
-                else
-                {
-                    if (Global.CHDATA.ContainsKey(NamePicker.SelectedValue))
-                        Global.CHDATA.Remove(NamePicker.SelectedValue);
-
-                    if (Global.NCDATA.ContainsKey(NamePicker.SelectedValue))
-                        Global.NCDATA.Remove(NamePicker.SelectedValue);
-
-                    //Takes Usr to next page.
-                    Server.Transfer("Job-AssSelection.aspx", true);
-                }
+                //Takes Usr to next page.
+                Server.Transfer("Job-AssSelection.aspx", true);
+                
 
 
 
@@ -151,8 +141,7 @@ namespace WymaTimesheetWebApp
         
         //Checks whether text has changed within the page.
         protected void TextChanged(object sender, EventArgs e)
-        {
-            txtChanged = true;
+        { 
             
             string Name = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{NamePicker.SelectedValue}';");
             if (Name == "!ERROR!")

@@ -48,8 +48,6 @@
                             <asp:label runat="server" ID="EndLabel" CssClass="Text" Text="End Time:"/>
                             <asp:textbox runat="server" TextMode="Time" ID="TimeEndINP" CssClass="Text labels"   OnTextChanged="TextChanged" /> <!-- Date/Time -->
 
-                            <label class="Text">Total Hours Worked:</label>
-                            <asp:label runat="server" CssClass="Text" ID="TotalHoursLable"/>
 
                         </div>
 

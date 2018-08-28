@@ -58,6 +58,15 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.Label TotalTimeWorkedData;
         
         /// <summary>
+        /// viewJALabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label viewJALabel;
+        
+        /// <summary>
         /// JobsAssembliesViewGrid control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.GridView JobsAssembliesViewGrid;
         
         /// <summary>
+        /// viewNCLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label viewNCLabel;
+        
+        /// <summary>
         /// NonChargeViewGrid control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,24 @@ namespace WymaTimesheetWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView NonChargeViewGrid;
+        
+        /// <summary>
+        /// hiddenfield control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hiddenfield;
+        
+        /// <summary>
+        /// sigPad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sigPad;
         
         /// <summary>
         /// btnDone control.
