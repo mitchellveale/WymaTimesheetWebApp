@@ -27,19 +27,11 @@
                     <div id="Form">
                         <label class="Text">Name:</label>
                         <label id="ManagerName" class="Text">TEST</label>
-                        <asp:Table ID="TimeSheetsTable" runat="server" CssClass="Text table" Width="60%">
-                            <asp:TableHeaderRow CssClass="th">
-                                <asp:TableHeaderCell>Accept</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Decline</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Employees Name</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>View Timesheet</asp:TableHeaderCell>
-                            </asp:TableHeaderRow>
-                        </asp:Table>
-
-                        
-                               
+                        <br/>           
                     </div>
-                    
+                    <div id="FileList">
+                        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                    </div>
                 </div>
         </div>
         <div id="FooterRap">
