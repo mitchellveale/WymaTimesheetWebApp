@@ -18,6 +18,11 @@ namespace WymaTimesheetWebApp
 
     public class Global : System.Web.HttpApplication
     {
+        public struct DataFileInfo
+        {
+            public string name;
+            public String date;
+        }
 
         public static Dictionary<string, DataTable> CHDATA  = new Dictionary<string, DataTable>();
         public static Dictionary<string, DataTable> NCDATA = new Dictionary<string, DataTable>();
@@ -28,11 +33,12 @@ namespace WymaTimesheetWebApp
         public static string errorLog;
 
 
+        public static List<DataFileInfo> UnapprovedFiles = new List<DataFileInfo>();
+
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            Global.DictUsrData.Clear();
-           
+            Global.DictUsrData.Clear();  
         }
 
 
@@ -44,6 +50,7 @@ namespace WymaTimesheetWebApp
             QRCode qrCode = new QRCode(qrData);
             return qrCode.GetGraphic(20);
         }
+
         public static float TimeToFloat(string Time)
         {
             int Hours = 0;
@@ -74,6 +81,31 @@ namespace WymaTimesheetWebApp
 
         }
 
+        public void RefreshFiles()
+        {
+            DirectoryInfo d = new DirectoryInfo(@"D:\Output Data");
+            FileInfo[] Files = d.GetFiles("*.Wyma");
+            foreach (FileInfo file in Files)
+            {
+                bool alreadyExists = false;
+                foreach (DataFileInfo dfi in UnapprovedFiles)
+                {
+                    if (file.Name == $"{dfi.name} {dfi.date}")
+                        alreadyExists = true;
+                }
+                if (!alreadyExists)
+                {
+                    //this will also have the manager name in index '2' eventually
+                    string[] fileName = file.Name.Split(' ');
+                    UnapprovedFiles.Add(new DataFileInfo
+                    {
+                        name = fileName[0],
+                        date = fileName[1]
+                    });
+                }
+            }
+        }
+
     #region DBConn
     public static bool FDBNonQuery(string serverIP, string command)
         {
@@ -98,8 +130,24 @@ namespace WymaTimesheetWebApp
             }
         }
 
+<<<<<<< HEAD
         public static List<string> ReadDataList(String command, string serverIP = "10.1.123.97")
 
+=======
+<<<<<<< HEAD
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.115.61")
+=======
+<<<<<<< HEAD
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.123.97")
+=======
+<<<<<<< HEAD
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.115.61")
+=======
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.123.207")
+>>>>>>> 874ffd9124a02eee07dbde897ac3628d263d4de4
+>>>>>>> 85f7f613038abe39f3fd63c95ce3b4b16e937a2e
+>>>>>>> b9f39d83fad0815df672c740164a39ae8429dc64
+>>>>>>> 69067d2fc6d25963a1057240bd872e60f7d2e3b4
         {
             List<string> data = new List<string>();
 
@@ -131,8 +179,24 @@ namespace WymaTimesheetWebApp
 
         }
 
+<<<<<<< HEAD
 
         public static string ReadDataString(String command, string serverIP = "10.1.123.97")
+=======
+<<<<<<< HEAD
+        public static string ReadDataString(String command, string serverIP = "10.1.115.61")
+=======
+<<<<<<< HEAD
+        public static string ReadDataString(String command, string serverIP = "10.1.123.97")
+=======
+<<<<<<< HEAD
+        public static string ReadDataString(String command, string serverIP = "10.1.115.61")
+=======
+        public static string ReadDataString(String command, string serverIP = "10.1.123.207")
+>>>>>>> 874ffd9124a02eee07dbde897ac3628d263d4de4
+>>>>>>> 85f7f613038abe39f3fd63c95ce3b4b16e937a2e
+>>>>>>> b9f39d83fad0815df672c740164a39ae8429dc64
+>>>>>>> 69067d2fc6d25963a1057240bd872e60f7d2e3b4
         {
             string data = "";
 
@@ -239,8 +303,14 @@ namespace WymaTimesheetWebApp
                 builder.AppendFormat(dataInput);
             }
             string filePath = $@"D:\Output Data\{header.EmployeeCode} {header.Date}.Wyma";
-            File.WriteAllText( filePath, builder.ToString());
             //We *MAY* want a simple encryption algorithm to make the file unreadable to anybody that may accidentally encounter it.
+            File.WriteAllText( filePath, builder.ToString());
+
+            Global.UnapprovedFiles.Add(new Global.DataFileInfo
+            {
+                name = header.EmployeeCode,
+                date = header.Date
+            });
         }
 
         public void Read(string FileName)
