@@ -130,24 +130,8 @@ namespace WymaTimesheetWebApp
             }
         }
 
-<<<<<<< HEAD
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.123.97")
 
-=======
-<<<<<<< HEAD
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.115.61")
-=======
-<<<<<<< HEAD
         public static List<string> ReadDataList(String command, string serverIP = "10.1.123.97")
-=======
-<<<<<<< HEAD
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.115.61")
-=======
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.123.207")
->>>>>>> 874ffd9124a02eee07dbde897ac3628d263d4de4
->>>>>>> 85f7f613038abe39f3fd63c95ce3b4b16e937a2e
->>>>>>> b9f39d83fad0815df672c740164a39ae8429dc64
->>>>>>> 69067d2fc6d25963a1057240bd872e60f7d2e3b4
         {
             List<string> data = new List<string>();
 
@@ -179,25 +163,9 @@ namespace WymaTimesheetWebApp
 
         }
 
-<<<<<<< HEAD
-
         public static string ReadDataString(String command, string serverIP = "10.1.123.97")
-=======
-<<<<<<< HEAD
-        public static string ReadDataString(String command, string serverIP = "10.1.115.61")
-=======
-<<<<<<< HEAD
-        public static string ReadDataString(String command, string serverIP = "10.1.123.97")
-=======
-<<<<<<< HEAD
-        public static string ReadDataString(String command, string serverIP = "10.1.115.61")
-=======
-        public static string ReadDataString(String command, string serverIP = "10.1.123.207")
->>>>>>> 874ffd9124a02eee07dbde897ac3628d263d4de4
->>>>>>> 85f7f613038abe39f3fd63c95ce3b4b16e937a2e
->>>>>>> b9f39d83fad0815df672c740164a39ae8429dc64
->>>>>>> 69067d2fc6d25963a1057240bd872e60f7d2e3b4
         {
+
             string data = "";
 
             FbConnection con = new FbConnection($@"Server={serverIP};User=SYSDBA;Password=masterkey;Database={serverIP}:D:\fdb\testdb.fdb;ServerType=0;Port=3050;");

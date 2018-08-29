@@ -66,7 +66,7 @@
                        <br/>
                        <input runat="server" type="hidden" name="hiddenfield" id="hiddenfield" value="" />
    
-                       <canvas runat="server" id="sigPad" style="border: thin solid #000000"></canvas>
+                       <canvas runat="server" id="sigPad" style="border: thin solid #000000; max-height:inherit; max-width:inherit;" ></canvas>
                        <script src="js/sig-pad.js"></script>
                        
                            </div>

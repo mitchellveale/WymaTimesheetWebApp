@@ -26,11 +26,11 @@
                 <div id="Data"> 
                     <div id="Form">
                         <label class="Text">Name:</label>
-                        <label id="ManagerName" class="Text">TEST</label>
+                        <label runat="server" id="ManagerName" class="Text"></label>
                         <br/>           
                     </div>
                     <div id="FileList">
-                        <asp:GridView ID="ManagerView" runat="server" OnRowCommand="viewTimeSheet_RowCommand" CssClass="Text" >
+                        <asp:GridView ID="ManagerView" runat="server" OnRowCommand="viewTimeSheet_RowCommand" CssClass="Text" HeaderStyle-BorderWidth="2px" >
                             <Columns>
                                 <asp:TemplateField HeaderText="View Timesheet">
                                     <ItemTemplate>

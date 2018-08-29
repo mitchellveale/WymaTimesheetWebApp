@@ -12,6 +12,8 @@ namespace WymaTimesheetWebApp
 {
     public partial class ViewScreen : System.Web.UI.Page
     {
+        private List<string> DBManagerNames;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -69,11 +71,6 @@ namespace WymaTimesheetWebApp
                     viewNCLabel.Visible = false;
 
 
-                
-
-
-
-                //
                 Global.UserData.Add(userName, dataFile);
             }
             

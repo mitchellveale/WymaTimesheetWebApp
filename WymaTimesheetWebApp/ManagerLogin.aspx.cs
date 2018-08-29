@@ -16,9 +16,21 @@ namespace WymaTimesheetWebApp
 
         protected void BtnSubmitMLClick(object sender, EventArgs e)
         {
-            if (ManagerInput.Value.ToString() == "42069")
+           
+            string ManagerName = Global.ReadDataString("SELECT RESOURCENAME FROM EMPLOYEES WHERE CODE = '" + ManagerInput.Value.ToString() + "';");
+           
+
+            if (ManagerName == "")
+                Response.Write(@"<script>alert('That is not a valid manager number.\nPlease Try Again.')</script>");
+            else
+            { 
+                Session["ManagerName"] = ManagerName;
                 Server.Transfer("ManagerViewScreen.aspx", true);
+            }
         }
+            
+            
+        
 
         protected void BtnBackMLClick(object sender, EventArgs e)
         {
