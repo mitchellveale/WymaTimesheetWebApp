@@ -128,6 +128,7 @@ namespace WymaTimesheetWebApp
                 DataTable CHTable = Session["CHtab"] as DataTable;
                 DataTable NCTable = Session["NCtab"] as DataTable;
 
+                Global.UserData.Remove(Session["UsrName"].ToString());
                 Global.CHDATA.Add(Session["UsrName"].ToString(), CHTable);
                 Global.NCDATA.Add(Session["UsrName"].ToString(), NCTable);
                 Server.Transfer("ViewScreen.aspx", true);
@@ -223,29 +224,6 @@ namespace WymaTimesheetWebApp
             }
         }
 
-        protected void BtnNCTableRemoveClick(object sender, EventArgs e)
-        {
-            DataTable NCTable = Session["NCtab"] as DataTable;
-            if (NCTable.Rows.Count != 0)
-            {
-                //Updates the amount of hours applied(Subtraction)
-                float Tothours = Global.TimeToFloat(TotalHoursAppLabel.Text);
-                float Removedhours = Global.TimeToFloat(NCTable.Rows[NCTable.Rows.Count - 1]["Hours:Mins"].ToString().Replace(':', ' '));
-
-                TotalHoursAppLabel.Text = Global.TimeToString(Tothours - Removedhours);
-
-
-                //Removes final row from Non-Charge Table
-                NCTable.Rows[NCTable.Rows.Count - 1].Delete();
-                DataNCView.DataSource = NCTable;
-                DataNCView.DataBind();
-                Session["NCtab"] = NCTable;
-
-
-
-            }
-        }
-
         protected void OrderNumberUpdate(object sender, EventArgs e)
         {
             //Gets the list of Steps and/or tasks for selected Order number when selected.
@@ -285,6 +263,25 @@ namespace WymaTimesheetWebApp
                 Session["CHtab"] = CHTable;
             }
             
+        }
+
+        protected void DataNCView_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            DataTable NCTable = Session["NCtab"] as DataTable;
+            if (e.CommandName == "RemoveRow")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                float Tothours = Global.TimeToFloat(TotalHoursAppLabel.Text);
+                float Removedhours = Global.TimeToFloat(NCTable.Rows[index]["Hours:Mins"].ToString().Replace(':', ' '));
+
+                TotalHoursAppLabel.Text = Global.TimeToString(Tothours - Removedhours);
+
+                //Deletes a row from table
+                NCTable.Rows[index].Delete();
+                DataNCView.DataSource = NCTable;
+                DataNCView.DataBind();
+                Session["NCtab"] = NCTable;
+            }
         }
     }
 }

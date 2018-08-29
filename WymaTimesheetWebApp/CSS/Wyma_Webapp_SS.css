@@ -109,11 +109,11 @@
 #NCSelection{
     max-height: 294px;
 }
-    
-    
-    
-    
-#TableSheet {
+
+
+
+
+#TableSheet, #Sign-ManagerSelection {
     width: auto;
     height: 100%;
     vertical-align: top;

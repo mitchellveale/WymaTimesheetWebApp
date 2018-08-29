@@ -28,6 +28,7 @@ namespace WymaTimesheetWebApp
                 //FIXME: Find where sam is storing the date that the user entered
                 dataFile.CreateHeader(userName, Global.DictUsrData[userName].Date);
                 //Takes Edited Data and Pastes in tables on screen
+                
                 DataTable CHTable = Session["CHtab"] as DataTable;
                 DataTable NCTable = Session["NCtab"] as DataTable;
 
@@ -51,13 +52,27 @@ namespace WymaTimesheetWebApp
                     dataFile.AddData(jobType, orderNumber, task, time, customer);
                 }
 
-                JobsAssembliesViewGrid.DataSource = CHTable;
-                JobsAssembliesViewGrid.DataBind();
+                if (CHTable.Rows.Count != 0)
+                {
+                    JobsAssembliesViewGrid.DataSource = CHTable;
+                    JobsAssembliesViewGrid.DataBind();
+                }
+                else
+                    viewJALabel.Visible = false;
+
+                if (NCTable.Rows.Count != 0)
+                {
+                    NonChargeViewGrid.DataSource = NCTable;
+                    NonChargeViewGrid.DataBind();
+                }
+                else
+                    viewNCLabel.Visible = false;
+
+
+                
 
 
 
-                NonChargeViewGrid.DataSource = NCTable;
-                NonChargeViewGrid.DataBind();
                 //
                 Global.UserData.Add(userName, dataFile);
             }
@@ -65,16 +80,18 @@ namespace WymaTimesheetWebApp
 
 
             
-                
+          
             
             
         }
 
- 
+        
         
 
         protected void btnDoneVSClick(object sender, EventArgs e)
         {
+            Response.Write("<script>alert('" + hiddenfield.Value + "')</script>");
+
             //Write data file and delete it from Global's dictionary
             string userName = Session["UsrName"].ToString();
             Global.UserData[userName].Write();
@@ -88,9 +105,18 @@ namespace WymaTimesheetWebApp
         }
         protected void btnBackVSClick(object sender, EventArgs e)
         {
+
+           
             Global.CHDATA.Remove(Session["UsrName"].ToString());
             Global.NCDATA.Remove(Session["UsrName"].ToString());
+            Global.UserData.Remove(Session["UsrName"].ToString());
             Server.Transfer("Job-AssSelection.aspx", true);
+        }
+
+        protected void Submit_Click(object sender, EventArgs e)
+        {
+            
+            
         }
     }
 }

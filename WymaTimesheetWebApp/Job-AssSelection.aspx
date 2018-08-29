@@ -22,7 +22,7 @@
             </div>
         </div>
 
-         <div id="Main">
+            <div id="Main">
                 <div id="Data"> 
                    <div id="TopData" class="border" >
                        <div style="text-align:center; margin-bottom:25px;">
@@ -85,7 +85,7 @@
                             <asp:Label runat="server" ID="CustData" CssClass="Text"></asp:Label>
                            </div>
                            <div style="text-align:center">
-                               <button runat="server" id="CHTableAdd"  class="btn3" style="margin:25px"  onserverclick="BtnCHTableADDClick">ADD</button><button runat="server" id="CHTableRemove"  class="btn3" style="margin:25px"  onserverclick="BtnCHTableRemoveClick">Remove</button>
+                               <button runat="server" id="CHTableAdd"  class="btn3" style="margin:25px"  onserverclick="BtnCHTableADDClick">ADD</button>
                            </div>
                        
                        </div>
@@ -104,15 +104,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
-
-
-
-
-
-
-
-
-
                                 </asp:GridView>
                             </div>
                        </div>
@@ -146,21 +137,31 @@
                            </div>
                        
                            <div style="text-align:center">
-                               <button runat="server" id="NCTableADD" class="btn3" style="margin:25px" onserverclick="BtnNCTableADDClick">ADD</button><button runat="server" id="NCTableRemove" class="btn3" style="margin:25px" onserverclick="BtnNCTableRemoveClick">Remove</button>
+                               <button runat="server" id="NCTableADD" class="btn3" style="margin:25px" onserverclick="BtnNCTableADDClick">ADD</button>
                            </div>
                        
                        </div>
 
                        <div id="TopData2" class="scroll gridview">
-                       <div style="display:table; width:100%; height:auto" >
-                            <div style="display: table-cell; vertical-align:middle; width:100%; height:100%">
-                                <asp:GridView ID="DataNCView" runat="server" CssClass="Text" ></asp:GridView>
+                            <div style="display:table; width:100%; height:auto" >
+                                <div style="display: table-cell; vertical-align:middle; width:100%; height:100%">
+                                    <asp:GridView ID="DataNCView" OnRowCommand="DataNCView_RowCommand" runat="server" CssClass="Text" >
+                                         <Columns>
+                                            <asp:TemplateField HeaderText="Remove Row">
+                                                <ItemTemplate>
+                                                    <asp:Button ID="NHRemoveBtn" Text="Remove" runat="server"  CommandName="RemoveRow" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+
+                                    </asp:GridView>
+
+                                </div>
                             </div>
-                       </div>
-                   </div>     
+                       </div>     
                     </div> 
                  </div> 
-        </div>           
+            </div>           
                                
     </div>
      

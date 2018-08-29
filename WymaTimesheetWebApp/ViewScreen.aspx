@@ -6,6 +6,8 @@
 <head runat="server">
     <title>View Timesheet</title>
     <link rel="stylesheet" type="text/css" href="CSS/Wyma_Webapp_SS.css" />
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    
 </head>
 <body>
     <form id="VS" runat="server">
@@ -21,7 +23,7 @@
 
             </div>
         </div>
-
+        
          <div id="Main">
                 <div id="Data"> 
                    <div style="text-align:center">
@@ -48,27 +50,40 @@
                        
                    </div>
                    <div id="TableSheet">
-                        <label class="Text">Jobs and Assemblies:</label>
+                        <asp:label runat="server" ID="viewJALabel" CssClass="Text" Text="Jobs and Assemblies:"/>
                         <asp:GridView runat="server" ID="JobsAssembliesViewGrid" CssClass="Text" HeaderStyle-BorderWidth="2px"></asp:GridView>
 
-                       <label class="Text">Non-Charge Hours:</label>
+                       <asp:label runat="server" id="viewNCLabel" CssClass="Text" Text="Non-Charge Hours:"/>
                        <asp:GridView runat="server" ID="NonChargeViewGrid" CssClass="Text" HeaderStyle-BorderWidth="2px"></asp:GridView>
                         
-                   </div>     
+                   </div>  
+                    <br/>
+                   <div id="Sign-ManagerSelection">
+                       <label class="Text">Select Manager For Review:</label>
+                       <asp:DropDownList runat="server" ></asp:DropDownList>
+                       <br/>
+                       <label class="Text">Sign Here:</label>
+                       <br/>
+                       <input runat="server" type="hidden" name="hiddenfield" id="hiddenfield" value="" />
+   
+                       <canvas runat="server" id="sigPad" style="border: thin solid #000000"></canvas>
+                       <script src="js/sig-pad.js"></script>
+                       
+                           </div>
                                
+            
+                    <div id="FooterRap">
+                        <div id="Footer1">
+
+                            <button runat="server" id="btnDone" class="btnsubmit" style="float:left;" onclick="saveSig(); return"  onserverclick="btnDoneVSClick">Done</button>
+                            <script src="js/sig-pad.js"></script>
+                        </div>
+                        <div id="Footer2">
+
+                            <button runat="server" id="btnBackVS" class="btncancel" style=" float:right;" onserverclick="btnBackVSClick">Back</button>
+
+                    </div>
                 </div>
-        </div>
-        <div id="FooterRap">
-            <div id="Footer1">
-
-                <button runat="server" id="btnDone" class="btnsubmit" style="float:left;" onserverclick="btnDoneVSClick">Done</button>
-
-            </div>
-            <div id="Footer2">
-
-                <button runat="server" id="btnBackVS" class="btncancel" style=" float:right;" onserverclick="btnBackVSClick">Back</button>
-
-
             </div>
         </div>
     </div>
