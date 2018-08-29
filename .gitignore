@@ -28,3 +28,5 @@ WymaTimesheetWebApp/Testing.aspx.cs
 WymaTimesheetWebApp/bin/WymaTimesheetWebApp.dll
 WymaTimesheetWebApp/bin/WymaTimesheetWebApp.pdb
 WymaTimesheetWebApp/Global.asax.cs
+.vs/config/applicationhost.config
+WymaTimesheetWebApp/Global.asax.cs

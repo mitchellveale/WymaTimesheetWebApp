@@ -30,7 +30,16 @@
                         <br/>           
                     </div>
                     <div id="FileList">
-                        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                        <asp:GridView ID="ManagerView" runat="server" OnRowCommand="viewTimeSheet_RowCommand" CssClass="Text" >
+                            <Columns>
+                                <asp:TemplateField HeaderText="View Timesheet">
+                                    <ItemTemplate>
+                                        <asp:Button runat="server" ID="viewBtn" Text="View" CommandName="ViewTimeSheet" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                            
                     </div>
                 </div>
         </div>

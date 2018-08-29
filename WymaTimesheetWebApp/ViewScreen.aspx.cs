@@ -25,9 +25,9 @@ namespace WymaTimesheetWebApp
                 BreakTimeData.Text = Global.DictUsrData[userName].LunchTime;
                 TotalTimeWorkedData.Text = Global.TimeToString(Global.DictUsrData[userName].TotalHours);
 
-                //FIXME: Find where sam is storing the date that the user entered
+               
                 dataFile.CreateHeader(userName, Global.DictUsrData[userName].Date);
-                //Takes Edited Data and Pastes in tables on screen
+             
                 
                 DataTable CHTable = Session["CHtab"] as DataTable;
                 DataTable NCTable = Session["NCtab"] as DataTable;
