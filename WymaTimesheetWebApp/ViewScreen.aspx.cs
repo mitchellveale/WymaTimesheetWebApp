@@ -52,6 +52,24 @@ namespace WymaTimesheetWebApp
                     dataFile.AddData(jobType, orderNumber, task, time, customer);
                 }
 
+                foreach (DataRow row in NCTable.Rows)
+                {
+                    JobType jobType = JobType.NonCharge;
+                    string orderNumber = row["Non-Charge Comment"].ToString();
+                    string task = row["NC Code"].ToString();
+
+                    //Calculate 'time' in a float format
+                    string[] strSplit = row["Hours:Mins"].ToString().Split(':');
+
+                    float time = 0f;
+                    //I'm parsing as an int because doing it as a float would mean potentially having to
+                    //deal with the value being +/- phi
+                    time += int.Parse(strSplit[0]);
+                    time += (float)(int.Parse(strSplit[1])) / 60;
+
+                    dataFile.AddData(jobType, orderNumber, task, time, "");
+                }
+
                 if (CHTable.Rows.Count != 0)
                 {
                     JobsAssembliesViewGrid.DataSource = CHTable;
@@ -69,8 +87,11 @@ namespace WymaTimesheetWebApp
                     viewNCLabel.Visible = false;
 
 
-                
-
+                List<string> managerNames = Global.ReadDataList("SELECT RESOURCENAME FROM EMPLOYEES WHERE MANAGER='TRUE';");
+                foreach (string str in managerNames)
+                {
+                    ManagerDropdown.Items.Add(str);
+                }
 
 
                 //
@@ -90,10 +111,12 @@ namespace WymaTimesheetWebApp
 
         protected void btnDoneVSClick(object sender, EventArgs e)
         {
-            Response.Write("<script>alert('" + hiddenfield.Value + "')</script>");
 
             //Write data file and delete it from Global's dictionary
             string userName = Session["UsrName"].ToString();
+            //Response.Write("<script>alert('" + hiddenfield.Value + "')</script>");
+            Global.UserData[userName].Signature = hiddenfield.Value.Split(',')[1];
+            Global.UserData[userName].AssignManager(ManagerDropdown.SelectedValue);
             Global.UserData[userName].Write();
             Global.UserData[userName].Export();
             Global.UserData.Remove(userName);

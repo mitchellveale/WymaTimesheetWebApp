@@ -22,6 +22,7 @@ namespace WymaTimesheetWebApp
         {
             public string name;
             public String date;
+            public string manager;
         }
 
         public static Dictionary<string, DataTable> CHDATA  = new Dictionary<string, DataTable>();
@@ -90,17 +91,17 @@ namespace WymaTimesheetWebApp
                 bool alreadyExists = false;
                 foreach (DataFileInfo dfi in UnapprovedFiles)
                 {
-                    if (file.Name == $"{dfi.name} {dfi.date}")
+                    if (file.Name == $"{dfi.name} {dfi.date} {dfi.manager}")
                         alreadyExists = true;
                 }
                 if (!alreadyExists)
                 {
-                    //this will also have the manager name in index '2' eventually
                     string[] fileName = file.Name.Split(' ');
                     UnapprovedFiles.Add(new DataFileInfo
                     {
                         name = fileName[0],
-                        date = fileName[1]
+                        date = fileName[1],
+                        manager = fileName[3]
                     });
                 }
             }
@@ -130,24 +131,7 @@ namespace WymaTimesheetWebApp
             }
         }
 
-<<<<<<< HEAD
         public static List<string> ReadDataList(String command, string serverIP = "10.1.123.97")
-
-=======
-<<<<<<< HEAD
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.115.61")
-=======
-<<<<<<< HEAD
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.123.97")
-=======
-<<<<<<< HEAD
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.115.61")
-=======
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.123.207")
->>>>>>> 874ffd9124a02eee07dbde897ac3628d263d4de4
->>>>>>> 85f7f613038abe39f3fd63c95ce3b4b16e937a2e
->>>>>>> b9f39d83fad0815df672c740164a39ae8429dc64
->>>>>>> 69067d2fc6d25963a1057240bd872e60f7d2e3b4
         {
             List<string> data = new List<string>();
 
@@ -179,24 +163,7 @@ namespace WymaTimesheetWebApp
 
         }
 
-<<<<<<< HEAD
-
         public static string ReadDataString(String command, string serverIP = "10.1.123.97")
-=======
-<<<<<<< HEAD
-        public static string ReadDataString(String command, string serverIP = "10.1.115.61")
-=======
-<<<<<<< HEAD
-        public static string ReadDataString(String command, string serverIP = "10.1.123.97")
-=======
-<<<<<<< HEAD
-        public static string ReadDataString(String command, string serverIP = "10.1.115.61")
-=======
-        public static string ReadDataString(String command, string serverIP = "10.1.123.207")
->>>>>>> 874ffd9124a02eee07dbde897ac3628d263d4de4
->>>>>>> 85f7f613038abe39f3fd63c95ce3b4b16e937a2e
->>>>>>> b9f39d83fad0815df672c740164a39ae8429dc64
->>>>>>> 69067d2fc6d25963a1057240bd872e60f7d2e3b4
         {
             string data = "";
 
@@ -240,6 +207,7 @@ namespace WymaTimesheetWebApp
             public bool Accepted;
             public string EmployeeCode;
             public string Date;
+            public string Manager;
         }
 
         public struct DataEntry
@@ -258,6 +226,19 @@ namespace WymaTimesheetWebApp
             get
             {
                 return data;
+            }
+        }
+
+        private string signature;
+        public string Signature
+        {
+            get
+            {
+                return signature;
+            }
+            set
+            {
+                signature = value;
             }
         }
 
@@ -289,12 +270,19 @@ namespace WymaTimesheetWebApp
             data.Add(newEntry);
         }
 
+        public void AssignManager(string Manager)
+        {
+            header.Manager = Manager;
+        }
+
         public void Write()
         {
             StringBuilder builder = new StringBuilder();
             int accepted = header.Accepted ? 1 : 0;
-            string headerInput = string.Format($"{accepted.ToString()},{header.EmployeeCode},{header.Date};");
+            string headerInput = string.Format($"{accepted.ToString()},{header.EmployeeCode},{header.Date},{header.Manager};");
             builder.AppendFormat(headerInput);
+            string sig = string.Format($"{signature};");
+            builder.AppendFormat(sig);
             string dataInput;
             foreach (DataEntry de in data)
             {
@@ -302,14 +290,15 @@ namespace WymaTimesheetWebApp
                 dataInput = string.Format($"{jobTypeInt.ToString()},{de.OrderNum},{de.Task},{de.Time.ToString()},{de.Customer};");
                 builder.AppendFormat(dataInput);
             }
-            string filePath = $@"D:\Output Data\{header.EmployeeCode} {header.Date}.Wyma";
+            string filePath = $@"D:\Output Data\{header.EmployeeCode} {header.Date} {header.Manager}.Wyma";
             //We *MAY* want a simple encryption algorithm to make the file unreadable to anybody that may accidentally encounter it.
             File.WriteAllText( filePath, builder.ToString());
 
             Global.UnapprovedFiles.Add(new Global.DataFileInfo
             {
                 name = header.EmployeeCode,
-                date = header.Date
+                date = header.Date,
+                manager = header.Manager
             });
         }
 
@@ -323,6 +312,10 @@ namespace WymaTimesheetWebApp
             header.Accepted = int.Parse(headerData[0]) != 0;
             header.Date = headerData[1];
             header.EmployeeCode = headerData[2];
+            header.Manager = headerData[3];
+            rows.RemoveAt(0);
+            //get signature data
+            signature = rows[0];
             rows.RemoveAt(0);
             //Add TimeSheet Data
             foreach (string str in rows)
