@@ -60,13 +60,17 @@
                     <br/>
                    <div id="Sign-ManagerSelection">
                        <label class="Text">Select Manager For Review:</label>
-                       <asp:DropDownList runat="server" ></asp:DropDownList>
+                       <asp:DropDownList ID="ManagerDropdown" runat="server" ></asp:DropDownList>
                        <br/>
                        <label class="Text">Sign Here:</label>
                        <br/>
                        <input runat="server" type="hidden" name="hiddenfield" id="hiddenfield" value="" />
    
+<<<<<<< HEAD
+                       <canvas runat="server" id="sigPad" style="border: thin solid #000000; max-height:inherit; max-width:inherit;"></canvas>
+=======
                        <canvas runat="server" id="sigPad" style="border: thin solid #000000; max-height:inherit; max-width:inherit;" ></canvas>
+>>>>>>> e556007cfa65fb67913a07dbf050465920020440
                        <script src="js/sig-pad.js"></script>
                        
                            </div>
