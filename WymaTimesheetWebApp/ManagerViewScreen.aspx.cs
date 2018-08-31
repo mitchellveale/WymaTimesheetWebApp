@@ -15,7 +15,7 @@ namespace WymaTimesheetWebApp
         //have a button by each one that the allows the manager to view it.
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ManagerName.InnerText = Session["ManagerName"].ToString();
         }
     }
 }

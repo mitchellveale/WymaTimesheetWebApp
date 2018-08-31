@@ -131,6 +131,10 @@ namespace WymaTimesheetWebApp
             }
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e556007cfa65fb67913a07dbf050465920020440
         public static List<string> ReadDataList(String command, string serverIP = "10.1.123.97")
         {
             List<string> data = new List<string>();
@@ -165,6 +169,7 @@ namespace WymaTimesheetWebApp
 
         public static string ReadDataString(String command, string serverIP = "10.1.123.97")
         {
+
             string data = "";
 
             FbConnection con = new FbConnection($@"Server={serverIP};User=SYSDBA;Password=masterkey;Database={serverIP}:D:\fdb\testdb.fdb;ServerType=0;Port=3050;");

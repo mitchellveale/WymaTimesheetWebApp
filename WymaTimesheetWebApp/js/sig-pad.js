@@ -21,3 +21,10 @@ function saveSig() {
     var save = signaturePad.toDataURL("image/svg+xml");
     document.getElementById("hiddenfield").value = save;
 }
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> e556007cfa65fb67913a07dbf050465920020440
