@@ -15,7 +15,13 @@ namespace WymaTimesheetWebApp
         //have a button by each one that the allows the manager to view it.
         protected void Page_Load(object sender, EventArgs e)
         {
-            ManagerName.InnerText = Session["ManagerName"].ToString();
+            ManagerName.InnerText = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{Session["ManagerName"].ToString()}';");
+                
+        }
+
+        protected void viewTimeSheet_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
         }
     }
 }
