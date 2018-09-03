@@ -144,10 +144,10 @@
     max-height: 100px;
     text-align: center;
 }
-.labels 
-{
+.labels {
     display: block;
-    Height: 21px;
+    Height: 75px;
+    Width: 200px;
 }
 
 .Dropdown 

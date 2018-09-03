@@ -12,7 +12,6 @@ namespace WymaTimesheetWebApp
 {
     public partial class ViewScreen : System.Web.UI.Page
     {
-        private List<string> DBManagerNames;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -89,7 +88,6 @@ namespace WymaTimesheetWebApp
                     viewNCLabel.Visible = false;
 
 
-<<<<<<< HEAD
                 List<string> managerNames = Global.ReadDataList("SELECT RESOURCENAME FROM EMPLOYEES WHERE MANAGER='TRUE';");
                 foreach (string str in managerNames)
                 {
@@ -97,9 +95,8 @@ namespace WymaTimesheetWebApp
                 }
 
 
-                //
-=======
->>>>>>> e556007cfa65fb67913a07dbf050465920020440
+                
+
                 Global.UserData.Add(userName, dataFile);
             }
             

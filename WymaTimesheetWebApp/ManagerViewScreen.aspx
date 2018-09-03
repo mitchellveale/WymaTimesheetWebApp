@@ -44,15 +44,10 @@
                 </div>
         </div>
         <div id="FooterRap">
-            <div id="Footer1">
-
-                <button id="btnSubmitDT" class="btnsubmit" style="float:left;">Submit</button>
-
-            </div>
+       
             <div id="Footer2">
 
-                <button id="btnCancelDT" class="btncancel" style=" float:right;">Cancel</button>
-
+                <button runat="server" id="btnCancelDT" class="btncancel" style=" float:right;" onserverclick="btnMVBack">Back</button>
 
             </div>
         </div>

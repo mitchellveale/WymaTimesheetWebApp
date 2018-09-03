@@ -39,7 +39,8 @@ namespace WymaTimesheetWebApp
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            Global.DictUsrData.Clear();  
+            Global.DictUsrData.Clear();
+            RefreshFiles();
         }
 
 
@@ -82,7 +83,7 @@ namespace WymaTimesheetWebApp
 
         }
 
-        public void RefreshFiles()
+        public static void RefreshFiles()
         {
             DirectoryInfo d = new DirectoryInfo(@"D:\Output Data");
             FileInfo[] Files = d.GetFiles("*.Wyma");
@@ -131,11 +132,8 @@ namespace WymaTimesheetWebApp
             }
         }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> e556007cfa65fb67913a07dbf050465920020440
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.123.97")
+        public static List<string> ReadDataList(String command, string serverIP = "10.1.114.189")
         {
             List<string> data = new List<string>();
 
@@ -167,7 +165,7 @@ namespace WymaTimesheetWebApp
 
         }
 
-        public static string ReadDataString(String command, string serverIP = "10.1.123.97")
+        public static string ReadDataString(String command, string serverIP = "10.1.114.189")
         {
 
             string data = "";
