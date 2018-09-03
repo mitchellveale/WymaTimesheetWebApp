@@ -89,20 +89,22 @@ namespace WymaTimesheetWebApp
             FileInfo[] Files = d.GetFiles("*.Wyma");
             foreach (FileInfo file in Files)
             {
+                string fName = file.Name.Split('.')[0];
                 bool alreadyExists = false;
                 foreach (DataFileInfo dfi in UnapprovedFiles)
                 {
-                    if (file.Name == $"{dfi.name} {dfi.date} {dfi.manager}")
+                    if (fName == $"{dfi.name} {dfi.date} {dfi.manager}")
                         alreadyExists = true;
                 }
                 if (!alreadyExists)
                 {
-                    string[] fileName = file.Name.Split(' ');
+                    string[] fileName = fName.Split(' ');
+
                     UnapprovedFiles.Add(new DataFileInfo
                     {
-                        name = fileName[0],
-                        date = fileName[1],
-                        manager = fileName[3]
+                        name = " " + fileName[1],
+                        date = fileName[2],
+                        manager = " " + fileName[4]
                     });
                 }
             }
@@ -133,7 +135,7 @@ namespace WymaTimesheetWebApp
         }
 
 
-        public static List<string> ReadDataList(String command, string serverIP = "10.1.114.189")
+        public static List<string> ReadDataList(String command, string serverIP = "127.0.0.1")
         {
             List<string> data = new List<string>();
 
@@ -165,7 +167,7 @@ namespace WymaTimesheetWebApp
 
         }
 
-        public static string ReadDataString(String command, string serverIP = "10.1.114.189")
+        public static string ReadDataString(String command, string serverIP = "127.0.0.1")
         {
 
             string data = "";

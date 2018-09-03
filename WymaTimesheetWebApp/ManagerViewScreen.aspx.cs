@@ -28,7 +28,6 @@ namespace WymaTimesheetWebApp
 
             ShowFiles(ManagerNameData);
             
-
         }
 
         protected void viewTimeSheet_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -40,7 +39,6 @@ namespace WymaTimesheetWebApp
         {
             List<Global.DataFileInfo> UnapprovedFiles = new List<Global.DataFileInfo>();
             DataTable unsignedTimesheets = Session["MangV"] as DataTable;
-
 
             foreach (Global.DataFileInfo data in UnapprovedFiles)
             {
