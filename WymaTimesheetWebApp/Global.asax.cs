@@ -37,6 +37,9 @@ namespace WymaTimesheetWebApp
 
         public static List<DataFileInfo> UnapprovedFiles = new List<DataFileInfo>();
 
+        //TODO: Make this read only
+        public static string OutputPath = $@"D:\Output Data\";
+        public static string ExportPath = $@"D:\Output Data\CSV\";
 
         protected void Application_Start(object sender, EventArgs e)
         {
@@ -86,7 +89,7 @@ namespace WymaTimesheetWebApp
 
         public static void RefreshFiles()
         {
-            DirectoryInfo d = new DirectoryInfo(@"D:\Output Data");
+            DirectoryInfo d = new DirectoryInfo(OutputPath);
             FileInfo[] Files = d.GetFiles("*.Wyma");
             foreach (FileInfo file in Files)
             {
@@ -297,7 +300,7 @@ namespace WymaTimesheetWebApp
                 dataInput = string.Format($"{jobTypeInt.ToString()},{de.OrderNum},{de.Task},{de.Time.ToString()},{de.Customer};");
                 builder.AppendFormat(dataInput);
             }
-            string filePath = $@"D:\Output Data\{header.EmployeeCode} {header.Date} {header.Manager}.Wyma";
+            string filePath = $@"{Global.OutputPath}{header.EmployeeCode} {header.Date} {header.Manager}.Wyma";
             //We *MAY* want a simple encryption algorithm to make the file unreadable to anybody that may accidentally encounter it.
             File.WriteAllText( filePath, builder.ToString());
 
@@ -311,17 +314,11 @@ namespace WymaTimesheetWebApp
 
         public void Read(string FileName)
         {
-            string rawInput = File.ReadAllText($@"D:\Output Data\{FileName}.Wyma");
+            string rawInput = File.ReadAllText($@"{Global.OutputPath}{FileName}.Wyma");
             List<string> rows = rawInput.Split(';').ToList<string>();
 
             //Adding header data
             string[] headerData = rows[0].Split(',');
-            string debugData = "";
-            foreach (string str in headerData)
-            {
-                debugData += $"{str}, ";
-            }
-            Debug.WriteLine($"Header data is '{debugData}'");
             header.Accepted = int.Parse(headerData[0]) != 0;
             header.EmployeeCode = headerData[1];
             header.Date = headerData[2];
@@ -335,7 +332,6 @@ namespace WymaTimesheetWebApp
             foreach (string str in rows)
             {
                 string[] rowData = str.Split(',');
-                Debug.WriteLine($"Entire row's data is '{str}'");
                 JobType jobType = (JobType) int.Parse(rowData[0]);
                 float time = float.Parse(rowData[3]);
 
@@ -392,7 +388,7 @@ namespace WymaTimesheetWebApp
             int date = int.Parse(Regex.Replace(header.Date, "[^0-9]+", string.Empty));
             //deal with naming the file here
             string fileName = $"{header.EmployeeCode} {date.ToString()}{QRCode.ToString()}";
-            File.WriteAllText($@"D:\Output Data\CSV\{fileName}.csv", builder.ToString());
+            File.WriteAllText($@"{Global.ExportPath}{fileName}.csv", builder.ToString());
             //remove from unapproved files
             for (int i = 0; i < Global.UnapprovedFiles.Count; i++)
             {
@@ -405,8 +401,8 @@ namespace WymaTimesheetWebApp
             //move datafile to 'accepted' folder
             header.Accepted = true;
             //TODO: deal with re-writing the file here.
-            string from = $@"D:\Output Data\{header.EmployeeCode} {header.Date} {header.Manager}.Wyma";
-            string to = $@"D:\Output Data\Accepted Files\{header.EmployeeCode} {header.Date}.Wyma";
+            string from = $@"{Global.OutputPath}{header.EmployeeCode} {header.Date} {header.Manager}.Wyma";
+            string to = $@"{Global.OutputPath}Accepted Files\{header.EmployeeCode} {header.Date}.Wyma";
             File.Move(from, to);
 
         }

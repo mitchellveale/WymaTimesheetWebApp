@@ -20,7 +20,7 @@ namespace WymaTimesheetWebApp
 
             DataTable unsignedTimesheets = new DataTable();
             unsignedTimesheets.Columns.Add("Name");
-            unsignedTimesheets.Columns.Add("Date");
+            unsignedTimesheets.Columns.Add("Date Submitted");
             ManagerView.DataSource = unsignedTimesheets;
             ManagerView.DataBind();
 
@@ -38,7 +38,7 @@ namespace WymaTimesheetWebApp
         private void ShowFiles(string manager)
         {
 
-            List<Global.DataFileInfo> UnapprovedFiles = new List<Global.DataFileInfo>();
+            List<Global.DataFileInfo> UnapprovedFiles = Global.UnapprovedFiles;
             DataTable unsignedTimesheets = Session["MangV"] as DataTable;
 
             foreach (Global.DataFileInfo data in UnapprovedFiles)
@@ -47,8 +47,8 @@ namespace WymaTimesheetWebApp
                 {
                     DataRow dr = unsignedTimesheets.NewRow();
 
-                    dr["Name"] = data.name;
-                    dr["Date"] = data.date;
+                    dr["Name"] = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{data.name}';");
+                    dr["Date Submitted"] = data.date;
 
                     unsignedTimesheets.Rows.Add(dr);
                     ManagerView.DataSource = unsignedTimesheets;
