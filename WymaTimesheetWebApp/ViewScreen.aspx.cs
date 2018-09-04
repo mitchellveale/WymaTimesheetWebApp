@@ -120,7 +120,6 @@ namespace WymaTimesheetWebApp
             Global.UserData[userName].Signature = hiddenfield.Value.Split(',')[1];
             Global.UserData[userName].AssignManager(ManagerDropdown.SelectedValue);
             Global.UserData[userName].Write();
-            Global.UserData[userName].Export();
             Global.UserData.Remove(userName);
 
             Global.DictUsrData.Remove(Session["UsrName"].ToString());

@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace WymaTimesheetWebApp
 {
@@ -102,6 +103,7 @@ namespace WymaTimesheetWebApp
 
                     UnapprovedFiles.Add(new DataFileInfo
                     {
+                        //FIXME: In production these spaces will break everything.
                         name = " " + fileName[1],
                         date = fileName[2],
                         manager = " " + fileName[4]
@@ -314,18 +316,26 @@ namespace WymaTimesheetWebApp
 
             //Adding header data
             string[] headerData = rows[0].Split(',');
+            string debugData = "";
+            foreach (string str in headerData)
+            {
+                debugData += $"{str}, ";
+            }
+            Debug.WriteLine($"Header data is '{debugData}'");
             header.Accepted = int.Parse(headerData[0]) != 0;
-            header.Date = headerData[1];
-            header.EmployeeCode = headerData[2];
+            header.EmployeeCode = headerData[1];
+            header.Date = headerData[2];
             header.Manager = headerData[3];
             rows.RemoveAt(0);
             //get signature data
             signature = rows[0];
             rows.RemoveAt(0);
             //Add TimeSheet Data
+            rows.RemoveAt(rows.Count - 1);
             foreach (string str in rows)
             {
                 string[] rowData = str.Split(',');
+                Debug.WriteLine($"Entire row's data is '{str}'");
                 JobType jobType = (JobType) int.Parse(rowData[0]);
                 float time = float.Parse(rowData[3]);
 
@@ -368,8 +378,8 @@ namespace WymaTimesheetWebApp
         public void Export()
         {
             StringBuilder builder = new StringBuilder();
-            //this first "Date" needs to be the end of the week date
-            string initialLine = string.Format($"InProgress,,Employee,{header.EmployeeCode},FALSE,{header.Date},Waiting Approval,,,Made by a super amazing WebApp,{header.Date}");
+            //TODO:this first "Date" needs to be the end of the week date
+            string initialLine = string.Format($"InProgress,,Employee,{header.EmployeeCode},FALSE,{header.Date},Approved,,,Made by a super amazing WebApp,{header.Date}");
             builder.AppendLine(initialLine);
             foreach (DataEntry de in data)
             {
@@ -378,10 +388,27 @@ namespace WymaTimesheetWebApp
             }
             Random random = new Random();
             int QRCode = random.Next(100000, 999999);
+            Debug.WriteLine($"Date is '{header.Date}'");
             int date = int.Parse(Regex.Replace(header.Date, "[^0-9]+", string.Empty));
             //deal with naming the file here
             string fileName = $"{header.EmployeeCode} {date.ToString()}{QRCode.ToString()}";
             File.WriteAllText($@"D:\Output Data\CSV\{fileName}.csv", builder.ToString());
+            //remove from unapproved files
+            for (int i = 0; i < Global.UnapprovedFiles.Count; i++)
+            {
+                Global.DataFileInfo dfi = Global.UnapprovedFiles[i];
+                if (dfi.name == header.EmployeeCode && dfi.date == header.Date)
+                {
+                    Global.UnapprovedFiles.RemoveAt(i);
+                }
+            }
+            //move datafile to 'accepted' folder
+            header.Accepted = true;
+            //TODO: deal with re-writing the file here.
+            string from = $@"D:\Output Data\{header.EmployeeCode} {header.Date} {header.Manager}.Wyma";
+            string to = $@"D:\Output Data\Accepted Files\{header.EmployeeCode} {header.Date}.Wyma";
+            File.Move(from, to);
+
         }
     }
     #endregion

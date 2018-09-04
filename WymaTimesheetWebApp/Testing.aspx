@@ -11,9 +11,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-<<<<<<< HEAD
-            
-=======
+
             <asp:Label ID="LabelBoi" runat="server" Text="Pressa da button boi"></asp:Label>
             <br />
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
@@ -29,7 +27,6 @@
             <asp:ScriptManager ID="Scriptmanager1" runat="server"/>
             <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
             <ajaxToolkit:AutoCompleteExtender runat="server" ID="AutoCompleteExtender" TargetControlID="TextBox4" MinimumPrefixLength="1" EnableCaching="true" CompletionInterval="10" CompletionSetCount="3" ServiceMethod="GetValues"></ajaxToolkit:AutoCompleteExtender>
->>>>>>> master
         </div>
     </form>
 </body>
