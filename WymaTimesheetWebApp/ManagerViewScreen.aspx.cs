@@ -14,24 +14,60 @@ namespace WymaTimesheetWebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            string ManagerNameData = Session["ManagerName"].ToString();
-            ManagerName.InnerText = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{ManagerNameData}';");
+            if (!IsPostBack)
+            {
 
-            DataTable unsignedTimesheets = new DataTable();
-            unsignedTimesheets.Columns.Add("Name");
-            unsignedTimesheets.Columns.Add("Date Submitted");
-            ManagerView.DataSource = unsignedTimesheets;
-            ManagerView.DataBind();
+                //Functions that run on page load
+                string ManagerNameData = Session["ManagerName"].ToString();
+                ManagerName.InnerText = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{ManagerNameData}';");
 
-            Session["MangV"] = unsignedTimesheets;
+                DataTable unsignedTimesheets = new DataTable();
+                unsignedTimesheets.Columns.Add("Name");
+                unsignedTimesheets.Columns.Add("Date Submitted");
+                ManagerView.DataSource = unsignedTimesheets;
+                ManagerView.DataBind();
 
-            ShowFiles(ManagerNameData);
+                Session["MangV"] = unsignedTimesheets;
+
+                ShowFiles(ManagerNameData);
+
+            }
             
         }
 
         protected void viewTimeSheet_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            //Allow manager to select a timesheet and view selected 
+
+            //Accesses Unsigned Timesheets
+            DataTable unsignedTimesheets = Session["MangV"] as DataTable;
+            List<Global.DataFileInfo> UnapprovedFiles = Global.UnapprovedFiles;
+
+
+            if (e.CommandName == "ViewTimeSheet")
+            {
+                DataFile df = new DataFile();
+
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                string usrName = Global.ReadDataString($"SELECT RESOURCENAME FROM EMPLOYEES WHERE EMPNAME='{unsignedTimesheets.Rows[index].Field<string>(0)}';");
+                string date = unsignedTimesheets.Rows[index].Field<string>(1);
+                string managerName = Session["ManagerName"].ToString();
+
+
+
+
+
+                df.Read($"{usrName} {date} {managerName}");
+                DataTable FileData = df;
+
+                ManagerView.DataSource = FileData;
+                ManagerView.DataBind();
+
+                Response.Write("<script>alert('"+ usrName +"')</script>");
+                
+
+            }
 
         }
 

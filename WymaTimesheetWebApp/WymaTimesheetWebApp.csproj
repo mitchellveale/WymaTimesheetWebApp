@@ -93,7 +93,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="ExportTest.aspx" />
     <Content Include="Job-AssSelection.aspx" />
     <Content Include="js\sig-pad.js" />
     <Content Include="ManagerLogin.aspx" />
@@ -117,13 +116,6 @@
     </Compile>
     <Compile Include="DateAndTime.aspx.designer.cs">
       <DependentUpon>DateAndTime.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ExportTest.aspx.cs">
-      <DependentUpon>ExportTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ExportTest.aspx.designer.cs">
-      <DependentUpon>ExportTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -118,7 +118,7 @@ namespace WymaTimesheetWebApp
         protected void BtnSubmitHSClick(object sender, EventArgs e)
         {
 
-
+            //Checks if total hours is accurate to hours appied and then saves data and sends user to next page.
             if (TotalHoursLabel.Text != TotalHoursAppLabel.Text)
             {
                 Response.Write("<script>alert('Please make sure the total hours you have applied equals the total hours you worked before submiting.');</script>");
@@ -247,6 +247,7 @@ namespace WymaTimesheetWebApp
 
         protected void DataCHView_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            //Removes Charge Hours Row from button
             DataTable CHTable = Session["CHtab"] as DataTable;
             if (e.CommandName == "RemoveRow")
             {
@@ -267,6 +268,7 @@ namespace WymaTimesheetWebApp
 
         protected void DataNCView_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+
             DataTable NCTable = Session["NCtab"] as DataTable;
             if (e.CommandName == "RemoveRow")
             {
