@@ -6,11 +6,10 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using FirebirdSql.Data.FirebirdClient;
-using QRCoder;
-using System.Drawing;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Configuration;
 using System.Diagnostics;
 
 namespace WymaTimesheetWebApp
@@ -38,23 +37,25 @@ namespace WymaTimesheetWebApp
         public static List<DataFileInfo> UnapprovedFiles = new List<DataFileInfo>();
 
         //TODO: Make this read only
-        public static string OutputPath = $@"D:\Output Data\";
-        public static string ExportPath = $@"D:\Output Data\CSV\";
+        public static string OutputPath;
+        public static string ExportPath;
+        private static string DBConnection;
 
         protected void Application_Start(object sender, EventArgs e)
         {
             Global.DictUsrData.Clear();
+
+            //get all application configuration data
+            DBConnection = ConfigurationManager.AppSettings["DBConnection"];
+            OutputPath = ConfigurationManager.AppSettings["OutputPath"];
+            ExportPath = ConfigurationManager.AppSettings["ExportPath"];
+
+            string ServerIP = ConfigurationManager.AppSettings["ServerIP"];
+            DBConnection = DBConnection.Replace("$$serverIP$$", ServerIP);
+
+            Debug.WriteLine(DBConnection);
+
             RefreshFiles();
-        }
-
-
-
-        public static Bitmap QRCode(string EncodeValue)
-        {
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrData = qrGenerator.CreateQrCode(EncodeValue, QRCodeGenerator.ECCLevel.Q);
-            QRCode qrCode = new QRCode(qrData);
-            return qrCode.GetGraphic(20);
         }
 
         public static float TimeToFloat(string Time)
@@ -116,7 +117,7 @@ namespace WymaTimesheetWebApp
         }
 
     #region DBConn
-    public static bool FDBNonQuery(string serverIP, string command)
+    public static bool FDBNonQuery(string command)
         {
             try
             {
@@ -125,7 +126,7 @@ namespace WymaTimesheetWebApp
                     CommandType = CommandType.Text
                 };
 
-                using (cmd.Connection = new FbConnection($@"Server={serverIP};User=SYSDBA;Password=masterkey;Database={serverIP}:D:\fdb\testdb.fdb;ServerType=0;Port=3050;"))
+                using (cmd.Connection = new FbConnection(DBConnection))
                 {
                     cmd.Connection.Open();
                     cmd.ExecuteNonQuery();
@@ -140,11 +141,11 @@ namespace WymaTimesheetWebApp
         }
 
 
-        public static List<string> ReadDataList(String command, string serverIP = "127.0.0.1")
+        public static List<string> ReadDataList(String command)
         {
             List<string> data = new List<string>();
 
-            FbConnection con = new FbConnection($@"Server={serverIP};User=SYSDBA;Password=masterkey;Database={serverIP}:D:\fdb\testdb.fdb;ServerType=0;Port=3050;");
+            FbConnection con = new FbConnection(DBConnection);
             try
             {
                 con.Open();
@@ -172,12 +173,12 @@ namespace WymaTimesheetWebApp
 
         }
 
-        public static string ReadDataString(String command, string serverIP = "127.0.0.1")
+        public static string ReadDataString(String command)
         {
 
             string data = "";
 
-            FbConnection con = new FbConnection($@"Server={serverIP};User=SYSDBA;Password=masterkey;Database={serverIP}:D:\fdb\testdb.fdb;ServerType=0;Port=3050;");
+            FbConnection con = new FbConnection(DBConnection);
             try
             {
                 con.Open();
