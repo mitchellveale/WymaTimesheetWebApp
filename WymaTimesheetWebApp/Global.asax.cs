@@ -6,8 +6,6 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using FirebirdSql.Data.FirebirdClient;
-using QRCoder;
-using System.Drawing;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -58,16 +56,6 @@ namespace WymaTimesheetWebApp
             Debug.WriteLine(DBConnection);
 
             RefreshFiles();
-        }
-
-
-
-        public static Bitmap QRCode(string EncodeValue)
-        {
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrData = qrGenerator.CreateQrCode(EncodeValue, QRCodeGenerator.ECCLevel.Q);
-            QRCode qrCode = new QRCode(qrData);
-            return qrCode.GetGraphic(20);
         }
 
         public static float TimeToFloat(string Time)

@@ -115,9 +115,6 @@ C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\rosl
 C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\AjaxControlToolkit.dll
 C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\FirebirdSql.Data.FirebirdClient.dll
 C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\QRCoder.dll
-C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\System.Drawing.Common.dll
-C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\UnityEngine.dll
 C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\FirebirdSql.Data.FirebirdClient.pdb
 C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\mitch\Documents\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\obj\Debug\WymaTimesheetWebApp.csprojResolveAssemblyReference.cache
