@@ -54,9 +54,6 @@ C:\Users\sburt\Lincoln High School\OneDrive - Lincoln High School\GitHub\WymaTim
 C:\Users\sburt\Lincoln High School\OneDrive - Lincoln High School\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\AjaxControlToolkit.dll
 C:\Users\sburt\Lincoln High School\OneDrive - Lincoln High School\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\FirebirdSql.Data.FirebirdClient.dll
 C:\Users\sburt\Lincoln High School\OneDrive - Lincoln High School\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\sburt\Lincoln High School\OneDrive - Lincoln High School\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\QRCoder.dll
-C:\Users\sburt\Lincoln High School\OneDrive - Lincoln High School\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\System.Drawing.Common.dll
-C:\Users\sburt\Lincoln High School\OneDrive - Lincoln High School\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\UnityEngine.dll
 C:\Users\sburt\Lincoln High School\OneDrive - Lincoln High School\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\FirebirdSql.Data.FirebirdClient.pdb
 C:\Users\sburt\Lincoln High School\OneDrive - Lincoln High School\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\sburt\Lincoln High School\OneDrive - Lincoln High School\GitHub\WymaTimesheetWebApp\WymaTimesheetWebApp\obj\Debug\WymaTimesheetWebApp.dll

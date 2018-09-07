@@ -23,12 +23,33 @@
         </div>
 
          <div id="Main" >
-                <div id="Data"> 
-                    <div id="Form">
-                        <label class="Text">Name:</label>
-                        <label runat="server" id="ManagerName" class="Text"></label>
-                        <br/>           
+                <div id="Data">   
+                   <div id="TopData" class="border" >
+                       <div style="text-align:center; margin-bottom:25px;">
+                            <div id="TD_Info" >
+                                <p>
+                                    <label class="Text">Manager Name:</label>
+                                        <label runat="server" id="ManagerName" class="Text"></label>
+                                </p>
+                                <p>
+                                    <label id="NameView" class="Text">Name:</label>
+                                    <asp:label runat="server" ID="NameViewLabel" CssClass="Text" Text="TEST"></asp:label>
+                                </p>
+
+                                <p>
+                                    <label id="DateView" class="Text">Date: </label>
+                                    <asp:label runat="server" ID="DateViewLabel" CssClass="Text" Text="TEST"></asp:label>
+                                </p>
+
+                                <p>
+                                    <label id="TotalHoursView" class="Text">Total Hours Worked: </label>
+                                    <asp:label runat="server" ID="TotalHoursLabel" CssClass="Text" Text="TEST"></asp:label>
+                                </p>
+
+                            </div>
                     </div>
+                </div>
+                    
                     <div id="FileList">
                         <asp:GridView ID="ManagerView" runat="server" OnRowCommand="viewTimeSheet_RowCommand" CssClass="Text" HeaderStyle-BorderWidth="2px" >
                             <Columns>

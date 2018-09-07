@@ -86,6 +86,7 @@
     </None>
     <Content Include="Job-AssSelection.aspx" />
     <Content Include="js\sig-pad.js" />
+    <Content Include="ManagerFileUpdate.aspx" />
     <Content Include="ManagerLogin.aspx" />
     <Content Include="ManagerViewScreen.aspx" />
     <Content Include="Testing.aspx" />
@@ -117,6 +118,13 @@
     </Compile>
     <Compile Include="Job-AssSelection.aspx.designer.cs">
       <DependentUpon>Job-AssSelection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerFileUpdate.aspx.cs">
+      <DependentUpon>ManagerFileUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerFileUpdate.aspx.designer.cs">
+      <DependentUpon>ManagerFileUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagerLogin.aspx.cs">
       <DependentUpon>ManagerLogin.aspx</DependentUpon>

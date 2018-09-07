@@ -98,7 +98,6 @@ namespace WymaTimesheetWebApp
                 NCTable.Columns.Add("NC Code");
                 NCTable.Columns.Add("Hours:Mins");
                 NCTable.Columns.Add("Non-Charge Comment");
-                NCTable.Columns.Add("Remove Row");
                 DataNCView.DataSource = NCTable;
                 DataNCView.DataBind();
                 Session["NCtab"] = NCTable;

@@ -17,14 +17,12 @@ namespace WymaTimesheetWebApp
             {
                 
                 //adds times to lunchbreak selection box.
-                for (int i = 0; i <= 59; i++)
+                for (int i = 0; i <= 4; i++)
                 {
                     if (i == 0)
                         SelMin.Items.Add("Please Select a Time");
-                    else if (i == 1)
-                        SelMin.Items.Add(i + " min");
                     else
-                        SelMin.Items.Add(i + " mins");
+                        SelMin.Items.Add(i * 15 + " mins");
                 }
                 //Sets Start time to 7am and end time to 3:30
                 TimeStartINP.Text = "07:00";

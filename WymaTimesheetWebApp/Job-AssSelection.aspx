@@ -69,17 +69,14 @@
                            </div>
                        
                            <div>
-                            <label id="Job/Assy" class="Text">Job/Assy:</label>
-                            <asp:Label runat="server" ID="JobAssyData" CssClass="Text"></asp:Label>
-                          
-                            <label id="WyEU REF" class="Text">WyEU REF:</label>
-                            <asp:Label runat="server" ID="WyEUrefData" CssClass="Text"></asp:Label>
-
-                            <label id="EU Step/Task" class="Text">EU Step/Task:</label>
-                            <asp:Label runat="server" ID="EUStepData" CssClass="Text"></asp:Label>
-
-                            <label id="EU Cust" class="Text">EU Cust:</label>
-                            <asp:Label runat="server" ID="EUCustData" CssClass="Text"></asp:Label>
+          
+                            <asp:Label runat="server" ID="JobAssyData" Visible="false" CssClass="Text"></asp:Label>
+                       
+                            <asp:Label runat="server" ID="WyEUrefData" Visible="false" CssClass="Text"></asp:Label>
+                            
+                            <asp:Label runat="server" ID="EUStepData" Visible="false" CssClass="Text"></asp:Label>
+                            
+                            <asp:Label runat="server" ID="EUCustData" Visible="false" CssClass="Text"></asp:Label>
 
                             <label id="Customer" class="Text">Customer:</label>
                             <asp:Label runat="server" ID="CustData" CssClass="Text"></asp:Label>
@@ -93,9 +90,9 @@
                    
                     
                     
-                   <div id="BottomData2" class="scroll gridview">
-                       <div style="display:table; width:100%; height:auto" >
-                            <div style="display: table-cell; vertical-align:middle; width:100%; height:100%">
+                   <div id="BottomData2" style="margin: 25px;">
+                       <div style="display:table; width:100%; height:auto;" >
+                            <div style="display:table-cell; vertical-align:middle; width:100%; height:100%;">
                                 <asp:GridView ID="DataCHView" OnRowCommand="DataCHView_RowCommand" runat="server" CssClass="Text" HeaderStyle-BorderWidth="2px">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Remove Row">
@@ -142,7 +139,7 @@
                        
                        </div>
 
-                       <div id="TopData2" class="scroll gridview">
+                       <div id="TopData2" style="margin: 25px">
                             <div style="display:table; width:100%; height:auto" >
                                 <div style="display: table-cell; vertical-align:middle; width:100%; height:100%">
                                     <asp:GridView ID="DataNCView" OnRowCommand="DataNCView_RowCommand" runat="server" CssClass="Text" >

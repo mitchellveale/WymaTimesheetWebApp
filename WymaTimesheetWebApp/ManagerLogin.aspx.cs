@@ -24,8 +24,14 @@ namespace WymaTimesheetWebApp
                 Response.Write(@"<script>alert('That is not a valid manager number.\nPlease Try Again.')</script>");
             else
             { 
-                Session["ManagerName"] = ManagerName;
-                Server.Transfer("ManagerViewScreen.aspx", true);
+                if (ManagerName == "!ERROR!")
+                    Response.Write(@"<script>alert('Login information cannot be validated.\nPlease Try Again.\nIf this problem persists, please contact your network administrator.')</script>");
+                else
+                {
+                    Session["ManagerName"] = ManagerName;
+                    Server.Transfer("ManagerViewScreen.aspx", true);
+                }
+                
             }
         }
             

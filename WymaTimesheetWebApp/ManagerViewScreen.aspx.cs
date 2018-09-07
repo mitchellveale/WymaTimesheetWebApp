@@ -55,16 +55,18 @@ namespace WymaTimesheetWebApp
                 string managerName = Session["ManagerName"].ToString();
 
 
-
+                ManagerView.Columns[0].Visible = false;
 
 
                 df.Read($"{usrName} {date} {managerName}");
                 DataTable FileData = df;
-
                 ManagerView.DataSource = FileData;
                 ManagerView.DataBind();
 
-                Response.Write("<script>alert('"+ usrName +"')</script>");
+                Session["DataFile"] = FileData;
+
+                //Server.Transfer("ManagerFileUpdate.aspx", true);
+               
                 
 
             }
@@ -98,5 +100,6 @@ namespace WymaTimesheetWebApp
         {
             Server.Transfer("MainMenu.aspx");
         }
+
     }
 }
