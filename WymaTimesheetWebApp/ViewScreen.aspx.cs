@@ -56,7 +56,7 @@ namespace WymaTimesheetWebApp
                 foreach (DataRow row in NCTable.Rows)
                 {
                     JobType jobType = JobType.NonCharge;
-                    string orderNumber = row["Non-Charge Comment"].ToString();
+                    string NCcomment = row["Non-Charge Comment"].ToString();
                     string task = row["NC Code"].ToString();
 
                     //Calculate 'time' in a float format
@@ -68,7 +68,7 @@ namespace WymaTimesheetWebApp
                     time += int.Parse(strSplit[0]);
                     time += (float)(int.Parse(strSplit[1])) / 60;
 
-                    dataFile.AddData(jobType, orderNumber, task, time, "");
+                    dataFile.AddData(jobType, "", task, time, NCcomment);
                 }
 
                 if (CHTable.Rows.Count != 0)

@@ -36,9 +36,22 @@ namespace WymaTimesheetWebApp
 
         public static List<DataFileInfo> UnapprovedFiles = new List<DataFileInfo>();
 
-        //TODO: Make this read only
-        public static string OutputPath;
-        public static string ExportPath;
+        private static string outputPath;
+        public static string OutputPath
+        {
+            get
+            {
+                return outputPath;
+            }
+        }
+        private static string exportPath;
+        public static string ExportPath
+        {
+            get
+            {
+                return exportPath;
+            }
+        }
         private static string DBConnection;
 
         protected void Application_Start(object sender, EventArgs e)
@@ -47,13 +60,11 @@ namespace WymaTimesheetWebApp
 
             //get all application configuration data
             DBConnection = ConfigurationManager.AppSettings["DBConnection"];
-            OutputPath = ConfigurationManager.AppSettings["OutputPath"];
-            ExportPath = ConfigurationManager.AppSettings["ExportPath"];
+            outputPath = ConfigurationManager.AppSettings["OutputPath"];
+            exportPath = ConfigurationManager.AppSettings["ExportPath"];
 
             string ServerIP = ConfigurationManager.AppSettings["ServerIP"];
             DBConnection = DBConnection.Replace("$$serverIP$$", ServerIP);
-
-            Debug.WriteLine(DBConnection);
 
             RefreshFiles();
         }
@@ -90,7 +101,7 @@ namespace WymaTimesheetWebApp
 
         public static void RefreshFiles()
         {
-            DirectoryInfo d = new DirectoryInfo(OutputPath);
+            DirectoryInfo d = new DirectoryInfo(outputPath);
             FileInfo[] Files = d.GetFiles("*.Wyma");
             foreach (FileInfo file in Files)
             {
@@ -113,6 +124,26 @@ namespace WymaTimesheetWebApp
                         manager = " " + fileName[4]
                     });
                 }
+            }
+        }
+
+        public static DateTime EndOfWeekDate(DateTime date)
+        {
+            DayOfWeek day = date.DayOfWeek;
+
+            //If not Sunday, make 'date' the date for the next coming sunday.
+            //otherwise return the same value that has been passed into the method
+            if (day != DayOfWeek.Sunday)
+            {
+                int intDayOfWeek = day.GetHashCode();
+                int DaysFromSunday = 7 - intDayOfWeek;
+
+                DateTime endDate = date.AddDays(DaysFromSunday);
+                return endDate;
+            }
+            else
+            {
+                return date;
             }
         }
 
@@ -259,8 +290,6 @@ namespace WymaTimesheetWebApp
             data = new List<DataEntry>();
         }
 
-        //FIXME: EmployeeCode is being passed in from the data in the session however it has a space at the start of the string
-        //and this could break some stuff
         public void CreateHeader(string EmployeeCode, string Date)
         {
             header.Accepted = false;
@@ -286,7 +315,7 @@ namespace WymaTimesheetWebApp
             header.Manager = Manager;
         }
 
-        public void Write()
+        public void Write(bool AddToUnacceptedFiles = true)
         {
             StringBuilder builder = new StringBuilder();
             int accepted = header.Accepted ? 1 : 0;
@@ -303,14 +332,16 @@ namespace WymaTimesheetWebApp
             }
             string filePath = $@"{Global.OutputPath}{header.EmployeeCode} {header.Date} {header.Manager}.Wyma";
             //We *MAY* want a simple encryption algorithm to make the file unreadable to anybody that may accidentally encounter it.
-            File.WriteAllText( filePath, builder.ToString());
-
-            Global.UnapprovedFiles.Add(new Global.DataFileInfo
-            {
-                name = header.EmployeeCode,
-                date = header.Date,
-                manager = header.Manager
-            });
+            File.WriteAllText(filePath, builder.ToString());
+            if (AddToUnacceptedFiles)
+            { 
+                Global.UnapprovedFiles.Add(new Global.DataFileInfo
+                {
+                    name = header.EmployeeCode,
+                    date = header.Date,
+                    manager = header.Manager
+                });
+            }
         }
 
         public void Read(string FileName)
@@ -353,7 +384,7 @@ namespace WymaTimesheetWebApp
             dt.Columns.Add("WyEU REF");
             dt.Columns.Add("EU Step/Task");
             dt.Columns.Add("EU Cust");
-            dt.Columns.Add("Customer");
+            dt.Columns.Add("Customer/NC Comment");
 
             foreach (DataEntry de in df.data)
             {
@@ -365,7 +396,7 @@ namespace WymaTimesheetWebApp
                 dr["WyEU REF"] = "";
                 dr["EU Step/Task"] = "";
                 dr["EU Cust"] = "";
-                dr["Customer"] = de.Customer;
+                dr["Customer/NC Comment"] = de.Customer;
                 dt.Rows.Add(dr);
             }
             return dt;
@@ -375,7 +406,8 @@ namespace WymaTimesheetWebApp
         public void Export()
         {
             StringBuilder builder = new StringBuilder();
-            //TODO:this first "Date" needs to be the end of the week date
+
+            string endDate = Global.EndOfWeekDate(Convert.ToDateTime(header.Date)).ToString("yyyy-MM-dd");
             string initialLine = string.Format($"InProgress,,Employee,{header.EmployeeCode},FALSE,{header.Date},Approved,,,Made by a super amazing WebApp,{header.Date}");
             builder.AppendLine(initialLine);
             foreach (DataEntry de in data)
@@ -401,7 +433,8 @@ namespace WymaTimesheetWebApp
             }
             //move datafile to 'accepted' folder
             header.Accepted = true;
-            //TODO: deal with re-writing the file here.
+            //Write file but do not add it to the unapproved files list.
+            Write(false);
             string from = $@"{Global.OutputPath}{header.EmployeeCode} {header.Date} {header.Manager}.Wyma";
             string to = $@"{Global.OutputPath}Accepted Files\{header.EmployeeCode} {header.Date}.Wyma";
             File.Move(from, to);

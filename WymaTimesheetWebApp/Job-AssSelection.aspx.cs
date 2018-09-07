@@ -41,7 +41,11 @@ namespace WymaTimesheetWebApp
 
 
                 NCCodeData.Items.Add("Please Select an Order Number");
-                NCCodeData.Items.Add("TEST");
+                List<string> NCCodes = Global.ReadDataList("SELECT CODE FROM NONCHARGE;");
+                foreach (string str in NCCodes)
+                {
+                    NCCodeData.Items.Add(str);
+                }
 
 
                 StepTaskData.Items.Add("Please Select a Step or Task");
