@@ -371,38 +371,6 @@ namespace WymaTimesheetWebApp
             }
         }
 
-
-        
-
-        public static implicit operator DataTable(DataFile df)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Job/Assy");
-            dt.Columns.Add("Number");
-            dt.Columns.Add("Step/Task");
-            dt.Columns.Add("Hours:Mins");
-            dt.Columns.Add("WyEU REF");
-            dt.Columns.Add("EU Step/Task");
-            dt.Columns.Add("EU Cust");
-            dt.Columns.Add("Customer/NC Comment");
-
-            foreach (DataEntry de in df.data)
-            {
-                DataRow dr = dt.NewRow();
-                dr["Job/Assy"] = de.JobType.ToString();
-                dr["Number"] = de.OrderNum;
-                dr["Step/Task"] = de.Task;
-                dr["Hours:Mins"] = Math.Floor(de.Time).ToString() + "h " + ((de.Time % 1) * 60).ToString() + "m";
-                dr["WyEU REF"] = "";
-                dr["EU Step/Task"] = "";
-                dr["EU Cust"] = "";
-                dr["Customer/NC Comment"] = de.Customer;
-                dt.Rows.Add(dr);
-            }
-            return dt;
-        }
-
-
         public void Export()
         {
             StringBuilder builder = new StringBuilder();
@@ -439,6 +407,45 @@ namespace WymaTimesheetWebApp
             string to = $@"{Global.OutputPath}Accepted Files\{header.EmployeeCode} {header.Date}.Wyma";
             File.Move(from, to);
 
+        }
+
+        public static implicit operator DataTable(DataFile df)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Job/Assy");
+            dt.Columns.Add("Number");
+            dt.Columns.Add("Step/Task");
+            dt.Columns.Add("Hours:Mins");
+            dt.Columns.Add("WyEU REF");
+            dt.Columns.Add("EU Step/Task");
+            dt.Columns.Add("EU Cust");
+            dt.Columns.Add("Customer/NC Comment");
+
+            foreach (DataEntry de in df.data)
+            {
+                DataRow dr = dt.NewRow();
+                dr["Job/Assy"] = de.JobType.ToString();
+                dr["Number"] = de.OrderNum;
+                dr["Step/Task"] = de.Task;
+                dr["Hours:Mins"] = Math.Floor(de.Time).ToString() + "h " + ((de.Time % 1) * 60).ToString() + "m";
+                dr["WyEU REF"] = "";
+                dr["EU Step/Task"] = "";
+                dr["EU Cust"] = "";
+                dr["Customer/NC Comment"] = de.Customer;
+                dt.Rows.Add(dr);
+            }
+            return dt;
+        }
+
+        public Tuple<string, float> GetDateAndTime()
+        {
+            float totalTime = 0;
+            foreach (DataEntry de in data)
+            {
+                totalTime += de.Time;
+            }
+            Tuple<string, float> retData = new Tuple<string, float>(header.Date, totalTime);
+            return retData;
         }
     }
     #endregion
