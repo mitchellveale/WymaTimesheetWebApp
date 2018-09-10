@@ -6,6 +6,7 @@
 <head runat="server">
     <title>Main Page</title>
     <link rel="stylesheet" type="text/css" href="CSS/Wyma_Webapp_SS.css" />
+    <link rel="icon" type="image/png" href="Images/favicon.png"/>
 </head>
 <body id="Body">
     <div id="Outerrap">

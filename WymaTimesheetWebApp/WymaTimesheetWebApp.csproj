@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -86,7 +87,6 @@
     </None>
     <Content Include="Job-AssSelection.aspx" />
     <Content Include="js\sig-pad.js" />
-    <Content Include="ManagerFileUpdate.aspx" />
     <Content Include="ManagerLogin.aspx" />
     <Content Include="ManagerViewScreen.aspx" />
     <Content Include="Testing.aspx" />
@@ -98,7 +98,9 @@
     <Content Include="DateAndTime.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\wyma-logo.svg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="MainMenu.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -118,13 +120,6 @@
     </Compile>
     <Compile Include="Job-AssSelection.aspx.designer.cs">
       <DependentUpon>Job-AssSelection.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ManagerFileUpdate.aspx.cs">
-      <DependentUpon>ManagerFileUpdate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManagerFileUpdate.aspx.designer.cs">
-      <DependentUpon>ManagerFileUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManagerLogin.aspx.cs">
       <DependentUpon>ManagerLogin.aspx</DependentUpon>

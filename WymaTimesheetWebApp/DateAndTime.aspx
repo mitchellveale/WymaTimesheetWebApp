@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Set Date and Time</title>
+    <link rel="icon" type="image/png" href="Images/favicon.png"/>
     <link rel="stylesheet" type="text/css" href="CSS/Wyma_Webapp_SS.css" />
     <style type="text/css">
         #Select1 {

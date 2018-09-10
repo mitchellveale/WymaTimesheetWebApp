@@ -6,7 +6,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Test Page</title>
+    <link rel="icon" type="image/png" href="Images/favicon.png"/>
 </head>
 <body>
     <form id="form1" runat="server">
