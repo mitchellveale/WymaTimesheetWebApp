@@ -21,7 +21,7 @@
     text-align: center;
 }
 
-#Footer1 {
+#Footer1, #Footer2, #Footer3 {
     width: auto;
     height: auto;
     padding: 25px;
@@ -30,17 +30,6 @@
     display: inline-block;
     vertical-align: top;
 }
-
-#Footer2 {
-    width: auto;
-    height: auto;
-    padding: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    display: inline-block;
-    vertical-align: top;
-}
-
 
 
 
@@ -81,6 +70,7 @@
 #TopData
 {
     height:auto;
+    width:auto;
 }
 #TD_Info {
     max-width: 234px;

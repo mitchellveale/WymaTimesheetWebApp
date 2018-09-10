@@ -29,27 +29,25 @@
                             <div id="TD_Info" >
                                 <p>
                                     <label class="Text">Manager Name:</label>
-                                        <label runat="server" id="ManagerName" class="Text"></label>
+                                    <label runat="server" id="ManagerName" class="Text"></label>
                                 </p>
                                 <p>
-                                    <label id="NameView" class="Text">Name:</label>
-                                    <asp:label runat="server" ID="NameViewLabel" CssClass="Text" Text="TEST"></asp:label>
-                                </p>
-
-                                <p>
-                                    <label id="DateView" class="Text">Date: </label>
-                                    <asp:label runat="server" ID="DateViewLabel" CssClass="Text" Text="TEST"></asp:label>
+                                    <asp:label runat="server" ID="NameViewLabel" Visible="false" CssClass="Text" Text="Employee Name:"></asp:label>
                                 </p>
 
                                 <p>
-                                    <label id="TotalHoursView" class="Text">Total Hours Worked: </label>
-                                    <asp:label runat="server" ID="TotalHoursLabel" CssClass="Text" Text="TEST"></asp:label>
+                                    <asp:label runat="server" ID="DateViewLabel" Visible="false" CssClass="Text" Text="Date Submited:"></asp:label>
+                                </p>
+
+                                <p>
+                                    <asp:label runat="server" ID="TotalHoursLabel" Visible="false" CssClass="Text" Text="Total Hours Worked:"></asp:label>
                                 </p>
 
                             </div>
                     </div>
-                </div>
                     
+                </div>
+                    <br/>
                     <div id="FileList">
                         <asp:GridView ID="ManagerView" runat="server" OnRowCommand="viewTimeSheet_RowCommand" CssClass="Text" HeaderStyle-BorderWidth="2px" >
                             <Columns>
@@ -65,10 +63,18 @@
                 </div>
         </div>
         <div id="FooterRap">
-       
+            <div id="Footer1">
+
+                    <button runat="server" id="btnUpdateMV" class="btnsubmit" visible="false"  onserverclick="BtnUpdateMVClick">Accept</button>
+            </div>
             <div id="Footer2">
 
-                <button runat="server" id="btnCancelDT" class="btncancel" style=" float:right;" onserverclick="btnMVBack">Back</button>
+                    <button runat="server" id="btnAcceptMV" class="btnsubmit" visible="false" onserverclick="BtnAcceptMVClick">Update</button>
+
+            </div>
+            <div id="Footer3">
+
+                <button runat="server" id="btnCancelMV" class="btncancel"  onserverclick="btnMVBack">Back</button>
 
             </div>
         </div>

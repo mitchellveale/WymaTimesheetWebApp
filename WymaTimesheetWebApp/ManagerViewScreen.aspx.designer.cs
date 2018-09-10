@@ -67,12 +67,30 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.GridView ManagerView;
         
         /// <summary>
-        /// btnCancelDT control.
+        /// btnUpdateMV control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnCancelDT;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnUpdateMV;
+        
+        /// <summary>
+        /// btnAcceptMV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnAcceptMV;
+        
+        /// <summary>
+        /// btnCancelMV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnCancelMV;
     }
 }

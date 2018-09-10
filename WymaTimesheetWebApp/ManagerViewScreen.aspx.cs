@@ -40,6 +40,12 @@ namespace WymaTimesheetWebApp
             //Allow manager to select a timesheet and view selected 
 
             //Accesses Unsigned Timesheets
+            btnUpdateMV.Visible = true;
+            btnAcceptMV.Visible = true;
+            NameViewLabel.Visible = true;
+            DateViewLabel.Visible = true;
+            TotalHoursLabel.Visible = true;
+
             DataTable unsignedTimesheets = Session["MangV"] as DataTable;
             List<Global.DataFileInfo> UnapprovedFiles = Global.UnapprovedFiles;
 
@@ -62,6 +68,10 @@ namespace WymaTimesheetWebApp
                 DataTable FileData = df;
                 ManagerView.DataSource = FileData;
                 ManagerView.DataBind();
+
+                NameViewLabel.Text = "Employee Name: " + unsignedTimesheets.Rows[index].Field<string>(0);
+                //DateViewLabel.Text = 
+                //TotalHoursLabel.Text = 
 
                 Session["DataFile"] = FileData;
 
@@ -98,8 +108,20 @@ namespace WymaTimesheetWebApp
 
         protected void btnMVBack(object sender, EventArgs e)
         {
-            Server.Transfer("MainMenu.aspx");
+            if (btnAcceptMV.Visible != true)
+                Server.Transfer("MainMenu.aspx", true);
+            else 
+                Server.Transfer("ManagerViewScreen.aspx");
         }
 
+        protected void BtnUpdateMVClick(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void BtnAcceptMVClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
