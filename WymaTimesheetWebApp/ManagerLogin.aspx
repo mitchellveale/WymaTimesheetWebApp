@@ -26,7 +26,7 @@
                 <div id="Main" >
                     <div id="Data"> 
                         <label class="Text">Please input your four digit code:</label>
-                        <input  runat="server" id="ManagerInput" type="number" class="labels Text" />
+                        <asp:TextBox TextMode="Number" runat="server" Font-Size="X-Large" id="ManagerInput" CssClass="labels Text" />
                     </div>
                 </div>
             

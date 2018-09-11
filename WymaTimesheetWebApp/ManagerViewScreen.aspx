@@ -6,6 +6,8 @@
 <head runat="server">
     <title>Managers View</title>
     <link rel="stylesheet" type="text/css" href="CSS/Wyma_Webapp_SS.css" />
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    
 </head>
 <body>
      <form id="MVS" runat="server">
@@ -60,17 +62,30 @@
                         </asp:GridView>
                             
                     </div>
-                </div>
+                     <div id="SignPad">
+                       <asp:label runat="server" ID="signLabel" Visible="false" CssClass="Text" Text="Sign Here:" ></asp:label>
+                       <br/>
+                       <input runat="server" type="hidden" name="hiddenfield" id="hiddenfield" value="" />
+   
+                       <canvas runat="server" visible="false" id="sigPad" style="border: thin solid #000000; max-height:inherit; max-width:inherit;"></canvas>
+                       <script src="js/sig-pad.js"></script>
+
+                       <br/>
+                       <button runat="server" visible="false" id="clearBtn" onclick="clearSig();" >Clear</button>
+                       <script src="js/sig-pad.js"></script>
+                    </div>
         </div>
+                </div>
+            
         <div id="FooterRap">
             <div id="Footer1">
 
-                    <button runat="server" id="btnUpdateMV" class="btnsubmit" visible="false"  onserverclick="BtnUpdateMVClick">Accept</button>
+                    <button runat="server" id="btnAcceptMV" class="btnsubmit" visible="false"  onserverclick="BtnAcceptMVClick">Accept</button>
             </div>
             <div id="Footer2">
 
-                    <button runat="server" id="btnAcceptMV" class="btnsubmit" visible="false" onserverclick="BtnAcceptMVClick">Update</button>
-
+                    <button runat="server" id="btnUpdateMV" class="btnsubmit" visible="false" onclick="saveSig(); return" onserverclick="BtnUpdateMVClick">Update</button>
+                    <script src="js/sig-pad.js"></script>
             </div>
             <div id="Footer3">
 

@@ -69,9 +69,13 @@ namespace WymaTimesheetWebApp
                 ManagerView.DataSource = FileData;
                 ManagerView.DataBind();
 
+                
+
+                Tuple<string, float> DT = df.GetDateAndTime();
+
                 NameViewLabel.Text = "Employee Name: " + unsignedTimesheets.Rows[index].Field<string>(0);
-                //DateViewLabel.Text = 
-                //TotalHoursLabel.Text = 
+                DateViewLabel.Text = "Date Submited:" + DT.Item1;
+                TotalHoursLabel.Text = "Total Time Worked: " + Global.TimeToString(DT.Item2);
 
                 Session["DataFile"] = FileData;
 
@@ -121,7 +125,18 @@ namespace WymaTimesheetWebApp
 
         protected void BtnAcceptMVClick(object sender, EventArgs e)
         {
+            if (sigPad.Visible == false)
+            {
 
+                signLabel.Visible = true;
+                sigPad.Visible = true;
+                clearBtn.Visible = true;
+            }
+            else
+            {
+
+                Server.Transfer("ManagerViewScreen.aspx");
+            }
         }
     }
 }

@@ -66,20 +66,16 @@ namespace WymaTimesheetWebApp
 
         protected void BtnSubmitDTClick(object sender, EventArgs e)
         {
-            float TotalNumHours = 0f;
-            int[] times = new int[2];
+            float timeFloat;
+            
             try
             {
                 //Changes the two set hours to work between and selected lunch break time and converts it to usable data.
                 string totalHours = (Convert.ToDateTime(TimeEndINP.Text).Subtract(Convert.ToDateTime(TimeStartINP.Text).AddMinutes(((int.Parse(SelMin.SelectedValue.Substring(0, 2))))))).ToString();
 
                 //Time looks like this 09:00:00
-                string[] timeSplitter = totalHours.Split(':');
-                times[0] = int.Parse(timeSplitter[0]);
-                times[1] = int.Parse(timeSplitter[1]);
-               
-                TotalNumHours += times[0];
-                TotalNumHours += (times[1] / 60);
+                timeFloat = Global.TimeToFloat(totalHours.Replace(':', ' '));
+              
             }
             catch
             {
@@ -92,7 +88,7 @@ namespace WymaTimesheetWebApp
                 //Alerts the user if they are missing data
                 Response.Write("<script>alert('Some fields are missing data. Please make sure all fields have data in them.');</script>");
             //Checks weather or not the user has inputed a valid time.
-            else if (times[0] > 12 || times[0] <= 0)
+            else if (timeFloat > 24.00)
             {
                 //Alerts the user that their times are invalid
                 Response.Write("<script>alert('Your time at work is not valid. Please review and try again.');</script>");
@@ -107,15 +103,13 @@ namespace WymaTimesheetWebApp
                 Session["UsrName"] = null;
                 Session["UsrName"] = NamePicker.SelectedValue;
 
-                   
+
                 if (Global.DictUsrData.ContainsKey(NamePicker.SelectedValue))
                     Global.DictUsrData.Remove(NamePicker.SelectedValue);
-
-                //Changes times to 09h 00m
-                string convertTotalHours = times[0].ToString() + "h " + times[1].ToString() + "m";
+               
 
                 //Creates a NewUsr using the data provided. This will be used later in the program and when making the "" file
-                UsrData NewUsr = new UsrData(NamePicker.SelectedValue, DateBox.Text, TimeStartINP.Text, TimeEndINP.Text, SelMin.SelectedValue, TotalNumHours);
+                UsrData NewUsr = new UsrData(NamePicker.SelectedValue, DateBox.Text, TimeStartINP.Text, TimeEndINP.Text, SelMin.SelectedValue, timeFloat);
 
                 //Adds new user to a Usr Dictonary 
                 Global.DictUsrData.Add(NamePicker.SelectedValue, NewUsr);

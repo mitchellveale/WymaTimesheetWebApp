@@ -67,13 +67,40 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.GridView ManagerView;
         
         /// <summary>
-        /// btnUpdateMV control.
+        /// signLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnUpdateMV;
+        protected global::System.Web.UI.WebControls.Label signLabel;
+        
+        /// <summary>
+        /// hiddenfield control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hiddenfield;
+        
+        /// <summary>
+        /// sigPad control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sigPad;
+        
+        /// <summary>
+        /// clearBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton clearBtn;
         
         /// <summary>
         /// btnAcceptMV control.
@@ -83,6 +110,15 @@ namespace WymaTimesheetWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btnAcceptMV;
+        
+        /// <summary>
+        /// btnUpdateMV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnUpdateMV;
         
         /// <summary>
         /// btnCancelMV control.

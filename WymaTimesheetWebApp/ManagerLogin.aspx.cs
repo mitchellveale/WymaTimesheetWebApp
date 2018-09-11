@@ -17,7 +17,7 @@ namespace WymaTimesheetWebApp
         protected void BtnSubmitMLClick(object sender, EventArgs e)
         {
            
-            string ManagerName = Global.ReadDataString("SELECT RESOURCENAME FROM EMPLOYEES WHERE CODE = '" + ManagerInput.Value.ToString() + "';");
+            string ManagerName = Global.ReadDataString("SELECT RESOURCENAME FROM EMPLOYEES WHERE CODE = '" + ManagerInput.Text + "';");
            
 
             if (ManagerName == "")
