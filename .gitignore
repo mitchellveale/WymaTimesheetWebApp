@@ -33,3 +33,4 @@ WymaTimesheetWebApp/Global.asax.cs
 .vs/WymaTimesheetWebApp/v15/.suo
 .vs/WymaTimesheetWebApp/v15/.suo
 WymaTimesheetWebApp/bin/WymaTimesheetWebApp.dll
+WymaTimesheetWebApp/Web.config
