@@ -10,7 +10,7 @@
 namespace WymaTimesheetWebApp {
     
     
-    public partial class ManagerViewScreen {
+    public partial class ManagerUpdate {
         
         /// <summary>
         /// MVS control.
@@ -58,13 +58,22 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.WebControls.Label TotalHoursLabel;
         
         /// <summary>
-        /// ManagerView control.
+        /// TotalAppLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView ManagerView;
+        protected global::System.Web.UI.WebControls.Label TotalAppLabel;
+        
+        /// <summary>
+        /// UpdateView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView UpdateView;
         
         /// <summary>
         /// signLabel control.
@@ -103,39 +112,21 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.HtmlControls.HtmlButton clearBtn;
         
         /// <summary>
-        /// btnAccept1MV control.
+        /// btnAcceptMU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAccept1MV;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnAcceptMU;
         
         /// <summary>
-        /// btnAccept2MV control.
+        /// btnBackMU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAccept2MV;
-        
-        /// <summary>
-        /// btnUpdateMV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnUpdateMV;
-        
-        /// <summary>
-        /// btnCancelMV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnCancelMV;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnBackMU;
     }
 }
