@@ -58,7 +58,7 @@
 }
 
 #Data {
-    height: inherit; 
+    height: 100%; 
     max-width: 1300px ;
     width: auto;
     padding: 25px;
@@ -71,6 +71,13 @@
 {
     height:auto;
     width:auto;
+    min-height: 575px;
+}
+
+#BottomData {
+    height: auto;
+    width: auto;
+    min-height: 450px;
 }
 #TD_Info {
     max-width: 234px;
@@ -83,7 +90,7 @@
 
 #CHSelection, #NCSelection {
     
-    height: 100%;
+    height: inherit;
     text-align:center;
     margin-left: 25px;
     margin-right: 25px;
@@ -182,7 +189,7 @@
 
 .commentbox {
     height: 100px;
-    width: auto;
+    width: 100%;
 }
 
 

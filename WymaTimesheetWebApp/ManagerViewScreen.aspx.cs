@@ -42,7 +42,7 @@ namespace WymaTimesheetWebApp
 
             //Accesses Unsigned Timesheets
             btnUpdateMV.Visible = true;
-            btnAcceptMV.Visible = true;
+            btnAccept1MV.Visible = true;
             NameViewLabel.Visible = true;
             DateViewLabel.Visible = true;
             TotalHoursLabel.Visible = true;
@@ -75,7 +75,7 @@ namespace WymaTimesheetWebApp
                 Tuple<string, float> DT = df.GetDateAndTime();
 
                 NameViewLabel.Text = "Employee Name: " + unsignedTimesheets.Rows[index].Field<string>(0);
-                DateViewLabel.Text = "Date Submited:" + DT.Item1;
+                DateViewLabel.Text = "Date Submited: " + DT.Item1;
                 TotalHoursLabel.Text = "Total Time Worked: " + Global.TimeToString(DT.Item2);
 
                 Session["DataFile"] = FileData;
@@ -113,7 +113,7 @@ namespace WymaTimesheetWebApp
 
         protected void btnMVBack(object sender, EventArgs e)
         {
-            if (btnAcceptMV.Visible != true)
+            if (btnAccept1MV.Visible != true && btnAccept2MV.Visible != true)
                 Server.Transfer("MainMenu.aspx", true);
             else 
                 Server.Transfer("ManagerViewScreen.aspx");
@@ -121,13 +121,14 @@ namespace WymaTimesheetWebApp
 
         protected void BtnUpdateMVClick(object sender, EventArgs e)
         {
-
+            Server.Transfer("ManagerUpdate.aspx", true);
         }
 
         protected void BtnAcceptMVClick(object sender, EventArgs e)
         {
             if (sigPad.Visible == false)
             {
+<<<<<<< HEAD
 
                 if (Global.signatureData.ContainsKey(Session["ManagerName"].ToString()))
                 {
@@ -140,6 +141,10 @@ namespace WymaTimesheetWebApp
                     imgbtn.Visible = true;
                     return;
                 }
+=======
+                btnAccept1MV.Visible = false;
+                btnAccept2MV.Visible = true;
+>>>>>>> 3ce26231f13a98706731b61ff145c635e9b19740
                 signLabel.Visible = true;
                 sigPad.Visible = true;
                 clearBtn.Visible = true;
@@ -147,12 +152,18 @@ namespace WymaTimesheetWebApp
             }
             else
             {
+<<<<<<< HEAD
                 Response.Write("<script>alert('" + hiddenfield.Value + "')</script>");
                 Debug.WriteLine("Adding Signature Data");
                 //store signature data
                 Debug.WriteLine("Hidden Field Data is: " + hiddenfield.Value);
                 Global.signatureData.Add(Session["ManagerName"].ToString(), hiddenfield.Value);
                 Server.Transfer("ManagerViewScreen.aspx");
+=======
+  
+                 Server.Transfer("ManagerViewScreen.aspx");
+
+>>>>>>> 3ce26231f13a98706731b61ff145c635e9b19740
             }
         }
 

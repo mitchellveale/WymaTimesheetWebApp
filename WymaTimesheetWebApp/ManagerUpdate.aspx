@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManagerViewScreen.aspx.cs" Inherits="WymaTimesheetWebApp.ManagerViewScreen" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManagerUpdate.aspx.cs" Inherits="WymaTimesheetWebApp.ManagerUpdate" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Managers View</title>
+    <title>Timesheet Update</title>
     <link rel="icon" type="image/png" href="Images/favicon.png"/>
     <link rel="stylesheet" type="text/css" href="CSS/Wyma_Webapp_SS.css" />
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
@@ -35,15 +35,18 @@
                                     <label runat="server" id="ManagerName" class="Text"></label>
                                 </p>
                                 <p>
-                                    <asp:label runat="server" ID="NameViewLabel" Visible="false" CssClass="Text" Text="Employee Name:"></asp:label>
+                                    <asp:label runat="server" ID="NameViewLabel" CssClass="Text" Text="Employee Name:"></asp:label>
                                 </p>
 
                                 <p>
-                                    <asp:label runat="server" ID="DateViewLabel" Visible="false" CssClass="Text" Text="Date Submited:"></asp:label>
+                                    <asp:label runat="server" ID="DateViewLabel"  CssClass="Text" Text="Date Submited:"></asp:label>
                                 </p>
 
                                 <p>
-                                    <asp:label runat="server" ID="TotalHoursLabel" Visible="false" CssClass="Text" Text="Total Hours Worked:"></asp:label>
+                                    <asp:label runat="server" ID="TotalHoursLabel"  CssClass="Text" Text="Total Hours Worked:"></asp:label>
+                                </p>
+                                <p>
+                                    <asp:label runat="server" ID="TotalAppLabel"  CssClass="Text" Text="Total Hours Worked:"></asp:label>
                                 </p>
 
                             </div>
@@ -52,11 +55,11 @@
                 </div>
                     <br/>
                     <div id="FileList">
-                        <asp:GridView ID="ManagerView" runat="server" OnRowCommand="viewTimeSheet_RowCommand" CssClass="Text" HeaderStyle-BorderWidth="2px" >
+                        <asp:GridView ID="UpdateView" runat="server" OnRowCommand="EditRow_RowCommand" CssClass="Text" HeaderStyle-BorderWidth="2px" >
                             <Columns>
-                                <asp:TemplateField HeaderText="View Timesheet">
+                                <asp:TemplateField HeaderText="Edit Row">
                                     <ItemTemplate>
-                                        <asp:Button runat="server" ID="viewBtn" Text="View" CommandName="ViewTimeSheet" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                                        <asp:Button runat="server" ID="viewBtn" Text="Edit" CommandName="EditTimeSheet" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
@@ -70,11 +73,10 @@
    
                        <canvas runat="server" visible="false" id="sigPad" style="border: thin solid #000000; max-height:inherit; max-width:inherit;"></canvas>
                        <script src="js/sig-pad.js"></script>
-                       <asp:Image ID="SignatureImage" runat="server" Visible="false" style="border: thin solid #000000; max-height:inherit; max-width:inherit;" />
+
                        <br/>
                        <button runat="server" visible="false" id="clearBtn" onclick="clearSig();" >Clear</button>
                        <script src="js/sig-pad.js"></script>
-                       <asp:Button ID="imgbtn" runat="server" Text="Clear" Visible="false" OnClick="imgbtn_Click" />
                     </div>
         </div>
                 </div>
@@ -82,18 +84,11 @@
         <div id="FooterRap">
             <div id="Footer1">
 
-                    <button runat="server" id="btnAccept1MV" class="btnsubmit" visible="false"  onserverclick="BtnAcceptMVClick">Accept</button>
-                    <button runat="server" id="btnAccept2MV" class="btnsubmit" visible="false" onclick="saveSig(); return"  onserverclick="BtnAcceptMVClick">Accept</button>
-                    <script src="js/sig-pad.js"></script>
+                    <button runat="server" id="btnAcceptMU" class="btnsubmit" visible="false" onserverclick="BtnAcceptMU">Done</button>
             </div>
             <div id="Footer2">
 
-                    <button runat="server" id="btnUpdateMV" class="btnsubmit" visible="false"  onserverclick="BtnUpdateMVClick">Update</button>
-                    
-            </div>
-            <div id="Footer3">
-
-                <button runat="server" id="btnCancelMV" class="btncancel"  onserverclick="btnMVBack">Back</button>
+                <button runat="server" id="btnBackMU" class="btncancel"  onserverclick="BtnBackMU">Back</button>
 
             </div>
         </div>

@@ -52,25 +52,27 @@
                        </div>
                        <div id="CHSelection">
                            <p style="text-align:center"> <label class="Text" >Select your Jobs and Assemblies</label> </p>
-                           <div>
+                          
 
                             <div class="ezydisplay">
                                 <label id="Number" class="Text">Number: </label>
-                                <asp:DropDownList runat="server" ID="JobNumberData" CssClass="Text Dropdown" AutoPostBack="true" OnSelectedIndexChanged="OrderNumberUpdate" ></asp:DropDownList>
+                                <asp:DropDownList Font-Size="X-Large" runat="server" width="250px" Height="75px" ID="JobNumberData" CssClass="Text Dropdown" AutoPostBack="true" OnSelectedIndexChanged="OrderNumberUpdate" ></asp:DropDownList>
                             </div>
 
                             <div class="ezydisplay" >
                                 <label id="Step/Task" class="Text">Step/Task:</label>
-                                <asp:DropDownList runat="server" ID="StepTaskData" CssClass="Text Dropdown" Enabled="False" ></asp:DropDownList>
+                                <asp:DropDownList runat="server" Font-Size="X-Large" width="250px" Height="75px" ID="StepTaskData" CssClass="Text Dropdown" Enabled="False" ></asp:DropDownList>
                             </div>
+                            <p></p>
                             <div class="ezydisplay">
                                 <label id="CHHours:Mins" class="Text">Hours & Mins:</label>
-                                <asp:DropDownList runat="server" ID="CHHoursHSelection" CssClass="Text Dropdown"></asp:DropDownList><label class="Text">h</label><asp:DropDownList runat="server" ID="CHHoursMSelection" CssClass="Text Dropdown"></asp:DropDownList><label class="Text">m</label>
+                                <asp:DropDownList runat="server" Font-Size="X-Large" width="250px" Height="75px" ID="CHHoursHSelection" CssClass="Text Dropdown"></asp:DropDownList><label class="Text">h</label><asp:DropDownList runat="server" ID="CHHoursMSelection" Font-Size="X-Large"  width="250px" Height="75px" CssClass="Text Dropdown"></asp:DropDownList><label class="Text">m</label>
                             </div>
-                           </div>
+
+                          
                        
                            <div>
-          
+                            <p></p>
                             <asp:Label runat="server" ID="JobAssyData" Visible="false" CssClass="Text"></asp:Label>
                        
                             <asp:Label runat="server" ID="WyEUrefData" Visible="false" CssClass="Text"></asp:Label>
@@ -112,27 +114,28 @@
                         
                         
                        
-                    <div id="BottomData" style="text-align:center">
-                        <div id="NCSelection" class="border">
+                    <div id="BottomData" style="text-align:center" class="border">
+                        <div id="NCSelection" style="text-align:center" >
                            <p style="text-align:center"> <label class="Text" >Select your Non-Charge Hours</label> </p>
-                           <div>
-
+                          
+                                
                             <div class="ezydisplay">
                                 <label id="NCCode" class="Text">NC Code:</label>
-                                <asp:DropDownList runat="server" ID="NCCodeData" CssClass="Text Dropdown" ></asp:DropDownList>
+                                <asp:DropDownList runat="server" Font-Size="X-Large"  width="250px" Height="75px" ID="NCCodeData" CssClass="Text Dropdown" ></asp:DropDownList>
                             </div>
-
+                               <p></p>
                             <div class="ezydisplay">
                                 <label id="NCHours:Mins" class="Text">Hours & Mins:</label>
-                                <asp:DropDownList runat="server" ID="NCHoursHSelection" CssClass="Text Dropdown"></asp:DropDownList><label class="Text">h</label><asp:DropDownList runat="server" ID="NCHoursMSelection" CssClass="Text Dropdown"></asp:DropDownList><label class="Text">m</label>
+                                <asp:DropDownList runat="server" Font-Size="X-Large"  width="250px" Height="75px" ID="NCHoursHSelection" CssClass="Text Dropdown"></asp:DropDownList><label class="Text">h</label><asp:DropDownList runat="server" ID="NCHoursMSelection"  Font-Size="X-Large" width="250px" Height="75px" CssClass="Text Dropdown"></asp:DropDownList><label class="Text">m</label>
                             </div>
                             <div>
+                                <p></p>
                                 <label id="NCComment" class="Text">Non-Charge Comment</label>
                                 <div>
-                                    <asp:TextBox runat="server" TextMode="MultiLine"  ID="NCCommentBox" CssClass="Text commentbox"></asp:TextBox>
+                                    <asp:TextBox runat="server" Font-Size="Large"  TextMode="MultiLine"  ID="NCCommentBox" CssClass="Text commentbox"></asp:TextBox>
                                 </div>
                             </div>
-                           </div>
+                      
                        
                            <div style="text-align:center">
                                <button runat="server" id="NCTableADD" class="btn3" style="margin:25px" onserverclick="BtnNCTableADDClick">ADD</button>

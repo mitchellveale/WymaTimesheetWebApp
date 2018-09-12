@@ -17,10 +17,13 @@ signaturePad.on();
 
 
 function saveSig() {
-
-    var save = signaturePad.toDataURL("image/svg+xml");
-    document.getElementById("hiddenfield").value = save;
+   
+        var save = signaturePad.toDataURL("image/svg+xml");
+        document.getElementById("hiddenfield").value = save;
+    
+        return;
 }
+   
 
 
 function clearSig() {
