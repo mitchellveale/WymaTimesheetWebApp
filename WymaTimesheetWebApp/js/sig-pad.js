@@ -22,6 +22,7 @@ function saveSig() {
     document.getElementById("hiddenfield").value = save;
 }
 
+
 function clearSig() {
     signaturePad.clear();
 

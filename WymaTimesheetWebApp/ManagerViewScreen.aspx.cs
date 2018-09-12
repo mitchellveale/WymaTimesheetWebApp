@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Diagnostics;
 
 namespace WymaTimesheetWebApp
 {
@@ -16,7 +17,7 @@ namespace WymaTimesheetWebApp
         {
             if (!IsPostBack)
             {
-
+                
                 //Functions that run on page load
                 string ManagerNameData = Session["ManagerName"].ToString();
                 ManagerName.InnerText = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{ManagerNameData}';");
@@ -128,15 +129,40 @@ namespace WymaTimesheetWebApp
             if (sigPad.Visible == false)
             {
 
+                if (Global.signatureData.ContainsKey(Session["ManagerName"].ToString()))
+                {
+                    Image img = new Image();
+                    img.ImageUrl = Global.signatureData[Session["ManagerName"].ToString()];
+                    SignatureImage = img;
+                    SignatureImage.Visible = true;
+                    signLabel.Text = "Stored Signature:";
+                    signLabel.Visible = true;
+                    imgbtn.Visible = true;
+                    return;
+                }
                 signLabel.Visible = true;
                 sigPad.Visible = true;
                 clearBtn.Visible = true;
+                    
             }
             else
             {
-
+                Response.Write("<script>alert('" + hiddenfield.Value + "')</script>");
+                Debug.WriteLine("Adding Signature Data");
+                //store signature data
+                Debug.WriteLine("Hidden Field Data is: " + hiddenfield.Value);
+                Global.signatureData.Add(Session["ManagerName"].ToString(), hiddenfield.Value);
                 Server.Transfer("ManagerViewScreen.aspx");
             }
+        }
+
+        protected void imgbtn_Click(object sender, EventArgs e)
+        {
+            SignatureImage.Visible = false;
+            sigPad.Visible = true;
+            imgbtn.Visible = false;
+            clearBtn.Visible = true;
+            signLabel.Text = "Sign Here:";
         }
     }
 }

@@ -30,6 +30,8 @@ namespace WymaTimesheetWebApp
                 {
                     Session["ManagerName"] = ManagerName;
                     Server.Transfer("ManagerViewScreen.aspx", true);
+                    if (Global.signatureData.ContainsKey(Session["ManagerName"].ToString()))
+                        Global.signatureData.Remove(Session["ManagerName"].ToString());
                 }
                 
             }

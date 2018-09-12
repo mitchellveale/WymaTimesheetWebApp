@@ -94,6 +94,15 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl sigPad;
         
         /// <summary>
+        /// SignatureImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image SignatureImage;
+        
+        /// <summary>
         /// clearBtn control.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace WymaTimesheetWebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton clearBtn;
+        
+        /// <summary>
+        /// imgbtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button imgbtn;
         
         /// <summary>
         /// btnAcceptMV control.
