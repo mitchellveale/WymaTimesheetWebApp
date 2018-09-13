@@ -25,6 +25,7 @@ function saveSig() {
 }
    
 
+
 function clearSig() {
     signaturePad.clear();
 

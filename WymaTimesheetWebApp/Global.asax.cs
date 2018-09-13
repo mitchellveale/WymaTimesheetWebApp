@@ -10,7 +10,6 @@ using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Configuration;
-using System.Diagnostics;
 
 namespace WymaTimesheetWebApp
 {
@@ -25,17 +24,20 @@ namespace WymaTimesheetWebApp
             public string manager;
         }
 
+        #region  Ya'll want some dictionaries?
         public static Dictionary<string, DataTable> CHDATA  = new Dictionary<string, DataTable>();
         public static Dictionary<string, DataTable> NCDATA = new Dictionary<string, DataTable>();
 
         public static Dictionary<string, UsrData> DictUsrData = new Dictionary<string, UsrData>();
 
         public static Dictionary<string, DataFile> UserData = new Dictionary<string, DataFile>();
-        public static string errorLog;
 
+        public static Dictionary<string, string> signatureData = new Dictionary<string, string>();
+        #endregion
 
         public static List<DataFileInfo> UnapprovedFiles = new List<DataFileInfo>();
 
+        public static string errorLog;
         private static string outputPath;
         public static string OutputPath
         {
@@ -384,11 +386,11 @@ namespace WymaTimesheetWebApp
                 string str = string.Format($"{header.Date},{de.JobType.ToString()},{de.OrderNum},,{header.EmployeeCode},STD,{de.Task},FALSE,,,{de.Time.ToString()},0,,Chargeable,,-,TRUE,TRUE,FALSE,InProgress");
                 builder.AppendLine(str);
             }
+            //generate a unique 14-digit QR code for the file.
             Random random = new Random();
             int QRCode = random.Next(100000, 999999);
-            Debug.WriteLine($"Date is '{header.Date}'");
             int date = int.Parse(Regex.Replace(header.Date, "[^0-9]+", string.Empty));
-            //deal with naming the file here
+            //name the file
             string fileName = $"{header.EmployeeCode} {date.ToString()}{QRCode.ToString()}";
             File.WriteAllText($@"{Global.ExportPath}{fileName}.csv", builder.ToString());
             //remove from unapproved files
@@ -437,6 +439,7 @@ namespace WymaTimesheetWebApp
             }
             return dt;
         }
+
 
         public Tuple<string, float> GetDateAndTime()
         {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Diagnostics;
 
 namespace WymaTimesheetWebApp
 {
@@ -16,7 +17,11 @@ namespace WymaTimesheetWebApp
         {
             if (!IsPostBack)
             {
+<<<<<<< HEAD
                 Session["MangV"] = "";
+=======
+                
+>>>>>>> d0642e6e5f943d628dc4e7d0a97a351543fbafb2
                 //Functions that run on page load
                 string ManagerNameData = Session["ManagerName"].ToString();
                 ManagerName.InnerText = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{ManagerNameData}';");
@@ -140,22 +145,59 @@ namespace WymaTimesheetWebApp
 
         protected void BtnAcceptMVClick(object sender, EventArgs e)
         {
-            if (sigPad.Visible == false)
+            if (sigPad.Visible == false && SigImg.Visible == false)
             {
+
+                if (Global.signatureData.ContainsKey(Session["ManagerName"].ToString()))
+                {
+                    //Set the image to the image data for the signature.
+                    SigImg.Visible = true;
+                    SigImg.Src = Global.signatureData[Session["ManagerName"].ToString()];
+
+
+                    signLabel.Text = "Stored Signature:";
+                    signLabel.Visible = true;
+                    imgbtn.Visible = true;
+                    return;
+                }
                 btnAccept1MV.Visible = false;
                 btnAccept2MV.Visible = true;
                 signLabel.Visible = true;
                 sigPad.Visible = true;
                 clearBtn.Visible = true;
+
             }
-            else
+            else if (sigPad.Visible == false && SigImg.Visible == true)
             {
+<<<<<<< HEAD
          
                 DataFile df = Session["DataFile"] as DataFile;
                 df.Export();
+=======
+                //export file with the stored signature
+>>>>>>> d0642e6e5f943d628dc4e7d0a97a351543fbafb2
                 Server.Transfer("ManagerViewScreen.aspx");
 
             }
+            else
+            {
+                //store signature data
+                Global.signatureData.Add(Session["ManagerName"].ToString(), hiddenfield.Value);
+                Debug.WriteLine(hiddenfield.Value);
+                Server.Transfer("ManagerViewScreen.aspx");
+            }
+        }
+
+        protected void imgbtn_Click(object sender, EventArgs e)
+        {
+            SigImg.Visible = false;
+            sigPad.Visible = true;
+            imgbtn.Visible = false;
+            clearBtn.Visible = true;
+            Global.signatureData.Remove(Session["ManagerName"].ToString());
+            signLabel.Text = "Sign Here:";
+            btnAccept1MV.Visible = false;
+            btnAccept2MV.Visible = true;
         }
     }
 }
