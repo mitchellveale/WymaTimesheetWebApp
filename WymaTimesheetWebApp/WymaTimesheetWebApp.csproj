@@ -90,6 +90,7 @@
     <Content Include="ManagerLogin.aspx" />
     <Content Include="ManagerUpdate.aspx" />
     <Content Include="ManagerViewScreen.aspx" />
+    <Content Include="OrderNumService.asmx" />
     <Content Include="Testing.aspx" />
     <Content Include="ViewScreen.aspx" />
     <Content Include="WymaTimesheetWebApp.sitemap" />
@@ -142,6 +143,10 @@
     </Compile>
     <Compile Include="ManagerViewScreen.aspx.designer.cs">
       <DependentUpon>ManagerViewScreen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderNumService.asmx.cs">
+      <DependentUpon>OrderNumService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainMenu.aspx.cs">

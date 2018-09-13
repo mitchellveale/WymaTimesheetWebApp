@@ -17,11 +17,8 @@ namespace WymaTimesheetWebApp
         {
             if (!IsPostBack)
             {
-<<<<<<< HEAD
                 Session["MangV"] = "";
-=======
                 
->>>>>>> d0642e6e5f943d628dc4e7d0a97a351543fbafb2
                 //Functions that run on page load
                 string ManagerNameData = Session["ManagerName"].ToString();
                 ManagerName.InnerText = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{ManagerNameData}';");
@@ -169,13 +166,10 @@ namespace WymaTimesheetWebApp
             }
             else if (sigPad.Visible == false && SigImg.Visible == true)
             {
-<<<<<<< HEAD
          
                 DataFile df = Session["DataFile"] as DataFile;
                 df.Export();
-=======
-                //export file with the stored signature
->>>>>>> d0642e6e5f943d628dc4e7d0a97a351543fbafb2
+                //TODO:export file with the stored signature
                 Server.Transfer("ManagerViewScreen.aspx");
 
             }
