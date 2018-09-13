@@ -126,50 +126,45 @@ namespace WymaTimesheetWebApp
 
         protected void BtnAcceptMVClick(object sender, EventArgs e)
         {
-            if (sigPad.Visible == false)
+            if (sigPad.Visible == false && SigImg.Visible == false)
             {
-<<<<<<< HEAD
 
                 if (Global.signatureData.ContainsKey(Session["ManagerName"].ToString()))
                 {
-                    Image img = new Image();
-                    img.ImageUrl = Global.signatureData[Session["ManagerName"].ToString()];
-                    SignatureImage = img;
-                    SignatureImage.Visible = true;
+                    //Set the image to the image data for the signature.
+                    SigImg.Visible = true;
+                    SigImg.Src = Global.signatureData[Session["ManagerName"].ToString()];
+
+
                     signLabel.Text = "Stored Signature:";
                     signLabel.Visible = true;
                     imgbtn.Visible = true;
                     return;
                 }
-=======
                 btnAccept1MV.Visible = false;
                 btnAccept2MV.Visible = true;
->>>>>>> 3ce26231f13a98706731b61ff145c635e9b19740
                 signLabel.Visible = true;
                 sigPad.Visible = true;
                 clearBtn.Visible = true;
-                    
+
+            }
+            else if (sigPad.Visible == false && SigImg.Visible == true)
+            {
+                //export file with the stored signature
+                Server.Transfer("ManagerViewScreen.aspx");
+
             }
             else
             {
-<<<<<<< HEAD
-                Response.Write("<script>alert('" + hiddenfield.Value + "')</script>");
-                Debug.WriteLine("Adding Signature Data");
                 //store signature data
-                Debug.WriteLine("Hidden Field Data is: " + hiddenfield.Value);
                 Global.signatureData.Add(Session["ManagerName"].ToString(), hiddenfield.Value);
                 Server.Transfer("ManagerViewScreen.aspx");
-=======
-  
-                 Server.Transfer("ManagerViewScreen.aspx");
-
->>>>>>> 3ce26231f13a98706731b61ff145c635e9b19740
             }
         }
 
         protected void imgbtn_Click(object sender, EventArgs e)
         {
-            SignatureImage.Visible = false;
+            SigImg.Visible = false;
             sigPad.Visible = true;
             imgbtn.Visible = false;
             clearBtn.Visible = true;

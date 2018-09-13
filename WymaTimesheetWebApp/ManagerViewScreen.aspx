@@ -70,7 +70,7 @@
    
                        <canvas runat="server" visible="false" id="sigPad" style="border: thin solid #000000; max-height:inherit; max-width:inherit;"></canvas>
                        <script src="js/sig-pad.js"></script>
-                       <asp:Image ID="SignatureImage" runat="server" Visible="false" style="border: thin solid #000000; max-height:inherit; max-width:inherit;" />
+                       <img id="SigImg" src="" alt="Image Not Found" style="border: thin solid #000000; max-height:inherit; max-width:inherit;" runat="server" visible="false" />
                        <br/>
                        <button runat="server" visible="false" id="clearBtn" onclick="clearSig();" >Clear</button>
                        <script src="js/sig-pad.js"></script>

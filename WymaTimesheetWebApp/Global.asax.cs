@@ -439,6 +439,7 @@ namespace WymaTimesheetWebApp
             return dt;
         }
 
+
         public Tuple<string, float> GetDateAndTime()
         {
             float totalTime = 0;
