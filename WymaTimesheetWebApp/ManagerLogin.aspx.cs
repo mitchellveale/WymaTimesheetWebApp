@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -23,15 +24,19 @@ namespace WymaTimesheetWebApp
             if (ManagerName == "")
                 Response.Write(@"<script>alert('That is not a valid manager number.\nPlease Try Again.')</script>");
             else
-            { 
+            {
                 if (ManagerName == "!ERROR!")
                     Response.Write(@"<script>alert('Login information cannot be validated.\nPlease Try Again.\nIf this problem persists, please contact your network administrator.')</script>");
                 else
                 {
                     Session["ManagerName"] = ManagerName;
-                    Server.Transfer("ManagerViewScreen.aspx", true);
+                    Debug.WriteLine("Checking If signature exists");
                     if (Global.signatureData.ContainsKey(Session["ManagerName"].ToString()))
+                    {
+                        Debug.WriteLine("Signature exists, Removing...");
                         Global.signatureData.Remove(Session["ManagerName"].ToString());
+                    }
+                    Server.Transfer("ManagerViewScreen.aspx", true);
                 }
                 
             }

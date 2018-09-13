@@ -158,6 +158,7 @@ namespace WymaTimesheetWebApp
             {
                 //store signature data
                 Global.signatureData.Add(Session["ManagerName"].ToString(), hiddenfield.Value);
+                Debug.WriteLine(hiddenfield.Value);
                 Server.Transfer("ManagerViewScreen.aspx");
             }
         }
@@ -168,7 +169,10 @@ namespace WymaTimesheetWebApp
             sigPad.Visible = true;
             imgbtn.Visible = false;
             clearBtn.Visible = true;
+            Global.signatureData.Remove(Session["ManagerName"].ToString());
             signLabel.Text = "Sign Here:";
+            btnAccept1MV.Visible = false;
+            btnAccept2MV.Visible = true;
         }
     }
 }
