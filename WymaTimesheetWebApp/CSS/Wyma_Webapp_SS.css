@@ -58,7 +58,7 @@
 }
 
 #Data {
-    height: 100%; 
+    height: auto; 
     max-width: 1300px ;
     width: auto;
     padding: 25px;
@@ -69,13 +69,13 @@
 
 #TopData
 {
-    height:auto;
+    height:inherit;
     width:auto;
     min-height: 575px;
 }
 
 #BottomData {
-    height: auto;
+    height: inherit;
     width: auto;
     min-height: 450px;
 }

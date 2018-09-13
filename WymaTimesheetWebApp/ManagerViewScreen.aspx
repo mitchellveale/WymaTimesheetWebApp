@@ -56,7 +56,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="View Timesheet">
                                     <ItemTemplate>
-                                        <asp:Button runat="server" ID="viewBtn" Text="View" CommandName="ViewTimeSheet" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                                        <asp:Button runat="server" ID="viewBtn" Text="View" CssClass="Text" Font-Size="X-Large" Height="100px" Width="200px" CommandName="ViewTimeSheet" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
