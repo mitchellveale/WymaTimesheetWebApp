@@ -292,11 +292,12 @@ namespace WymaTimesheetWebApp
             data = new List<DataEntry>();
         }
 
-        public void CreateHeader(string EmployeeCode, string Date)
+        public void CreateHeader(string EmployeeCode, string Date, string Manager = "")
         {
             header.Accepted = false;
             header.EmployeeCode = EmployeeCode;
             header.Date = Date;
+            header.Manager = Manager;
         }
         //this isnt so much "add data" as it is initialize data
         public void AddData(JobType JobType, string OrderNum, string Task, float Time, string Customer)
@@ -439,6 +440,23 @@ namespace WymaTimesheetWebApp
             return dt;
         }
 
+        public static implicit operator DataFile(DataTable dt)
+        {
+            DataFile df = new DataFile();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                df.AddData(
+                    (JobType)dr["Job/Assy"],
+                    dr["Number"].ToString(),
+                    dr["Step/Task"].ToString(),
+                    Global.TimeToFloat(dr["Hours:Mins"].ToString()),
+                    dr["Customer/NC Comment"].ToString()
+                    );
+            }
+
+            return df;
+        }
 
         public Tuple<string, float> GetDateAndTime()
         {
