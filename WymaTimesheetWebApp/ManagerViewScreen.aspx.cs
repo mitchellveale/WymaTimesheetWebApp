@@ -16,7 +16,7 @@ namespace WymaTimesheetWebApp
         {
             if (!IsPostBack)
             {
-
+                Session["MangV"] = "";
                 //Functions that run on page load
                 string ManagerNameData = Session["ManagerName"].ToString();
                 ManagerName.InnerText = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{ManagerNameData}';");
@@ -60,6 +60,7 @@ namespace WymaTimesheetWebApp
                 string date = unsignedTimesheets.Rows[index].Field<string>(1);
                 string managerName = Session["ManagerName"].ToString();
 
+                
 
                 ManagerView.Columns[0].Visible = false;
 
@@ -73,15 +74,29 @@ namespace WymaTimesheetWebApp
 
                 Tuple<string, float> DT = df.GetDateAndTime();
 
-                NameViewLabel.Text = "Employee Name: " + unsignedTimesheets.Rows[index].Field<string>(0);
-                DateViewLabel.Text = "Date Submited: " + DT.Item1;
-                TotalHoursLabel.Text = "Total Time Worked: " + Global.TimeToString(DT.Item2);
+                string employeeName = unsignedTimesheets.Rows[index].Field<string>(0);
+                string dateSub = DT.Item1;
+                string hoursWorked = Global.TimeToString(DT.Item2);
 
-                Session["DataFile"] = FileData;
+
+                NameViewLabel.Text = "Employee Name: " + employeeName;
+                DateViewLabel.Text = "Date Submited: " + dateSub;
+                TotalHoursLabel.Text = "Total Time Worked: " + hoursWorked;
+
+                List<string> empData = new List<string>();
+                empData.Add(employeeName);
+                empData.Add(dateSub);
+                empData.Add(hoursWorked);
+
+                Session["DataFile"] = df;
+                Session["empData"] = empData;
+
+           
+
 
                 //Server.Transfer("ManagerFileUpdate.aspx", true);
-               
-                
+
+
 
             }
 
@@ -135,8 +150,10 @@ namespace WymaTimesheetWebApp
             }
             else
             {
-  
-                 Server.Transfer("ManagerViewScreen.aspx");
+         
+                DataFile df = Session["DataFile"] as DataFile;
+                df.Export();
+                Server.Transfer("ManagerViewScreen.aspx");
 
             }
         }

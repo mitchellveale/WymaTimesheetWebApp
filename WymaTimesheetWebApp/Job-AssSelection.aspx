@@ -89,31 +89,25 @@
                            </div>
                        
                        </div>
-                </div>
-                   
+                </div>                    
                     
-                    
-                   <div id="BottomData2" style="margin: 25px;">
-                       <div style="display:table; width:100%; height:auto;" >
-                            <div style="display:table-cell; vertical-align:middle; width:100%; height:100%;">
-                                <asp:GridView ID="DataCHView" OnRowCommand="DataCHView_RowCommand" runat="server" CssClass="Text" HeaderStyle-BorderWidth="2px">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Remove Row">
-                                            <ItemTemplate>
-                                                <asp:Button ID="CHRemoveBtn" Text="Remove" runat="server"  CommandName="RemoveRow" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </div>
-                       </div>
-                   </div>     
-                       
+                <div id="TopData2" style="margin: 25px;">
+                    <div style="display:table; width:100%; height:auto;" >
+                        <div style="display:table-cell; vertical-align:middle; width:100%; height:100%;">
+                            <asp:GridView ID="DataCHView" OnRowCommand="DataCHView_RowCommand" runat="server" CssClass="Text" HeaderStyle-BorderWidth="2px">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Remove Row">
+                                        <ItemTemplate>
+                                            <asp:Button ID="CHRemoveBtn" Text="Remove" runat="server" CssClass="Text" Font-Size="X-Large" Height="100px" Width="200px"  CommandName="RemoveRow" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
+                </div>     
 
-                        
-                        
-                        
-                       
+
                     <div id="BottomData" style="text-align:center" class="border">
                         <div id="NCSelection" style="text-align:center" >
                            <p style="text-align:center"> <label class="Text" >Select your Non-Charge Hours</label> </p>
@@ -142,25 +136,26 @@
                            </div>
                        
                        </div>
+                    </div>
 
-                       <div id="TopData2" style="margin: 25px">
-                            <div style="display:table; width:100%; height:auto" >
-                                <div style="display: table-cell; vertical-align:middle; width:100%; height:100%">
-                                    <asp:GridView ID="DataNCView" OnRowCommand="DataNCView_RowCommand" runat="server" CssClass="Text" >
-                                         <Columns>
-                                            <asp:TemplateField HeaderText="Remove Row">
-                                                <ItemTemplate>
-                                                    <asp:Button ID="NHRemoveBtn" Text="Remove" runat="server"  CommandName="RemoveRow" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
+                    <div id="BottomData2" style="margin: 25px">
+                        <div style="display:table; width:100%; height:auto" >
+                            <div style="display: table-cell; vertical-align:middle; width:100%; height:100%">
+                                <asp:GridView ID="DataNCView" OnRowCommand="DataNCView_RowCommand" runat="server" CssClass="Text" >
+                                        <Columns>
+                                        <asp:TemplateField HeaderText="Remove Row">
+                                            <ItemTemplate>
+                                                <asp:Button ID="NHRemoveBtn" Text="Remove" runat="server" CssClass="Text" Font-Size="X-Large" Height="100px" Width="200px" CommandName="RemoveRow" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
 
-                                    </asp:GridView>
+                                </asp:GridView>
 
-                                </div>
                             </div>
-                       </div>     
-                    </div> 
+                        </div>
+                    </div>        
+                     
                  </div> 
             </div>           
                                

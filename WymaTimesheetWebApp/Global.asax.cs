@@ -103,7 +103,8 @@ namespace WymaTimesheetWebApp
         {
             DirectoryInfo d = new DirectoryInfo(outputPath);
             FileInfo[] Files = d.GetFiles("*.Wyma");
-            foreach (FileInfo file in Files)
+
+            foreach (FileInfo file in Files) 
             {
                 string fName = file.Name.Split('.')[0];
                 bool alreadyExists = false;

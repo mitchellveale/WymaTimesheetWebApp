@@ -31,7 +31,7 @@
                        <div style="text-align:center; margin-bottom:25px; " class="border">
                             <div id="TD_Info" >
                                 <p>
-                                    <label class="Text">Manager Name:</label>
+                                    <label class="Text">Manager Name: </label>
                                     <label runat="server" id="ManagerName" class="Text"></label>
                                 </p>
                                 <p>
@@ -46,7 +46,7 @@
                                     <asp:label runat="server" ID="TotalHoursLabel"  CssClass="Text" Text="Total Hours Worked:"></asp:label>
                                 </p>
                                 <p>
-                                    <asp:label runat="server" ID="TotalAppLabel"  CssClass="Text" Text="Total Hours Worked:"></asp:label>
+                                    <asp:label runat="server" ID="TotalAppLabel"  CssClass="Text" Text="Total Hours Applied:"></asp:label>
                                 </p>
 
                             </div>
@@ -59,27 +59,27 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Edit Row">
                                     <ItemTemplate>
-                                        <asp:Button runat="server" ID="viewBtn" Text="Edit" CommandName="EditTimeSheet" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                                        <asp:Button runat="server" ID="viewBtn" Text="Edit" CssClass="Text" Font-Size="X-Large" Height="100px" Width="200px" CommandName="EditTimeSheet" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                             
                     </div>
-                     <div id="SignPad">
-                       <asp:label runat="server" ID="signLabel" Visible="false" CssClass="Text" Text="Sign Here:" ></asp:label>
-                       <br/>
-                       <input runat="server" type="hidden" name="hiddenfield" id="hiddenfield" value="" />
-   
-                       <canvas runat="server" visible="false" id="sigPad" style="border: thin solid #000000; max-height:inherit; max-width:inherit;"></canvas>
-                       <script src="js/sig-pad.js"></script>
+                    <div id="SignPad">
+                        <asp:Label runat="server" ID="signLabel" Visible="false" CssClass="Text" Text="Sign Here:"></asp:Label>
+                        <br />
+                        <input runat="server" type="hidden" name="hiddenfield" id="hiddenfield" value="" />
 
-                       <br/>
-                       <button runat="server" visible="false" id="clearBtn" onclick="clearSig();" >Clear</button>
-                       <script src="js/sig-pad.js"></script>
+                        <canvas runat="server" visible="false" id="sigPad" style="border: thin solid #000000; max-height: inherit; max-width: inherit;"></canvas>
+                        <script src="js/sig-pad.js"></script>
+
+                        <br />
+                        <button runat="server" visible="false" id="clearBtn" onclick="clearSig();">Clear</button>
+                        <script src="js/sig-pad.js"></script>
                     </div>
-        </div>
                 </div>
+        </div>
             
         <div id="FooterRap">
             <div id="Footer1">
