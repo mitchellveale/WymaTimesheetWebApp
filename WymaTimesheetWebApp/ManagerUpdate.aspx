@@ -53,6 +53,39 @@
                     </div>
                     
                 </div>
+                    <div runat="server" id="UpdateSelection" visible="false">
+                           <p style="text-align:center"> <label class="Text" >Edit Jobs and Assemblies</label> </p>
+                          
+
+                            <div class="ezydisplay">
+                                <label id="Number" class="Text">Number: </label>
+                                <asp:DropDownList Font-Size="X-Large" runat="server" width="250px" Height="75px" ID="JobNumberData" CssClass="Text Dropdown" AutoPostBack="true" OnSelectedIndexChanged="OrderNumberUpdate"></asp:DropDownList>
+                            </div>
+
+                            <div class="ezydisplay" >
+                                <label id="Step/Task" class="Text">Step/Task:</label>
+                                <asp:DropDownList runat="server" Font-Size="X-Large" width="250px" Height="75px" ID="StepTaskData" CssClass="Text Dropdown"></asp:DropDownList>
+                            </div>
+                           
+                       
+                           <div>
+                            <p></p>
+                            <asp:Label runat="server" ID="JobAssyData" Visible="false" CssClass="Text"></asp:Label>
+                       
+                            <asp:Label runat="server" ID="WyEUrefData" Visible="false" CssClass="Text"></asp:Label>
+                            
+                            <asp:Label runat="server" ID="EUStepData" Visible="false" CssClass="Text"></asp:Label>
+                            
+                            <asp:Label runat="server" ID="EUCustData" Visible="false" CssClass="Text"></asp:Label>
+
+                            <label id="Customer" class="Text">Customer:</label>
+                            <asp:Label runat="server" ID="CustData" CssClass="Text"></asp:Label>
+                           </div>
+                           <div style="text-align:center">
+                               <button runat="server" id="EditTable"  class="btn3" style="margin:25px" onserverclick="BtnEdit">Make Changes</button>
+                           </div>
+                       
+                       </div>
                     <br/>
                     <div id="FileList">
                         <asp:GridView ID="UpdateView" runat="server" OnRowCommand="EditRow_RowCommand" CssClass="Text" HeaderStyle-BorderWidth="2px" >
@@ -88,7 +121,7 @@
             </div>
             <div id="Footer2">
 
-                <button runat="server" id="btnBackMU" class="btncancel"  onserverclick="BtnBackMU">Back</button>
+                <button runat="server" id="btnBackMU" class="btncancel"  onserverclick="BtnBackMU">Cancel</button>
 
             </div>
         </div>

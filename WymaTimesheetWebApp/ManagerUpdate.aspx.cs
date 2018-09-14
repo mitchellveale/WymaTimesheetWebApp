@@ -10,10 +10,12 @@ namespace WymaTimesheetWebApp
 {
     public partial class ManagerUpdate : System.Web.UI.Page
     {
-        
+        // List of Ordernumbers to allow order numbers to be stored from Database
+        private List<string> Ordernumbers;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 List<string> empData = Session["empData"] as List<string>;
                 ManagerName.InnerText = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{Session["ManagerName"].ToString()}';");
@@ -25,13 +27,67 @@ namespace WymaTimesheetWebApp
                 DataTable df = Session["DataFile"] as DataFile;
 
 
+                //Sets inital data in forms for users to select from. 
+                Ordernumbers = Global.ReadDataList("SELECT DISTINCT ORDERNUMBER FROM ORDERS;");
+                JobNumberData.Items.Add("Please Select an Order Number");
+                foreach (string str in Ordernumbers)
+                {
+                    JobNumberData.Items.Add(str);
+                }
+
                 UpdateView.DataSource = df;
                 UpdateView.DataBind();
+
+
+
             }
         }
 
+        protected void OrderNumberUpdate(object sender, EventArgs e)
+        {
+            //Gets the list of Steps and/or tasks for selected Order number when selected.
+            List<string> OrderStepsTasks;
+            StepTaskData.Items.Clear();
+            StepTaskData.Items.Add("Please Select a Step or Task");
+            StepTaskData.Enabled = true;
+
+            OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
+
+            foreach (string str in OrderStepsTasks)
+            {
+                StepTaskData.Items.Add(str);
+
+            }
+
+            JobAssyData.Text = Global.ReadDataString($"SELECT TYPE FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
+            CustData.Text = Global.ReadDataString($"SELECT CUSTOMER FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
+        }
+
+
         protected void EditRow_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            List<string> OrderStepsTasks;
+            if (e.CommandName == "EditTimeSheet")
+            {
+                UpdateSelection.Visible = true;
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                JobNumberData.SelectedValue = UpdateView.Rows[index].Cells[2].Text;
+
+                OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
+                foreach (string str in OrderStepsTasks)
+                {
+                    StepTaskData.Items.Add(str);
+
+                }
+
+                StepTaskData.SelectedValue = UpdateView.Rows[index].Cells[3].Text;
+
+                CustData.Text = UpdateView.Rows[index].Cells[8].Text;
+
+                Session["EditedRow"] = index;
+
+            }
 
         }
 
@@ -42,6 +98,24 @@ namespace WymaTimesheetWebApp
 
         protected void BtnAcceptMU(object sender, EventArgs e)
         {
+
+        }
+
+        protected void BtnEdit(object sender, EventArgs e)
+        {
+            
+            int index = int.Parse(Session["EditedRow"].ToString());
+
+            //edit row with row number of index
+            UpdateView.Rows[index].Cells[1].Text = JobAssyData.Text;
+            UpdateView.Rows[index].Cells[2].Text = JobNumberData.SelectedValue;
+            UpdateView.Rows[index].Cells[3].Text = StepTaskData.SelectedValue;
+            UpdateView.Rows[index].Cells[5].Text = WyEUrefData.Text;
+            UpdateView.Rows[index].Cells[6].Text = EUStepData.Text;
+            UpdateView.Rows[index].Cells[7].Text = EUCustData.Text;
+            UpdateView.Rows[index].Cells[8].Text = CustData.Text;
+
+
 
         }
     }

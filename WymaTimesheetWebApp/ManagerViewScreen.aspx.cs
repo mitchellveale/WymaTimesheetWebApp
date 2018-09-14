@@ -17,11 +17,9 @@ namespace WymaTimesheetWebApp
         {
             if (!IsPostBack)
             {
-<<<<<<< HEAD
+
                 Session["MangV"] = "";
-=======
-                
->>>>>>> d0642e6e5f943d628dc4e7d0a97a351543fbafb2
+
                 //Functions that run on page load
                 string ManagerNameData = Session["ManagerName"].ToString();
                 ManagerName.InnerText = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{ManagerNameData}';");
@@ -47,9 +45,7 @@ namespace WymaTimesheetWebApp
             //Accesses Unsigned Timesheets
             btnUpdateMV.Visible = true;
             btnAccept1MV.Visible = true;
-            NameViewLabel.Visible = true;
-            DateViewLabel.Visible = true;
-            TotalHoursLabel.Visible = true;
+            empinfo.Visible = true;
 
             DataTable unsignedTimesheets = Session["MangV"] as DataTable;
             List<Global.DataFileInfo> UnapprovedFiles = Global.UnapprovedFiles;
@@ -169,13 +165,12 @@ namespace WymaTimesheetWebApp
             }
             else if (sigPad.Visible == false && SigImg.Visible == true)
             {
-<<<<<<< HEAD
+
          
                 DataFile df = Session["DataFile"] as DataFile;
                 df.Export();
-=======
+
                 //export file with the stored signature
->>>>>>> d0642e6e5f943d628dc4e7d0a97a351543fbafb2
                 Server.Transfer("ManagerViewScreen.aspx");
 
             }
@@ -183,7 +178,8 @@ namespace WymaTimesheetWebApp
             {
                 //store signature data
                 Global.signatureData.Add(Session["ManagerName"].ToString(), hiddenfield.Value);
-                Debug.WriteLine(hiddenfield.Value);
+                DataFile df = Session["DataFile"] as DataFile;
+                df.Export();
                 Server.Transfer("ManagerViewScreen.aspx");
             }
         }
