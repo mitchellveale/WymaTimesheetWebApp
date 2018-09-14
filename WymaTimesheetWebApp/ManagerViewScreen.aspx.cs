@@ -17,8 +17,14 @@ namespace WymaTimesheetWebApp
         {
             if (!IsPostBack)
             {
+<<<<<<< HEAD
+
+                Session["MangV"] = "";
+
+=======
                 Session["MangV"] = "";
                 
+>>>>>>> c39b0ce5b4ee94801a9cabe64d5c53efa0881550
                 //Functions that run on page load
                 string ManagerNameData = Session["ManagerName"].ToString();
                 ManagerName.InnerText = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{ManagerNameData}';");
@@ -44,9 +50,7 @@ namespace WymaTimesheetWebApp
             //Accesses Unsigned Timesheets
             btnUpdateMV.Visible = true;
             btnAccept1MV.Visible = true;
-            NameViewLabel.Visible = true;
-            DateViewLabel.Visible = true;
-            TotalHoursLabel.Visible = true;
+            empinfo.Visible = true;
 
             DataTable unsignedTimesheets = Session["MangV"] as DataTable;
             List<Global.DataFileInfo> UnapprovedFiles = Global.UnapprovedFiles;
@@ -166,10 +170,19 @@ namespace WymaTimesheetWebApp
             }
             else if (sigPad.Visible == false && SigImg.Visible == true)
             {
+<<<<<<< HEAD
+
+         
+                DataFile df = Session["DataFile"] as DataFile;
+                df.Export();
+
+                //export file with the stored signature
+=======
          
                 DataFile df = Session["DataFile"] as DataFile;
                 df.Export();
                 //TODO:export file with the stored signature
+>>>>>>> c39b0ce5b4ee94801a9cabe64d5c53efa0881550
                 Server.Transfer("ManagerViewScreen.aspx");
 
             }
@@ -177,7 +190,8 @@ namespace WymaTimesheetWebApp
             {
                 //store signature data
                 Global.signatureData.Add(Session["ManagerName"].ToString(), hiddenfield.Value);
-                Debug.WriteLine(hiddenfield.Value);
+                DataFile df = Session["DataFile"] as DataFile;
+                df.Export();
                 Server.Transfer("ManagerViewScreen.aspx");
             }
         }

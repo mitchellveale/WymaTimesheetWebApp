@@ -34,18 +34,19 @@
                                     <label class="Text">Manager Name:</label>
                                     <label runat="server" id="ManagerName" class="Text"></label>
                                 </p>
-                                <p>
-                                    <asp:label runat="server" ID="NameViewLabel" Visible="false" CssClass="Text" Text="Employee Name:"></asp:label>
-                                </p>
+                                <div runat="server" id="empinfo" visible="false">
+                                    <p>
+                                        <asp:Label runat="server" ID="NameViewLabel" CssClass="Text" Text="Employee Name:"></asp:Label>
+                                    </p>
 
-                                <p>
-                                    <asp:label runat="server" ID="DateViewLabel" Visible="false" CssClass="Text" Text="Date Submited:"></asp:label>
-                                </p>
+                                    <p>
+                                        <asp:Label runat="server" ID="DateViewLabel"  CssClass="Text" Text="Date Submited:"></asp:Label>
+                                    </p>
 
-                                <p>
-                                    <asp:label runat="server" ID="TotalHoursLabel" Visible="false" CssClass="Text" Text="Total Hours Worked:"></asp:label>
-                                </p>
-
+                                    <p>
+                                        <asp:Label runat="server" ID="TotalHoursLabel"  CssClass="Text" Text="Total Hours Worked:"></asp:Label>
+                                    </p>
+                                </div>
                             </div>
                     </div>
                     
