@@ -41,16 +41,13 @@ namespace WymaTimesheetWebApp
 
                 //Adds names to Name Selection Box.
                 NamePicker.Items.Add("Please Select a Name");
-                //  ###########  ###  ###       ###  ######     ######  ############
-                //  ###########  ###   ###     ###   ### ###   ### ###  ############
-                //  ###          ###     ### ###     ###  ### ###  ###  ###
-                //  #######      ###       ###       ###    ###    ###  #######
-                //  ###          ###     ### ###     ###           ###  ###
-                //  ###          ###   ###     ###   ###           ###  ############
-                //  ###          ###  ###       ###  ###           ###  ############
+              
                 //If there is an error connecting to database the only namw will be john this is for testing purposes. Bellow here is where names are added.
                 if (DBDataNames[0] == "!ERROR!")
-                    NamePicker.Items.Add("John");
+                {
+                    Response.Write("<script>alert('Database Connection Failed. Please Contact your System Administrator.');</script>");
+                    Server.Transfer("MainMenu.aspx");
+                }
                 else
                 {
                     foreach (string str in DBDataNames)
@@ -134,21 +131,17 @@ namespace WymaTimesheetWebApp
         //Checks whether text has changed within the page.
         protected void TextChanged(object sender, EventArgs e)
         { 
-            
+
             string Name = Global.ReadDataString($"SELECT EMPNAME FROM EMPLOYEES WHERE RESOURCENAME='{NamePicker.SelectedValue}';");
-            if (Name == "!ERROR!")
-            {
-                NameLable.Text = "Name: John";
-            }
-            else
-                NameLable.Text = $"Name: {Name}";
+            NameLable.Text = $"Name: {Name}";
+
         }
 
         protected void BtnCancelDTClick(object sender, EventArgs e)
         { 
 
             //Retuns user to prevous page.
-            Server.Transfer("MainMenu.aspx", true);
+            Server.Transfer("MainMenu.aspx");
         }
 
         

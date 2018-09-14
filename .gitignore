@@ -49,3 +49,9 @@ WymaTimesheetWebApp/Web.config
 WymaTimesheetWebApp/bin/WymaTimesheetWebApp.dll.config
 WymaTimesheetWebApp/Web.config
 .vs/WymaTimesheetWebApp/v15/.suo
+<<<<<<< HEAD
+=======
+.vs/config/applicationhost.config
+WymaTimesheetWebApp/Web.config
+WymaTimesheetWebApp/bin/WymaTimesheetWebApp.dll.config
+>>>>>>> ad1301ae85a3f104d4cd37ba09d31ad32d1e600f
