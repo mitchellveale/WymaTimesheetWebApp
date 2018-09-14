@@ -7,6 +7,31 @@
   <title>Job/Assembly Selction</title>
     <link rel="icon" type="image/png" href="Images/favicon.png"/>
     <link rel="stylesheet" type="text/css" href="CSS/Wyma_Webapp_SS.css" />
+    <link rel="stylesheet" href="CSS/jquery-ui.min.css" type="text/css" />
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript" language="javascript">
+        $(function () {
+            $('#<%= OrderNumberInput.ClientID %>').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "OrderNumService.asmx/GetOrderNumbers",
+                        data: "{ 'inputData': '" + request.term + "' }",
+                        type: "POST",
+                        dataType: "json",
+                        contentType: "application/json;charset=utf-8",
+                        success: function (result) {
+                            response(result.d);
+                        },
+                        error: function (result) {
+                            alert('There is a problem processing your request');
+                        }
+                    });
+                },
+                minLength: 0
+            });
+        });
+    </script>
 </head>
 <body>
     <form id="JA" runat="server">
@@ -56,7 +81,8 @@
 
                             <div class="ezydisplay">
                                 <label id="Number" class="Text">Number: </label>
-                                <asp:DropDownList Font-Size="X-Large" runat="server" width="250px" Height="75px" ID="JobNumberData" CssClass="Text Dropdown" AutoPostBack="true" OnSelectedIndexChanged="OrderNumberUpdate" ></asp:DropDownList>
+                                <asp:TextBox ID="OrderNumberInput" runat="server" Font-Size="X-Large" width="250px" Height="75px"></asp:TextBox>
+                                <asp:DropDownList Visible="false" Font-Size="X-Large" runat="server" width="250px" Height="75px" ID="JobNumberData" CssClass="Text Dropdown" AutoPostBack="true" OnSelectedIndexChanged="OrderNumberUpdate" ></asp:DropDownList>
                             </div>
 
                             <div class="ezydisplay" >
