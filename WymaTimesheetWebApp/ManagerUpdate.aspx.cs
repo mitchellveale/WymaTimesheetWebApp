@@ -85,9 +85,9 @@ namespace WymaTimesheetWebApp
                     UpdateSelection.Visible = true;
 
 
-                    JobNumberData.SelectedValue = UpdateView.Rows[index].Cells[2].Text;
+                    OrderNumberInput.Text = UpdateView.Rows[index].Cells[2].Text;
 
-                    OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
+                    OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{OrderNumberInput.Text}' ;");
                     foreach (string str in OrderStepsTasks)
                     {
                         StepTaskData.Items.Add(str);
@@ -116,12 +116,17 @@ namespace WymaTimesheetWebApp
 
         protected void BtnEdit(object sender, EventArgs e)
         {
-            
+
+            sigPad.Visible = false;
+            signLabel.Visible = false;
+            SigImg.Visible = false;
+            clearBtn.Visible = false;
+            imgbtn.Visible = false;
             int index = int.Parse(Session["EditedRow"].ToString());
 
             //edit row with row number of index
             UpdateView.Rows[index].Cells[1].Text = JobAssyData.Text;
-            UpdateView.Rows[index].Cells[2].Text = JobNumberData.SelectedValue;
+            UpdateView.Rows[index].Cells[2].Text = OrderNumberInput.Text;
             UpdateView.Rows[index].Cells[3].Text = StepTaskData.SelectedValue;
             UpdateView.Rows[index].Cells[5].Text = WyEUrefData.Text;
             UpdateView.Rows[index].Cells[6].Text = EUStepData.Text;
@@ -134,6 +139,8 @@ namespace WymaTimesheetWebApp
 
         protected void BtnAcceptMUClick(object sender, EventArgs e)
         {
+            UpdateSelection.Visible = true;
+
             if (sigPad.Visible == false && SigImg.Visible == false)
             {
                 if (Global.signatureData.ContainsKey(Session["ManagerName"].ToString()))

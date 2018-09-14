@@ -85,7 +85,6 @@
                             <div class="ezydisplay">
                                 <label id="Number" class="Text">Number: </label>
                                 <asp:TextBox ID="OrderNumberInput" CssClass="Text" OnTextChanged="OrderNumberUpdate" AutoPostBack="true" runat="server" Font-Size="X-Large" width="250px" Height="75px"></asp:TextBox>
-                                <asp:DropDownList Font-Size="X-Large" Visible="false" runat="server" width="250px" Height="75px" ID="JobNumberData" CssClass="Text Dropdown" AutoPostBack="true" OnSelectedIndexChanged="OrderNumberUpdate"></asp:DropDownList>
                             </div>
 
                             <div class="ezydisplay" >
@@ -125,7 +124,7 @@
                         </asp:GridView>
                             
                     </div>
-                    <div id="SignPad">
+                    <div  id="SignPad">
                         <asp:Label runat="server" ID="signLabel" Visible="false" CssClass="Text" Text="Sign Here:"></asp:Label>
                         <br />
                         <input runat="server" type="hidden" name="hiddenfield" id="hiddenfield" value="" />
