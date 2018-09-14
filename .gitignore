@@ -47,3 +47,5 @@ WymaTimesheetWebApp/bin/WymaTimesheetWebApp.dll
 WymaTimesheetWebApp/bin/WymaTimesheetWebApp.pdb
 WymaTimesheetWebApp/Web.config
 WymaTimesheetWebApp/bin/WymaTimesheetWebApp.dll.config
+WymaTimesheetWebApp/ManagerUpdate.aspx.cs
+.vs/WymaTimesheetWebApp/v15/.suo
