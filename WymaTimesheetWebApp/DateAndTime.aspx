@@ -34,7 +34,7 @@
                         <div style="width: auto; height: auto;" >
 
 
-                            <asp:label runat="server" ID="NameLable" CssClass="Text" Text="Name: "/>
+                            <asp:label runat="server" ID="NameLable" Font-Size="Larger"  CssClass="Text" Text="Name: "/>
                             <asp:DropDownList ID="NamePicker" runat="server" Font-Size="X-Large" CssClass="Text labels" width="250px" Height="75px" AutoPostBack="true" OnSelectedIndexChanged="TextChanged" ></asp:DropDownList>
                             
                             <asp:label runat="server" ID="DateLabel" CssClass="Text" Text="Date:" /> <!-- Date/Time -->
