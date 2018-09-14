@@ -28,15 +28,8 @@ namespace WymaTimesheetWebApp
 
                 UpdateView.DataSource = df;
                 UpdateView.DataBind();
-
-
-
             }
         }
-
-
-       
-
 
         protected void OrderNumberUpdate(object sender, EventArgs e)
         {
@@ -141,9 +134,20 @@ namespace WymaTimesheetWebApp
 
         protected void BtnAcceptMUClick(object sender, EventArgs e)
         {
-            if (sigPad.Visible == false)
+            if (sigPad.Visible == false && SigImg.Visible == false)
             {
+                if (Global.signatureData.ContainsKey(Session["ManagerName"].ToString()))
+                {
+                    //Set the image to the image data for the signature.
+                    SigImg.Visible = true;
+                    SigImg.Src = Global.signatureData[Session["ManagerName"].ToString()];
 
+
+                    signLabel.Text = "Stored Signature:";
+                    signLabel.Visible = true;
+                    imgbtn.Visible = true;
+                    return;
+                }
                 btnAccept1MU.Visible = false;
                 btnAccept2MU.Visible = true;
                 signLabel.Visible = true;
@@ -151,7 +155,43 @@ namespace WymaTimesheetWebApp
                 clearBtn.Visible = true;
 
             }
-            else if (sigPad.Visible == true)
+            else if (sigPad.Visible == false && SigImg.Visible == true)
+            {
+                List<string> empData = Session["empData"] as List<string>;
+
+                DataFile OldData = Session["DataFile"] as DataFile;
+                DataFile dataFile = new DataFile();
+                dataFile.CreateHeader(Global.ReadDataString($"SELECT RESOURCENAME FROM EMPLOYEES WHERE EMPNAME='{empData[0]}';"), empData[1], Session["ManagerName"].ToString());
+
+                DataTable dt = new DataTable();
+
+
+
+                foreach (GridViewRow row in UpdateView.Rows)
+                {
+                    JobType jobType = (JobType)Enum.Parse(typeof(JobType), row.Cells[1].Text);
+                    string orderNumber = row.Cells[2].Text;
+                    string task = row.Cells[3].Text;
+
+                    //Calculate 'time' in a float format
+
+
+                    float time = Global.TimeToFloat(row.Cells[4].Text);
+
+
+
+
+                    string customer = row.Cells[8].Text;
+
+                    dataFile.AddData(jobType, orderNumber, task, time, customer);
+                }
+                string sig = Global.signatureData[Session["ManagerName"].ToString()].Split(';')[1];
+                dataFile.ManagerSignature = sig;
+                OldData.Write(false, true);
+                dataFile.Export(true);
+                Server.Transfer("ManagerViewScreen.aspx");
+            }
+            else
             {
                 List<string> empData = Session["empData"] as List<string>;
 
@@ -182,8 +222,10 @@ namespace WymaTimesheetWebApp
                     dataFile.AddData(jobType, orderNumber, task, time, customer);
                 }
 
-                
-                dataFile.Export();
+                string sig = hiddenfield.Value.Split(';')[1];
+                dataFile.ManagerSignature = sig;
+                OldData.Write(false, true);
+                dataFile.Export(true);
                 Server.Transfer("ManagerViewScreen.aspx");
 
             }
@@ -191,6 +233,16 @@ namespace WymaTimesheetWebApp
            
         }
 
-
+        protected void imgbtn_Click(object sender, EventArgs e)
+        {
+            SigImg.Visible = false;
+            sigPad.Visible = true;
+            imgbtn.Visible = false;
+            clearBtn.Visible = true;
+            Global.signatureData.Remove(Session["ManagerName"].ToString());
+            signLabel.Text = "Sign Here:";
+            btnAccept1MU.Visible = false;
+            btnAccept2MU.Visible = true;
+        }
     }
 }

@@ -170,6 +170,7 @@ namespace WymaTimesheetWebApp
 
                 //export file with the stored signature
                 DataFile df = Session["DataFile"] as DataFile;
+                df.ManagerSignature = Global.signatureData[Session["ManagerName"].ToString()].Split(';')[1];
                 df.Export();
 
                
@@ -183,6 +184,7 @@ namespace WymaTimesheetWebApp
                 //store signature data
                 Global.signatureData.Add(Session["ManagerName"].ToString(), hiddenfield.Value);
                 DataFile df = Session["DataFile"] as DataFile;
+                df.ManagerSignature = hiddenfield.Value.Split(';')[1];
                 df.Export();
                 Server.Transfer("ManagerViewScreen.aspx");
             }

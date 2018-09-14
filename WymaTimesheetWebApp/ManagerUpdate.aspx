@@ -132,10 +132,12 @@
 
                         <canvas runat="server" visible="false" id="sigPad" style="border: thin solid #000000; max-height: inherit; max-width: inherit;"></canvas>
                         <script src="js/sig-pad.js"></script>
-
+                        <!-- when this is used it will have a 'src' value applied to it -->
+                        <img id="SigImg" src="" alt="Image Not Found" style="border: thin solid #000000; max-height:inherit; max-width:inherit;" runat="server" visible="false" />
                         <br />
                         <button runat="server" visible="false" id="clearBtn" onclick="clearSig();">Clear</button>
                         <script src="js/sig-pad.js"></script>
+                        <asp:Button ID="imgbtn" runat="server" Text="Clear" Visible="false" OnClick="imgbtn_Click" />
                     </div>
                 </div>
         </div>

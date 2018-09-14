@@ -287,6 +287,15 @@ namespace WymaTimesheetWebApp
             }
         }
 
+        private string managerSignature;
+        public string ManagerSignature
+        {
+            set
+            {
+                managerSignature = value;
+            }
+        }
+
         public DataFile()
         {
             header = new Header();
@@ -319,14 +328,21 @@ namespace WymaTimesheetWebApp
             header.Manager = Manager;
         }
 
-        public void Write(bool AddToUnacceptedFiles = true)
+        public void Write(bool AddToUnacceptedFiles = true, bool move = false)
         {
             StringBuilder builder = new StringBuilder();
+            string writePath = $@"{Global.OutputPath}{header.EmployeeCode} {header.Date} {header.Manager}";
             int accepted = header.Accepted ? 1 : 0;
             string headerInput = string.Format($"{accepted.ToString()},{header.EmployeeCode},{header.Date},{header.Manager};");
             builder.AppendFormat(headerInput);
             string sig = string.Format($"{signature};");
             builder.AppendFormat(sig);
+            if (managerSignature != "")
+            {
+                string manSig = string.Format($"{managerSignature};");
+                builder.AppendFormat(manSig);
+                writePath = $@"{Global.OutputPath}Accepted Files\{header.EmployeeCode} {header.Date} FINAL";
+            }
             string dataInput;
             foreach (DataEntry de in data)
             {
@@ -334,7 +350,12 @@ namespace WymaTimesheetWebApp
                 dataInput = string.Format($"{jobTypeInt.ToString()},{de.OrderNum},{de.Task},{de.Time.ToString()},{de.Customer};");
                 builder.AppendFormat(dataInput);
             }
-            string filePath = $@"{Global.OutputPath}{header.EmployeeCode} {header.Date} {header.Manager}.Wyma";
+            if (move)
+            {
+                writePath = $@"{Global.OutputPath}Accepted Files\{header.EmployeeCode} {header.Date} INITIAL";
+                File.Delete($@"{Global.OutputPath}{header.EmployeeCode} {header.Date} {header.Manager}.Wyma");
+            }
+            string filePath = $@"{writePath}.Wyma";
             //We *MAY* want a simple encryption algorithm to make the file unreadable to anybody that may accidentally encounter it.
             File.WriteAllText(filePath, builder.ToString());
             if (AddToUnacceptedFiles)
@@ -375,7 +396,7 @@ namespace WymaTimesheetWebApp
             }
         }
 
-        public void Export()
+        public void Export(bool fixedVersion = false)
         {
             StringBuilder builder = new StringBuilder();
 
@@ -403,14 +424,21 @@ namespace WymaTimesheetWebApp
                     Global.UnapprovedFiles.RemoveAt(i);
                 }
             }
-            //move datafile to 'accepted' folder
-            header.Accepted = true;
-            //Write file but do not add it to the unapproved files list.
-            Write(false);
-            string from = $@"{Global.OutputPath}{header.EmployeeCode} {header.Date} {header.Manager}.Wyma";
-            string to = $@"{Global.OutputPath}Accepted Files\{header.EmployeeCode} {header.Date}.Wyma";
-            File.Move(from, to);
-
+            if (!fixedVersion)
+            {
+                //move datafile to 'accepted' folder
+                header.Accepted = true;
+                //Write file but do not add it to the unapproved files list.
+                Write(false);
+                string path = $@"{Global.OutputPath}{header.EmployeeCode} {header.Date} {header.Manager}.Wyma";
+                //string to = $@"{Global.OutputPath}Accepted Files\{header.EmployeeCode} {header.Date} INITIAL.Wyma";
+                //File.Move(from, to);
+                File.Delete(path);
+            }
+            else
+            {
+                Write(false);
+            }
         }
 
         public static implicit operator DataTable(DataFile df)
