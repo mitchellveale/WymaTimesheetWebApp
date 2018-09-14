@@ -31,14 +31,7 @@ namespace WymaTimesheetWebApp
                 TotalHoursLabel.Text = Global.TimeToString(Global.DictUsrData[userName].TotalHours);
 
                 TotalHoursAppLabel.Text = "0h 0m";
-
-                //Sets inital data in forms for users to select from. 
-                JobNumberData.Items.Add("Please Select an Order Number");
-                foreach (string str in Ordernumbers)
-                {
-                    JobNumberData.Items.Add(str);
-                }
-
+ 
 
                 NCCodeData.Items.Add("Please Select an Order Number");
                 List<string> NCCodes = Global.ReadDataList("SELECT CODE FROM NONCHARGE;");
@@ -156,14 +149,29 @@ namespace WymaTimesheetWebApp
             //checks weather a step or task has already been inputed into the data table.
             foreach (DataRow dr in CHTable.Rows)
             {
-                if (dr["Step/Task"].ToString() == StepTaskData.SelectedValue && dr["Number"].ToString() == JobNumberData.SelectedValue)
+                if (dr["Step/Task"].ToString() == StepTaskData.SelectedValue && dr["Number"].ToString() == OrderNumberInput.Text)
                 {
                     containsValue = true;
                 }
 
             }
             //Checks weather forms are filled in before allowing user to input data.
-            if (JobNumberData.SelectedValue == "Please Select an Order Number" || StepTaskData.SelectedValue == "Please Select a Step or Task" || CHHoursHSelection.SelectedValue == "00" && CHHoursMSelection.SelectedValue == "00")
+
+            string inputData = OrderNumberInput.Text;
+            inputData = inputData.Replace(" ", string.Empty);
+            inputData = inputData.Replace("'", string.Empty);
+            inputData = inputData.Replace(";", string.Empty);
+            inputData = inputData.ToUpper();
+            try
+            {
+                string result = Global.ReadDataString("SELECT FIRST 1 ORDERNUMBER FROM ORDERS WHERE ORDERNUMBER='" + inputData + "';");
+            }
+            catch
+            {
+                Response.Write("<script>alert('Entered Order number is invalid. Please review what you have entered and try again.');</script>");
+                return;
+            }
+            if (StepTaskData.SelectedValue == "Please Select a Step or Task" || CHHoursHSelection.SelectedValue == "00" && CHHoursMSelection.SelectedValue == "00")
                 Response.Write("<script>alert('Some fields do not have data please make sure that all fields are filled before adding a row.');</script>");
             else if (containsValue == true)
                 Response.Write("<script>alert('You have already inputed this Step or Task for this Order Number please remove and try again.');</script>");
@@ -176,7 +184,7 @@ namespace WymaTimesheetWebApp
 
                 DataRow dr = CHTable.NewRow();
                 dr["Job/Assy"] = JobAssyData.Text;
-                dr["Number"] = JobNumberData.SelectedValue;
+                dr["Number"] = OrderNumberInput.Text;
                 dr["Step/Task"] = StepTaskData.SelectedValue;
                 dr["Hours:Mins"] = CHHoursHSelection.SelectedValue + ":" + CHHoursMSelection.SelectedValue;
                 dr["WyEU REF"] = WyEUrefData.Text;
@@ -229,13 +237,19 @@ namespace WymaTimesheetWebApp
 
         protected void OrderNumberUpdate(object sender, EventArgs e)
         {
+            string inputData = OrderNumberInput.Text;
             //Gets the list of Steps and/or tasks for selected Order number when selected.
             List<string> OrderStepsTasks;
             StepTaskData.Items.Clear();
             StepTaskData.Items.Add("Please Select a Step or Task");
             StepTaskData.Enabled = true;
 
-            OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
+            inputData = inputData.Replace(" ", string.Empty);
+            inputData = inputData.Replace("'", string.Empty);
+            inputData = inputData.Replace(";", string.Empty);
+            inputData = inputData.ToUpper();
+
+            OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{inputData}' ;");
 
             foreach (string str in OrderStepsTasks)
             {
@@ -243,8 +257,8 @@ namespace WymaTimesheetWebApp
 
             }
 
-            JobAssyData.Text = Global.ReadDataString($"SELECT TYPE FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
-            CustData.Text = Global.ReadDataString($"SELECT CUSTOMER FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
+            JobAssyData.Text = Global.ReadDataString($"SELECT DISTINCT TYPE FROM ORDERS WHERE ORDERNUMBER = '{inputData}' ;");
+            CustData.Text = Global.ReadDataString($"SELECT DISTINCT CUSTOMER FROM ORDERS WHERE ORDERNUMBER = '{inputData}' ;");
         }
 
 

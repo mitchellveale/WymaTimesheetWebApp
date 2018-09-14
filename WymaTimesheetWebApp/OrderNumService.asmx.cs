@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using System.Data;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace WymaTimesheetWebApp
 {
@@ -22,8 +23,23 @@ namespace WymaTimesheetWebApp
         [WebMethod]
         public List<string> GetOrderNumbers(string inputData)
         {
+            inputData = inputData.Replace(" ", string.Empty);
+            inputData = inputData.Replace("'", string.Empty);
+            inputData = inputData.Replace(";", string.Empty);
+            inputData = inputData.ToUpper();
+
+            string query = "%";
+            char[] charInput = inputData.ToCharArray();
+
+            foreach (char ch in charInput)
+            {
+                query += ch.ToString() + "%";
+            }
+
+            Debug.WriteLine(query);
+
             List<string> data;
-            data = Global.ReadDataList("SELECT DISTINCT ORDERNUMBER FROM ORDERS WHERE ORDERNUMBER LIKE '" + inputData + "%';" );
+            data = Global.ReadDataList("SELECT FIRST 10 DISTINCT ORDERNUMBER FROM ORDERS WHERE ORDERNUMBER LIKE '" + query + "';" );
             return data;
         }
     }

@@ -16,7 +16,7 @@
                 source: function (request, response) {
                     $.ajax({
                         url: "OrderNumService.asmx/GetOrderNumbers",
-                        data: "{ 'inputData': '" + request.term + "' }",
+                        data: "{ \"inputData\": \"" + request.term + "\" }",
                         type: "POST",
                         dataType: "json",
                         contentType: "application/json;charset=utf-8",
@@ -24,7 +24,7 @@
                             response(result.d);
                         },
                         error: function (result) {
-                            alert('There is a problem processing your request');
+                            alert('An error has occured with the database, please try again later. If this probalem persists, please contact your network administrator');
                         }
                     });
                 },
@@ -81,8 +81,7 @@
 
                             <div class="ezydisplay">
                                 <label id="Number" class="Text">Number: </label>
-                                <asp:TextBox ID="OrderNumberInput" runat="server" Font-Size="X-Large" width="250px" Height="75px"></asp:TextBox>
-                                <asp:DropDownList Visible="false" Font-Size="X-Large" runat="server" width="250px" Height="75px" ID="JobNumberData" CssClass="Text Dropdown" AutoPostBack="true" OnSelectedIndexChanged="OrderNumberUpdate" ></asp:DropDownList>
+                                <asp:TextBox ID="OrderNumberInput" CssClass="Text" OnTextChanged="OrderNumberUpdate" AutoPostBack="true" runat="server" Font-Size="X-Large" width="250px" Height="75px"></asp:TextBox>
                             </div>
 
                             <div class="ezydisplay" >
