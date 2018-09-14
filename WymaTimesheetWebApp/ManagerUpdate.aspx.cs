@@ -34,6 +34,10 @@ namespace WymaTimesheetWebApp
             }
         }
 
+
+       
+
+
         protected void OrderNumberUpdate(object sender, EventArgs e)
         {
             string inputData = OrderNumberInput.Text;
@@ -76,24 +80,33 @@ namespace WymaTimesheetWebApp
             List<string> OrderStepsTasks;
             if (e.CommandName == "EditTimeSheet")
             {
-                UpdateSelection.Visible = true;
                 int index = Convert.ToInt32(e.CommandArgument);
 
-                JobNumberData.SelectedValue = UpdateView.Rows[index].Cells[2].Text;
-
-                OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
-                foreach (string str in OrderStepsTasks)
+                if (UpdateView.Rows[index].Cells[1].Text == "NonCharge")
                 {
-                    StepTaskData.Items.Add(str);
-
+                    Response.Write("<script>alert('You Cannot Edit this Row at the given time.');</script>");
                 }
+                else
+                {
 
-                StepTaskData.SelectedValue = UpdateView.Rows[index].Cells[3].Text;
+                    UpdateSelection.Visible = true;
 
-                CustData.Text = UpdateView.Rows[index].Cells[8].Text;
 
-                Session["EditedRow"] = index;
+                    JobNumberData.SelectedValue = UpdateView.Rows[index].Cells[2].Text;
 
+                    OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
+                    foreach (string str in OrderStepsTasks)
+                    {
+                        StepTaskData.Items.Add(str);
+
+                    }
+
+                    StepTaskData.SelectedValue = UpdateView.Rows[index].Cells[3].Text;
+
+                    CustData.Text = UpdateView.Rows[index].Cells[8].Text;
+
+                    Session["EditedRow"] = index;
+                }
             }
 
         }
@@ -125,5 +138,59 @@ namespace WymaTimesheetWebApp
 
 
         }
+
+        protected void BtnAcceptMUClick(object sender, EventArgs e)
+        {
+            if (sigPad.Visible == false)
+            {
+
+                btnAccept1MU.Visible = false;
+                btnAccept2MU.Visible = true;
+                signLabel.Visible = true;
+                sigPad.Visible = true;
+                clearBtn.Visible = true;
+
+            }
+            else if (sigPad.Visible == true)
+            {
+                List<string> empData = Session["empData"] as List<string>;
+
+                DataFile OldData = Session["DataFile"] as DataFile;
+                DataFile dataFile = new DataFile();
+                dataFile.CreateHeader( Global.ReadDataString($"SELECT RESOURCENAME FROM EMPLOYEES WHERE EMPNAME='{empData[0]}';"), empData[1], Session["ManagerName"].ToString());
+
+                DataTable dt = new DataTable();
+
+               
+
+                foreach (GridViewRow row in UpdateView.Rows)
+                {
+                    JobType jobType = (JobType)Enum.Parse(typeof(JobType), row.Cells[1].Text);
+                    string orderNumber = row.Cells[2].Text;
+                    string task = row.Cells[3].Text;
+
+                    //Calculate 'time' in a float format
+
+
+                    float time = Global.TimeToFloat(row.Cells[4].Text);
+
+
+
+
+                    string customer = row.Cells[8].Text;
+
+                    dataFile.AddData(jobType, orderNumber, task, time, customer);
+                }
+
+                
+                dataFile.Export();
+                Server.Transfer("ManagerViewScreen.aspx");
+
+            }
+
+           
+        }
+
+
     }
 }

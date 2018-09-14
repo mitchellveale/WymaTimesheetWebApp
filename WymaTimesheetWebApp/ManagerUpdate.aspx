@@ -143,7 +143,9 @@
         <div id="FooterRap">
             <div id="Footer1">
 
-                    <button runat="server" id="btnAcceptMU" class="btnsubmit" visible="false" onserverclick="BtnAcceptMU">Done</button>
+                    <button runat="server" id="btnAccept1MU" class="btnsubmit" onserverclick="BtnAcceptMUClick">Commit Changes</button>
+                    <button runat="server" id="btnAccept2MU" class="btnsubmit" visible="false" onclick="saveSig(); return"  onserverclick="BtnAcceptMUClick">Done</button>
+                    <script src="js/sig-pad.js"></script>
             </div>
             <div id="Footer2">
 
