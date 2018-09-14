@@ -193,13 +193,22 @@ namespace WymaTimesheetWebApp {
         protected global::System.Web.UI.HtmlControls.HtmlButton clearBtn;
         
         /// <summary>
-        /// btnAcceptMU control.
+        /// btnAccept1MU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAcceptMU;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnAccept1MU;
+        
+        /// <summary>
+        /// btnAccept2MU control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnAccept2MU;
         
         /// <summary>
         /// btnBackMU control.
