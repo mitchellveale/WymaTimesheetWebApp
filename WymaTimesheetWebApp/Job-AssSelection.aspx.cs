@@ -162,15 +162,16 @@ namespace WymaTimesheetWebApp
             inputData = inputData.Replace("'", string.Empty);
             inputData = inputData.Replace(";", string.Empty);
             inputData = inputData.ToUpper();
-            try
-            {
-                string result = Global.ReadDataString("SELECT FIRST 1 ORDERNUMBER FROM ORDERS WHERE ORDERNUMBER='" + inputData + "';");
-            }
-            catch
+
+            string result = Global.ReadDataString("SELECT FIRST 1 ORDERNUMBER FROM ORDERS WHERE ORDERNUMBER='" + inputData + "';");
+            if (result == "")
             {
                 Response.Write("<script>alert('Entered Order number is invalid. Please review what you have entered and try again.');</script>");
+                StepTaskData.Items.Clear();
+                StepTaskData.Enabled = false;
                 return;
             }
+
             if (StepTaskData.SelectedValue == "Please Select a Step or Task" || CHHoursHSelection.SelectedValue == "00" && CHHoursMSelection.SelectedValue == "00")
                 Response.Write("<script>alert('Some fields do not have data please make sure that all fields are filled before adding a row.');</script>");
             else if (containsValue == true)
@@ -239,17 +240,28 @@ namespace WymaTimesheetWebApp
         {
             string inputData = OrderNumberInput.Text;
             //Gets the list of Steps and/or tasks for selected Order number when selected.
-            List<string> OrderStepsTasks;
-            StepTaskData.Items.Clear();
-            StepTaskData.Items.Add("Please Select a Step or Task");
-            StepTaskData.Enabled = true;
 
             inputData = inputData.Replace(" ", string.Empty);
             inputData = inputData.Replace("'", string.Empty);
             inputData = inputData.Replace(";", string.Empty);
             inputData = inputData.ToUpper();
 
+            string result = Global.ReadDataString("SELECT FIRST 1 ORDERNUMBER FROM ORDERS WHERE ORDERNUMBER='" + inputData + "';");
+            if (result == "")
+            {
+                Response.Write("<script>alert('Entered Order number is invalid. Please review what you have entered and try again.');</script>");
+                StepTaskData.Items.Clear();
+                StepTaskData.Items.Add("Please Select a Step or Task");
+                StepTaskData.Enabled = false;
+                return;
+            }
+
+            List<string> OrderStepsTasks;
             OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{inputData}' ;");
+
+            StepTaskData.Items.Clear();
+            StepTaskData.Items.Add("Please Select a Step or Task");
+            StepTaskData.Enabled = true;
 
             foreach (string str in OrderStepsTasks)
             {

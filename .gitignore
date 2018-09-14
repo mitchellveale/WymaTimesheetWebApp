@@ -49,3 +49,4 @@ WymaTimesheetWebApp/Web.config
 WymaTimesheetWebApp/bin/WymaTimesheetWebApp.dll.config
 WymaTimesheetWebApp/ManagerUpdate.aspx.cs
 .vs/WymaTimesheetWebApp/v15/.suo
+.vs/config/applicationhost.config

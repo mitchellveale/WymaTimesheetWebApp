@@ -26,15 +26,6 @@ namespace WymaTimesheetWebApp
 
                 DataTable df = Session["DataFile"] as DataFile;
 
-
-                //Sets inital data in forms for users to select from. 
-                Ordernumbers = Global.ReadDataList("SELECT DISTINCT ORDERNUMBER FROM ORDERS;");
-                JobNumberData.Items.Add("Please Select an Order Number");
-                foreach (string str in Ordernumbers)
-                {
-                    JobNumberData.Items.Add(str);
-                }
-
                 UpdateView.DataSource = df;
                 UpdateView.DataBind();
 
@@ -49,13 +40,29 @@ namespace WymaTimesheetWebApp
 
         protected void OrderNumberUpdate(object sender, EventArgs e)
         {
+            string inputData = OrderNumberInput.Text;
             //Gets the list of Steps and/or tasks for selected Order number when selected.
+
+            inputData = inputData.Replace(" ", string.Empty);
+            inputData = inputData.Replace("'", string.Empty);
+            inputData = inputData.Replace(";", string.Empty);
+
+            inputData = inputData.ToUpper();
+            string result = Global.ReadDataString("SELECT FIRST 1 ORDERNUMBER FROM ORDERS WHERE ORDERNUMBER='" + inputData + "';");
+            if (result == "")
+            {
+                Response.Write("<script>alert('Entered Order number is invalid. Please review what you have entered and try again.');</script>");
+                StepTaskData.Items.Clear();
+                StepTaskData.Items.Add("Please Select a Step or Task");
+                StepTaskData.Enabled = false;
+                return;
+            }
+
             List<string> OrderStepsTasks;
             StepTaskData.Items.Clear();
             StepTaskData.Items.Add("Please Select a Step or Task");
             StepTaskData.Enabled = true;
-
-            OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
+            OrderStepsTasks = Global.ReadDataList($"SELECT TASKNAME FROM ORDERS WHERE ORDERNUMBER = '{inputData}' ;");
 
             foreach (string str in OrderStepsTasks)
             {
@@ -63,8 +70,8 @@ namespace WymaTimesheetWebApp
 
             }
 
-            JobAssyData.Text = Global.ReadDataString($"SELECT TYPE FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
-            CustData.Text = Global.ReadDataString($"SELECT CUSTOMER FROM ORDERS WHERE ORDERNUMBER = '{JobNumberData.SelectedValue}' ;");
+            JobAssyData.Text = Global.ReadDataString($"SELECT DISTINCT TYPE FROM ORDERS WHERE ORDERNUMBER = '{inputData}' ;");
+            CustData.Text = Global.ReadDataString($"SELECT DISTINCT CUSTOMER FROM ORDERS WHERE ORDERNUMBER = '{inputData}' ;");
         }
 
 
