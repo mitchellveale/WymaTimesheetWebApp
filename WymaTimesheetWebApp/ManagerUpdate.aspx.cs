@@ -201,7 +201,6 @@ namespace WymaTimesheetWebApp
 
                 DataTable dt = new DataTable();
 
-               
 
                 foreach (GridViewRow row in UpdateView.Rows)
                 {
